@@ -3,14 +3,17 @@ body {
   width: 100vw;
 }
 .container {
-  width: clamp(200px, 100%, 1500px);
+  width: clamp(200px, 90vw, 1200px);
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
+  /* border: 1px solid #f00; */
+  /* justify-content: center; */
 }
 
 #sections {
-  position: relative;
-  display: inline-block;
+  /* position: relative; */
+  /* display: inline-block; */
+  flex: 1;
   width: 300px;
   top: 0px;
   /* z-index: 90; */
@@ -31,33 +34,40 @@ body {
   height: 300px;
 }
 
-#vis {
+#charts {
   /* display: block; */
+  flex: 3;
+  /* flex-grow: 2; */
   position: sticky;
   /* right: 0px; */
-  top: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  /* border: 1px solid #f00; */
+  height: fit-content;
+  max-height: 100vh;
   /* z-index: 10000; */
   /* margin-left: 100px; */
-  flex: 1;
-  height: 100vh;
-  width: 100%;
-  /* max-width: 70vh; */
+  /* width: 50%; */
+  /* width: 100px; */
+  /* flex: 1; */
+  /* width: 60vh; */
+  /* max-height: 80vh; */
   /* background-color: #ddd; */
 }
 
-#vis .title {
+#charts .title {
   font-size: 120px;
   text-anchor: middle;
 }
 
-#vis .sub-title {
+#charts .sub-title {
   font-size: 80px;
   text-anchor: middle;
 }
 
 #chart-sunburst {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 }
 
 .axis path,
@@ -90,4 +100,19 @@ body {
 .visible {
   opacity: 1;
   /* transform: translateX(0); */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .text-container,
+  .chart-container {
+    position: relative;
+    width: 100%;
+    top: auto;
+    transform: none;
+  }
 }
