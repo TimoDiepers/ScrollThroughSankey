@@ -24,3 +24,22 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(element); // Start observing
   });
 });
+
+//
+// Sidebar
+const sections = document.querySelectorAll("section");
+const dots = document.querySelectorAll(".dot");
+
+window.addEventListener("scroll", () => {
+  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+  
+  sections.forEach((section, i) => {
+    const sectionTop = section.getBoundingClientRect().top + scrollPosition;
+    
+    if (scrollPosition >= sectionTop) {
+      dots.forEach((dot) => dot.classList.remove("active"));
+      dots[i].classList.add("active");
+    }
+  });
+});
+});
