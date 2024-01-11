@@ -1,0 +1,93 @@
+body {
+  background-color: #1f2123;
+  width: 100vw;
+}
+.container {
+  width: clamp(200px, 100%, 1500px);
+  display: flex;
+  justify-content: center;
+}
+
+#sections {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  top: 0px;
+  /* z-index: 90; */
+  padding-bottom: 200px;
+  color: #f1f3f4;
+}
+
+#sections .title {
+  font-family: Arial, Helvetica, "sans-serif";
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  /* color: #262626; */
+  line-height: 1.2em;
+}
+
+#extra-space {
+  height: 300px;
+}
+
+#vis {
+  /* display: block; */
+  position: sticky;
+  /* right: 0px; */
+  top: 60px;
+  /* z-index: 10000; */
+  /* margin-left: 100px; */
+  flex: 1;
+  height: 100vh;
+  width: 100%;
+  /* max-width: 70vh; */
+  /* background-color: #ddd; */
+}
+
+#vis .title {
+  font-size: 120px;
+  text-anchor: middle;
+}
+
+#vis .sub-title {
+  font-size: 80px;
+  text-anchor: middle;
+}
+
+#chart-sunburst {
+  width: 100%;
+  height: 100%;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #666;
+  shape-rendering: crispEdges;
+}
+
+.highlight {
+  fill: #008080;
+  font-weight: bold;
+}
+
+.cough-arrow {
+  stroke: #000;
+  stroke-width: 4px;
+}
+
+#sections > section {
+  margin-bottom: 200px;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  /* transform: translateX(20px); */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  /* transform: translateX(0); */
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scroll Animation Demo</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.6/ScrollTrigger.min.js" integrity="sha512-+LXqbM6YLduaaxq6kNcjMsQgZQUTdZp7FTaArWYFt1nxyFKlQSMdIF/WQ/VgsReERwRD8w/9H9cahFx25UDd+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/split-type"></script> -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="sections">
+        <div id="extra-space"></div>
+        <section>
+          <div class="animate-on-scroll">
+            <h1>Section 1</h1>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. At illum
+              sed praesentium, voluptate amet minus harum, nulla omnis
+              architecto quod libero dolor provident numquam perferendis
+              voluptates. Laborum animi delectus doloremque? Vel, possimus
+              reprehenderit odit aperiam rerum voluptatum perspiciatis unde est
+              aliquid, harum sed fuga doloremque dolorem eaque! Reiciendis,
+              ipsa? Placeat ut libero praesentium ipsum nam esse nihil a
+              officiis exercitationem. Aliquam ipsa labore hic quae!
+              Perspiciatis asperiores aliquid eaque! Expedita debitis ea
+              doloremque nostrum autem nulla magni dolore, est maxime,
+              consectetur ullam adipisci delectus animi omnis consequatur hic
+              vel. A? Sit debitis fugiat dolore veniam officia impedit
+              necessitatibus neque nobis libero quidem praesentium deserunt
+              provident magni maxime iste molestiae, quam obcaecati? Odit libero
+              voluptas dolorum necessitatibus veniam itaque aliquam voluptate?
+            </p>
+          </div>
+        </section>
+        <section>
+          <div class="animate-on-scroll">
+            <h1>Section 2</h1>
+            <p>
+              This is the content of section 2. Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Incidunt, aperiam corporis.
+              Laboriosam eius sequi, esse odio repellendus rem ducimus hic,
+              magni harum quibusdam magnam neque, molestias nam pariatur porro
+              praesentium. Blanditiis tenetur voluptatum odio placeat
+              accusantium enim quae minima facere nemo necessitatibus dolorum
+              quod molestiae aliquam quia nesciunt beatae delectus deserunt,
+              tempora eaque ex, illo repudiandae dicta quidem. Numquam,
+              aspernatur!
+            </p>
+          </div>
+        </section>
+        <section>
+          <div class="animate-on-scroll">
+            <h1>Section 3</h1>
+            <p>
+              This is the content of section 3. Lorem ipsum dolor sit amet,
+              consectetur adipisicing elit. Nisi, repellat? Veniam praesentium
+              fugiat error maxime architecto! Ea atque, quo laudantium excepturi
+              quod adipisci, deserunt velit quae minima ipsum perspiciatis
+              maxime. Itaque adipisci, ad, officiis eum excepturi necessitatibus
+              quo alias dolorum deleniti temporibus explicabo praesentium
+              dolorem inventore consectetur corporis eveniet rerum cumque
+              expedita! Voluptatum nulla recusandae magnam, animi doloremque
+              voluptates quam. Cum fugit aut sunt, maxime suscipit, aliquid
+              beatae, officiis reiciendis laborum odit veniam dolor nobis
+              aspernatur distinctio debitis. Quam doloremque blanditiis rerum
+              illum, pariatur adipisci tempore corporis ea ut. Quasi. Nobis,
+              eius! Impedit sapiente explicabo voluptatum temporibus commodi
+              deserunt dolor. Odit, vel nostrum. Molestiae non cum et ad est.
+              Sint porro, voluptates vel officia repellendus praesentium
+              voluptatem quos. Magnam, culpa!
+            </p>
+          </div>
+        </section>
+        <section>
+          <div class="animate-on-scroll">
+            <h1>Section 4</h1>
+            <p>
+              This is the content of section 4. Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Incidunt, aperiam corporis.
+              Laboriosam eius sequi, esse odio repellendus rem ducimus hic,
+              magni harum quibusdam magnam neque, molestias nam pariatur porro
+              praesentium. Blanditiis tenetur voluptatum odio placeat
+              accusantium enim quae minima facere nemo necessitatibus dolorum
+              quod molestiae aliquam quia nesciunt beatae delectus deserunt,
+              tempora eaque ex, illo repudiandae dicta quidem. Numquam,
+              aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Accusantium sapiente deserunt quos dicta quo suscipit. Modi
+              neque et mollitia, atque inventore exercitationem provident quidem
+              facere placeat a rec usandae necessitatibus quos. Pariatur facere
+              ab, expedita et nisi alias iusto possimus repellat officiis
+              dolorem nulla aut magnam nam quaerat commodi. Eum soluta, et quis
+              ab aliquam dicta placeat atque vero minus animi? Vero doloribus
+              porro rerum quos, est, suscipit facilis accusantium aperiam
+              officiis voluptatibus magni sapiente quaerat! Mollitia minus
+              laborum voluptatibus est voluptates ducimus facilis maiores quos
+              ipsa? Voluptatibus quas nobis laboriosam.
+            </p>
+          </div>
+        </section>
+      </div>
+      <div id="vis">
+        <div id="chart-sunburst"></div>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"
+        />
+        <script type="module">
+          import {
+            Runtime,
+            Inspector,
+          } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+          import define from "https://api.observablehq.com/d/92753f6d4975f6f5@1114.js?v=4";
+          new Runtime().module(define, (name) => {
+            if (name === "chart")
+              return new Inspector(document.querySelector("#chart-sunburst"));
+          });
+        </script>
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <script>
+      const lenis = new Lenis();
+
+      lenis.on("scroll", (e) => {
+        console.log(e);
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
+    <!-- <script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script> -->
+    <!-- <script src="lib/d3.js"></script>
+    <script src="js/scroller.js"></script>
+    <script src="js/sections.js"></script> -->
+  </body>
+</html>
