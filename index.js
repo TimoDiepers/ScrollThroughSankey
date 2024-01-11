@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setVisible(entry.target, entry.isIntersecting);
       });
     },
-    { threshold: 0.8 }
+    { threshold: 0.5 }
   ); // Adjust threshold value as needed
 
   // Targeting elements with 'animate-on-scroll' class
