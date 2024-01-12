@@ -171,4 +171,9 @@ body {
     /* transform: translateX(-50%); */
     /* left: 50%; */
   }
+  .animate-on-scroll {
+    opacity: 1;
+    scale: 1;
+    transition: none;
+  }
 }
