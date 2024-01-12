@@ -28,6 +28,9 @@ body {
   align-self: self-start;
   margin-bottom: 0;
   z-index: 1;
+  overscroll-behavior: auto;
+  padding: 0;
+  margin: 0;
 }
 
 #sections > section {
@@ -128,29 +131,40 @@ body {
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column-reverse;
-    justify-content: unset;
-    align-items: end;
+    justify-content: start;
+    align-items: self-start;
     scroll-snap-type: none;
     overflow-y: scroll;
-    margin-top: 50vh;
+    /* margin-top: 55vh; */
   }
 
   #sections {
-    /* align-self: center; */
     align-self: center;
-    width: 75%; /* Full width */
+    /* align-self: center; */
+    /* align-items: flex-end; */
+    width: 100%; /* Full width */
     max-width: none;
     /* margin: 50% auto; */
     z-index: 1;
-    height: fit-content;
-    /* overflow-y: scroll; */
+    height: 40px;
+    overflow-y: scroll;
+    margin-top: 55vh;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    /* overscroll-behavior: contain; */
+
+    /* top: unset; */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  #sections::-webkit-scrollbar {
+    display: none;
   }
 
   #sections > section {
-    height: fit-content;
-    scroll-snap-align: none;
-    display: flex;
-    align-items: center;
+    height: auto;
+    scroll-snap-align: unset;
+    margin-bottom: 30px;
   }
 
   #charts {
@@ -158,6 +172,7 @@ body {
     /* position: fixed; */
     position: fixed;
     align-self: center;
+    justify-self: start;
     top: 0px;
     /* height: 50%; */
     width: 90vw;
