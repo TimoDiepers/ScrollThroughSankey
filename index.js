@@ -31,15 +31,15 @@ const sections = document.querySelectorAll("section");
 const dots = document.querySelectorAll(".dot");
 
 window.addEventListener("scroll", () => {
-  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-  
+  const scrollPosition =
+    window.pageYOffset || document.documentElement.scrollTop;
+
   sections.forEach((section, i) => {
-    const sectionTop = section.getBoundingClientRect().top + scrollPosition;
-    
-    if (scrollPosition >= sectionTop) {
+    const rect = section.getBoundingClientRect();
+
+    if (rect.top <= scrollPosition && rect.bottom > scrollPosition) {
       dots.forEach((dot) => dot.classList.remove("active"));
       dots[i].classList.add("active");
     }
   });
-});
 });
