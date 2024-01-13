@@ -1,11 +1,19 @@
+:root {
+  --doc-height: 100%;
+}
+
 body {
   background-color: #1f2123;
+  scroll-snap-type: y mandatory;
   width: 100vw;
+  overflow-y: hidden;
 }
+
 .container {
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  height: var(--doc-height);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,7 +156,7 @@ body {
     z-index: 1;
     height: 40px;
     overflow-y: scroll;
-    margin-top: 55vh;
+    margin-top: var(--charts-height);
     padding-left: 4vw;
     padding-right: 4vw;
     /* overscroll-behavior: contain; */
@@ -177,6 +185,7 @@ body {
     /* height: 50%; */
     width: 90vw;
     max-width: 50vh;
+    background-color: blue;
     /* width: 90%;
     max-width: 60vh; */
     /* height: 50vw; */

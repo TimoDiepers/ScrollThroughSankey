@@ -43,3 +43,28 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+
+//for responsive
+const documentHeight = () => {
+  const doc = document.documentElement;
+  doc.style.setProperty("--doc-height", `${window.innerHeight}px`);
+};
+window.addEventListener("resize", documentHeight);
+documentHeight();
+
+// Get the actual height of the div with id "charts"
+const chartsDiv = document.getElementById("charts");
+const chartsHeight = () => {
+  const chartsHeight = chartsDiv.offsetHeight;
+  document.documentElement.style.setProperty(
+    "--charts-height",
+    `${chartsHeight}px`
+  );
+};
+window.addEventListener("resize", chartsHeight);
+
+// Update --charts-height when the contents of #charts change
+const observer = new MutationObserver(chartsHeight);
+observer.observe(chartsDiv, { childList: true, subtree: true });
+
+chartsHeight();
