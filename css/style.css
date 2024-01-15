@@ -62,7 +62,7 @@ p {
   /* flex: 3; */
   width: clamp(500px, 70%, 100vh);
   position: sticky;
-  top: 0;
+  top: calc(50vh - var(--charts-height) / 2);
   transform: none;
   align-self: center;
   max-height: 100vh;
