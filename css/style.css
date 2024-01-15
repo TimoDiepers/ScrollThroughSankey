@@ -6,14 +6,18 @@ body {
   background-color: #1f2123;
   scroll-snap-type: y mandatory;
   width: 100vw;
-  height: 100lvh;
-  overflow-y: hidden;
+  height: 100dvh;
+  overflow-y: visible;
 }
-
+h1,
+p {
+  margin-top: 0;
+  padding: 0;
+}
 .container {
   box-sizing: border-box;
   width: 100vw;
-  height: 100lvh;
+  height: 100vh;
   height: var(--doc-height);
   display: flex;
   align-items: center;
@@ -33,7 +37,7 @@ body {
   max-width: 300px;
   top: 0px;
   color: #f1f3f4;
-  height: fit-content;
+  /* height: fit-content; */
   align-self: self-start;
   margin-bottom: 0;
   z-index: 1;
@@ -137,6 +141,9 @@ body {
 
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
+  body {
+    height: 100lvh;
+  }
   .container {
     flex-direction: column-reverse;
     justify-content: start;
@@ -154,26 +161,30 @@ body {
     max-width: none;
     /* margin: 50% auto; */
     z-index: 1;
-    height: 40px;
+    /* height: 40px; */
+    height: 100dvh;
+    background-color: red;
     overflow-y: scroll;
-    margin-top: var(--charts-height);
+    margin: 0;
+    padding-top: var(--charts-height);
+    /* padding: 0; */
     padding-left: 4vw;
     padding-right: 4vw;
-    transition: margin-top 0.1s ease-out;
+    transition: margin-top 0.3s ease-out;
     /* overscroll-behavior: contain; */
 
     /* top: unset; */
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  #sections::-webkit-scrollbar {
+  /* #sections::-webkit-scrollbar {
     display: none;
-  }
+  } */
 
   #sections > section {
-    height: auto;
+    height: fit-content;
     scroll-snap-align: unset;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
   }
 
   #charts {
@@ -202,7 +213,7 @@ body {
   }
   #chart-sunburst {
     margin: auto;
-    display: grid;
+    /* display: grid; */
 
     max-width: 50vh;
   }
