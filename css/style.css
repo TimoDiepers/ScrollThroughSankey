@@ -149,11 +149,13 @@ p {
     justify-content: start;
     align-items: self-start;
     scroll-snap-type: none;
-    overflow-y: scroll;
+    overflow-y: unset;
+    /* overflow-y: scroll; */
     /* margin-top: 55vh; */
   }
 
   #sections {
+    box-sizing: border-box;
     align-self: center;
     /* align-self: center; */
     /* align-items: flex-end; */
@@ -163,14 +165,13 @@ p {
     z-index: 1;
     /* height: 40px; */
     height: 100dvh;
-    background-color: red;
-    overflow-y: scroll;
+    /* overflow-y: auto; */
     margin: 0;
-    padding-top: var(--charts-height);
-    /* padding: 0; */
+    margin-top: var(--charts-height);
     padding-left: 4vw;
     padding-right: 4vw;
-    transition: margin-top 0.3s ease-out;
+    padding-bottom: 0;
+    transition: margin-top 0.4s ease-out;
     /* overscroll-behavior: contain; */
 
     /* top: unset; */
@@ -184,7 +185,7 @@ p {
   #sections > section {
     height: fit-content;
     scroll-snap-align: unset;
-    /* padding-bottom: 30px; */
+    padding-bottom: 40px;
   }
 
   #charts {
