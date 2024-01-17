@@ -7,7 +7,8 @@ body {
   scroll-snap-type: y mandatory;
   width: 100vw;
   height: 100dvh;
-  overflow-y: visible;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 h1,
 p {
@@ -44,7 +45,7 @@ p {
   overscroll-behavior: auto;
   padding: 0;
   margin: 0;
-  transition: 0.4s ease-out;
+  transition: 0.25s ease-out;
 }
 
 #sections > section {
@@ -72,6 +73,7 @@ p {
 }
 
 #chart-sunburst {
+  margin: auto;
 }
 
 .animate-on-scroll {
@@ -173,7 +175,7 @@ p {
     padding-right: 4vw;
     padding-bottom: 0;
     /* transition: margin-top 0.4s ease-out; */
-    transition: 0.4s ease-out;
+    transition: 0.25s ease-out;
 
     /* overscroll-behavior: contain; */
 
@@ -217,7 +219,7 @@ p {
   }
   #chart-sunburst {
     margin: auto;
-    /* display: grid; */
+    display: grid;
 
     max-width: 50vh;
   }

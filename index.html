@@ -22,7 +22,7 @@
       <div id="sections">
         <!-- <div id="extraspace"></div> -->
         <section>
-          <div class="animate-on-scroll">
+          <div class="animate-on-scroll" id="section1">
             <h1>Welcome!⚡🌱</h1>
             <!-- 💚🌟 -->
             <p>
@@ -46,7 +46,7 @@
           </div>
         </section>
         <section>
-          <div class="animate-on-scroll">
+          <div class="animate-on-scroll" id="section2">
             <h1>What do we see here?</h1>
             <p>
               This is the content of section 2. Lorem ipsum dolor sit amet
@@ -62,7 +62,7 @@
           </div>
         </section>
         <section>
-          <div class="animate-on-scroll">
+          <div class="animate-on-scroll" id="section3">
             <h1>Some explanations:</h1>
             <p>
               This is the content of section 3. Lorem ipsum dolor sit amet,
@@ -85,7 +85,7 @@
           </div>
         </section>
         <section>
-          <div class="animate-on-scroll">
+          <div class="animate-on-scroll" id="section4">
             <h1>More results!</h1>
             <p>
               This is the content of section 4. Lorem ipsum dolor sit amet
@@ -104,7 +104,7 @@
           </div>
         </section>
         <section>
-          <div class="animate-on-scroll">
+          <div class="animate-on-scroll" id="section5">
             <h1>Takeaways</h1>
             <p>
               This is the content of section 4. Lorem ipsum dolor sit amet
@@ -124,26 +124,14 @@
         </section>
       </div>
       <div id="charts">
-        <div id="chart-sunburst"></div>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css"
-        />
-        <script type="module">
-          import {
-            Runtime,
-            Inspector,
-          } from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-          // import define from "https://api.observablehq.com/d/92753f6d4975f6f5@1114.js?v=4"; // 2 layers
-          import define from "https://api.observablehq.com/d/0a80b6db76a95e87@1153.js?v=4";
-          new Runtime().module(define, (name) => {
-            if (name === "chart")
-              return new Inspector(document.querySelector("#chart-sunburst"));
-          });
-        </script>
+        <svg id="chart-sunburst"></svg>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- <script src="https://unpkg.com/d3-require@1"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/stdlib"></script>
+    <script src="script/chart-sunburst.js"></script>
+    <script src="script/basic.js"></script>
     <!-- <script>
       const lenis = new Lenis();
 

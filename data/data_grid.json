@@ -1,0 +1,1820 @@
+{
+    "name": "Distribution Grid",
+    "children": [
+        {
+            "name": "Land cable, oil cu",
+            "children": [
+                {
+                    "name": "market for copper, ",
+                    "children": [
+                        {
+                            "name": "copper production, ",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 8523916.885668796
+                                }
+                            ]
+                        },
+                        {
+                            "name": "electrorefining of ",
+                            "children": [
+                                {
+                                    "name": "market for copper, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 26694952.12757899
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 8997124.056250995
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1489696.7729693502
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 4521403.5429461
+                        }
+                    ]
+                },
+                {
+                    "name": "market for paper, m",
+                    "children": [
+                        {
+                            "name": "melamine impregnate",
+                            "children": [
+                                {
+                                    "name": "market for melamine",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6936806.724310866
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 4374474.130681479
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "market for lubricat",
+                    "children": [
+                        {
+                            "name": "lubricating oil pro",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 4120267.328026994
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 77808.25004561711
+                        }
+                    ]
+                },
+                {
+                    "name": "market for lead (k",
+                    "children": [
+                        {
+                            "name": "primary lead produc",
+                            "children": [
+                                {
+                                    "name": "market for lead con",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4938215.36929507
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 5713152.852676248
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 5326994.926982326
+                        }
+                    ]
+                },
+                {
+                    "name": "market for bronze ",
+                    "children": [
+                        {
+                            "name": "bronze production ",
+                            "children": [
+                                {
+                                    "name": "market for copper, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 17833281.35584341
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1586163.9636504874
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 307205.07728848234
+                        }
+                    ]
+                },
+                {
+                    "name": "market for polyprop",
+                    "children": [
+                        {
+                            "name": "activities below cut",
+                            "value": 3712760.002277623
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 5.960464477539063e-08
+                }
+            ]
+        },
+        {
+            "name": "Overhead line, 150k",
+            "children": [
+                {
+                    "name": "concrete, all types",
+                    "children": [
+                        {
+                            "name": "market for concrete",
+                            "children": [
+                                {
+                                    "name": "concrete production",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3841577.7422067844
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "concrete production",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4707272.294867691
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 824699.2990233991
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for concrete",
+                            "children": [
+                                {
+                                    "name": "concrete production",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4785097.663989392
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 2734244.261993466
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 0.4857110381126404
+                        }
+                    ]
+                },
+                {
+                    "name": "market for steel, u",
+                    "children": [
+                        {
+                            "name": "steel production, c",
+                            "children": [
+                                {
+                                    "name": "market for pig iron",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 29395063.692054383
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 6459304.930212215
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 3675841.0625281557
+                        }
+                    ]
+                },
+                {
+                    "name": "market for aluminiu",
+                    "children": [
+                        {
+                            "name": "aluminium ingot, pr",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 8275672.454069865
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 5296567.138224249
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 102001351.91197282
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": -3.7972428798675537
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 2214990.140917316
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 2565286.273421854
+                }
+            ]
+        },
+        {
+            "name": "Overhead line, 10kV",
+            "children": [
+                {
+                    "name": "market for steel, u",
+                    "children": [
+                        {
+                            "name": "steel production, c",
+                            "children": [
+                                {
+                                    "name": "market for pig iron",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 9034720.751294628
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1985299.8756285124
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1129788.248598395
+                        }
+                    ]
+                },
+                {
+                    "name": "market for aluminiu",
+                    "children": [
+                        {
+                            "name": "aluminium ingot, pr",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6689664.614173427
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4281495.909585869
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 82453098.31563035
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": -3.0695127993822098
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1790493.914383009
+                        }
+                    ]
+                },
+                {
+                    "name": "market for copper, ",
+                    "children": [
+                        {
+                            "name": "treatment of copper",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 6379988.329245688
+                                }
+                            ]
+                        },
+                        {
+                            "name": "copper production, ",
+                            "children": [
+                                {
+                                    "name": "market for blasting",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3530256.0013455776
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4559915.795899813
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for mine inf",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4050763.4390540547
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 7739872.731518777
+                                }
+                            ]
+                        },
+                        {
+                            "name": "electrorefining of ",
+                            "children": [
+                                {
+                                    "name": "market for copper, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 62262129.49715531
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 20984495.51117714
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3474503.0800891966
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 4165533.9685436487
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 1201097.1404125094
+                }
+            ]
+        },
+        {
+            "name": "Overhead line, 0.4k",
+            "children": [
+                {
+                    "name": "market for steel, u",
+                    "children": [
+                        {
+                            "name": "steel production, c",
+                            "children": [
+                                {
+                                    "name": "market for pig iron",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3351350.747184819
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 736429.647880387
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 419085.08246459253
+                        }
+                    ]
+                },
+                {
+                    "name": "market for aluminiu",
+                    "children": [
+                        {
+                            "name": "aluminium ingot, pr",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 7309784.878456336
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4678383.1271234
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 90096356.99411504
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": -3.354051247239113
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1956469.5833322406
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": -8.940696716308594e-08
+                }
+            ]
+        },
+        {
+            "name": "Transformer, 40MVA",
+            "children": [
+                {
+                    "name": "aluminium productio",
+                    "children": [
+                        {
+                            "name": "aluminium productio",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3258838.103837441
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 355824.72026691027
+                        }
+                    ]
+                },
+                {
+                    "name": "market for copper, ",
+                    "children": [
+                        {
+                            "name": "treatment of copper",
+                            "children": [
+                                {
+                                    "name": "market for copper, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4931891.797184875
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4641152.558810264
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for heat, di",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 5970688.6827429775
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 2163733.4674725197
+                                }
+                            ]
+                        },
+                        {
+                            "name": "copper production, ",
+                            "children": [
+                                {
+                                    "name": "market for blasting",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 9798119.78896939
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for diesel, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6467800.97446187
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6282473.098977339
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 12655909.707061037
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for mine inf",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 11242772.591421466
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for steel, c",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 7803895.547867343
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 927615.3104075938
+                                }
+                            ]
+                        },
+                        {
+                            "name": "electrorefining of ",
+                            "children": [
+                                {
+                                    "name": "market for copper, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 172806675.4640252
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for diesel, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6343636.683374023
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 58241838.73669088
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3299742.5426311493
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 11561314.758266509
+                        }
+                    ]
+                },
+                {
+                    "name": "market for glass fi",
+                    "children": [
+                        {
+                            "name": "glass fibre product",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 4340553.225948309
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1980734.9021042055
+                        }
+                    ]
+                },
+                {
+                    "name": "steel production, e",
+                    "children": [
+                        {
+                            "name": "market for electric",
+                            "children": [
+                                {
+                                    "name": "treatment of electr",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": -5366887.366899998
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 10899031.920640789
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for electric",
+                            "children": [
+                                {
+                                    "name": "electricity voltage",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4169562.728080934
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 49942.51644886378
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for ferroman",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3331199.5887951246
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for ferrosil",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3500129.0219520316
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for iron scr",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 4432993.033901221
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for quicklim",
+                            "children": [
+                                {
+                                    "name": "quicklime productio",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 7588172.718746009
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for refracto",
+                            "children": [
+                                {
+                                    "name": "refractory producti",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4217818.72060199
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 434070.19188945275
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 26298598.03772968
+                        }
+                    ]
+                },
+                {
+                    "name": "market for steel, l",
+                    "children": [
+                        {
+                            "name": "steel production, l",
+                            "children": [
+                                {
+                                    "name": "market for steel, l",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 17038354.632349275
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1739740.6089841798
+                                }
+                            ]
+                        },
+                        {
+                            "name": "steel production, l",
+                            "children": [
+                                {
+                                    "name": "market for hot roll",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 8770775.93377028
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for steel, l",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 64024587.65498255
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1.355269894003868
+                        }
+                    ]
+                },
+                {
+                    "name": "market for sheet ro",
+                    "children": [
+                        {
+                            "name": "sheet rolling, stee",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3697444.1753365425
+                                }
+                            ]
+                        },
+                        {
+                            "name": "sheet rolling, stee",
+                            "children": [
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4412671.051550994
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for steel, u",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 5018667.486682191
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3375230.163191216
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 0.4994965270161629
+                        }
+                    ]
+                },
+                {
+                    "name": "market for lubricat",
+                    "children": [
+                        {
+                            "name": "lubricating oil pro",
+                            "children": [
+                                {
+                                    "name": "chemical factory co",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4516301.242618724
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for di",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 58459795.42571817
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 12185525.071456023
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for he",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 9923902.235641131
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for isobutan",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3255225.2269713134
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for n-olefin",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 15447635.04287594
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for syntheti",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 15180685.788515376
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 7459983.309182078
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 2387520.666105315
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 5590373.376842976
+                }
+            ]
+        },
+        {
+            "name": "Transformer, 315kVA",
+            "children": [
+                {
+                    "name": "aluminium productio",
+                    "children": [
+                        {
+                            "name": "aluminium productio",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 10046609.366300082
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for electric",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 11627867.757657306
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 9193837.75764909
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 3370437.302462157
+                        }
+                    ]
+                },
+                {
+                    "name": "market for aluminiu",
+                    "children": [
+                        {
+                            "name": "aluminium ingot, pr",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6067856.779496481
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3883528.619106577
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 74789039.57979727
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": -2.784199744462967
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1624066.5659107715
+                        }
+                    ]
+                },
+                {
+                    "name": "market for glass wo",
+                    "children": [
+                        {
+                            "name": "glass wool mat prod",
+                            "children": [
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3744508.132641887
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 5069387.549410952
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 210697.57981361263
+                        }
+                    ]
+                },
+                {
+                    "name": "steel production, e",
+                    "children": [
+                        {
+                            "name": "activities below cut",
+                            "value": 16160346.18497385
+                        }
+                    ]
+                },
+                {
+                    "name": "market for steel, u",
+                    "children": [
+                        {
+                            "name": "steel production, c",
+                            "children": [
+                                {
+                                    "name": "market for pig iron",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 23822248.431468416
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 5234728.128305335
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 2978962.723248288
+                        }
+                    ]
+                },
+                {
+                    "name": "market for lubricat",
+                    "children": [
+                        {
+                            "name": "lubricating oil pro",
+                            "children": [
+                                {
+                                    "name": "market group for di",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 13089612.772109153
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for n-olefin",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3458848.247477013
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for syntheti",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3399076.187996864
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 8360932.559587646
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 534584.8506165184
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 487057.6732247174
+                }
+            ]
+        },
+        {
+            "name": "Land cable, vpe al",
+            "children": [
+                {
+                    "name": "market for polyethy",
+                    "children": [
+                        {
+                            "name": "polyethylene produc",
+                            "children": [
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 5113620.682343652
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for ethylene",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 28053879.685631532
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for ethylene",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4105511.3597532553
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 8316433.869398646
+                                }
+                            ]
+                        },
+                        {
+                            "name": "polyethylene produc",
+                            "children": [
+                                {
+                                    "name": "market for ethylene",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6710228.455114452
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 2096612.1607739218
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 2121219.6420284286
+                        }
+                    ]
+                },
+                {
+                    "name": "market for aluminiu",
+                    "children": [
+                        {
+                            "name": "aluminium ingot, pr",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 61219654.906455554
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 39181590.884677686
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 754559535.6389384
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": -28.09027349948883
+                                }
+                            ]
+                        },
+                        {
+                            "name": "treatment of alumin",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 7753917.065104629
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market group for tr",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3393488.6794522926
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 5238082.298952341
+                        }
+                    ]
+                },
+                {
+                    "name": "market for steel, u",
+                    "children": [
+                        {
+                            "name": "steel production, c",
+                            "children": [
+                                {
+                                    "name": "market for pig iron",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 15192585.0927881
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3338436.0320008397
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1899826.7435331084
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 9.5367431640625e-07
+                }
+            ]
+        },
+        {
+            "name": "Land cable, vpe ins",
+            "children": [
+                {
+                    "name": "market for copper, ",
+                    "children": [
+                        {
+                            "name": "treatment of copper",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3599678.3576509
+                                }
+                            ]
+                        },
+                        {
+                            "name": "copper production, ",
+                            "children": [
+                                {
+                                    "name": "activities below cut",
+                                    "value": 11217029.01027563
+                                }
+                            ]
+                        },
+                        {
+                            "name": "electrorefining of ",
+                            "children": [
+                                {
+                                    "name": "market for copper, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 35129161.4476458
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 11839744.90855183
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1960363.0752200708
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 2350252.3360257745
+                        }
+                    ]
+                },
+                {
+                    "name": "market for polyprop",
+                    "children": [
+                        {
+                            "name": "polypropylene produ",
+                            "children": [
+                                {
+                                    "name": "market for chemical",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3369556.8777734675
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 11827391.363224844
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for ethylene",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4340982.16109688
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for heat, fr",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4032464.401540435
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for propylen",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 13697594.31858034
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for propylen",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 80713082.54850273
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 9750894.293838829
+                                }
+                            ]
+                        },
+                        {
+                            "name": "polypropylene produ",
+                            "children": [
+                                {
+                                    "name": "market for propylen",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 19364837.207317147
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 5429247.047332201
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market group for tr",
+                            "children": [
+                                {
+                                    "name": "market for transpor",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3760460.744575067
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 873471.8614753685
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 1397992.219132781
+                        }
+                    ]
+                },
+                {
+                    "name": "market for polyethy",
+                    "children": [
+                        {
+                            "name": "polyethylene produc",
+                            "children": [
+                                {
+                                    "name": "market group for el",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 8563972.773036055
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for ethylene",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 46982886.829154894
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for ethylene",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 6875654.196588371
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for heat, fr",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4681852.569313995
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 9245991.83889576
+                                }
+                            ]
+                        },
+                        {
+                            "name": "polyethylene produc",
+                            "children": [
+                                {
+                                    "name": "market for ethylene",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 11237871.825118316
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 3511275.195377853
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 3552486.269207552
+                        }
+                    ]
+                },
+                {
+                    "name": "market for aluminiu",
+                    "children": [
+                        {
+                            "name": "aluminium ingot, pr",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 25207429.598755505
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 16133171.53293205
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 310692806.1216911
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": -11.56627893447876
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 6746788.052450359
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Land cable, vpe ins",
+            "children": [
+                {
+                    "name": "market for polyethy",
+                    "children": [
+                        {
+                            "name": "activities below cut",
+                            "value": 3519620.8624886125
+                        }
+                    ]
+                },
+                {
+                    "name": "market for aluminiu",
+                    "children": [
+                        {
+                            "name": "aluminium ingot, pr",
+                            "children": [
+                                {
+                                    "name": "market for aluminiu",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 9924319.301884534
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1320523.6905761492
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 215509.58881366998
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 2809213.0137656294
+                }
+            ]
+        },
+        {
+            "name": "Land cable, vpe ins",
+            "children": [
+                {
+                    "name": "cable production, t",
+                    "children": [
+                        {
+                            "name": "market for copper, ",
+                            "children": [
+                                {
+                                    "name": "treatment of copper",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3940714.482052374
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "copper production, ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 12279738.430641653
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "electrorefining of ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 53564863.71478469
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 2572916.93780607
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for extrusio",
+                            "children": [
+                                {
+                                    "name": "extrusion, plastic ",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 3902084.5130172684
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1024758.346862921
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for polyethy",
+                            "children": [
+                                {
+                                    "name": "polyethylene produc",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 22014916.17888318
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "polyethylene produc",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 4252779.462880428
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 1024326.3984592147
+                                }
+                            ]
+                        },
+                        {
+                            "name": "market for wire dra",
+                            "children": [
+                                {
+                                    "name": "wire drawing, coppe",
+                                    "children": [
+                                        {
+                                            "name": "activities below cut",
+                                            "value": 5162097.328891709
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "activities below cut",
+                                    "value": 2219620.839303513
+                                }
+                            ]
+                        },
+                        {
+                            "name": "activities below cut",
+                            "value": 117.9490519464016
+                        }
+                    ]
+                },
+                {
+                    "name": "activities below cut",
+                    "value": 1.4901161193847656e-08
+                }
+            ]
+        },
+        {
+            "name": "activities below cut",
+            "value": 38161.28093004227
+        }
+    ]
+}
