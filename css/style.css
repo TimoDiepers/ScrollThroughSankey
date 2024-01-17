@@ -7,7 +7,7 @@ body {
   scroll-snap-type: y mandatory;
   width: 100vw;
   height: 100dvh;
-  overflow-y: hidden;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 h1,
@@ -167,10 +167,11 @@ p {
     /* margin: 50% auto; */
     z-index: 1;
     /* height: 40px; */
-    height: 100dvh;
+    height: calc(100dvh-var(--charts-height));
     /* overflow-y: auto; */
     margin: 0;
-    margin-top: var(--charts-height);
+    position: absolute;
+    top: var(--charts-height);
     padding-left: 4vw;
     padding-right: 4vw;
     padding-bottom: 0;
@@ -188,6 +189,7 @@ p {
   } */
 
   #sections > section {
+    /* height: calc(100dvh - var(--charts-height)); */
     height: fit-content;
     scroll-snap-align: unset;
     padding-bottom: 40px;
