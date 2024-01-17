@@ -51,24 +51,29 @@ document.addEventListener("DOMContentLoaded", function () {
             .style("opacity", normalOpacity);
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
-          fadeOthers(this, "Land cable, vpe al"); //TODO: zoom out to correct level!
+          // const clickEvent = new Event("click");
+          // window.root.dispatchEvent(clickEvent);
+          fadeOthers(this, "Land cable, vpe al");
+          //TODO: zoom out to correct level!
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
-          fadeOthers(this, "Transformer, 40MVA");
+          d3.select("#chart-sunburst")
+            .transition()
+            .duration(fadeDuration)
+            .selectAll("path")
+            .style("opacity", normalOpacity);
+          window.returnToRoot();
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
-          d3.select("#chart-sunburst")
-            .transition()
-            .duration(fadeDuration)
+          const elementToZoomInto = d3
+            .select("#chart-sunburst")
             .selectAll("path")
-            .style("opacity", normalOpacity);
+            .filter((d) => d.data.name === "Land cable, vpe al");
+          const clickEvent = new Event("click");
+          elementToZoomInto.node().dispatchEvent(clickEvent);
         }
         if (entry.target.id === "section5" && entry.isIntersecting) {
-          d3.select("#chart-sunburst")
-            .transition()
-            .duration(fadeDuration)
-            .selectAll("path")
-            .style("opacity", normalOpacity);
+          window.returnToRoot();
         }
       });
     },

@@ -372,5 +372,10 @@ d3.json("data/data_grid.json").then((data) => {
   counter.text(Math.round(root.value / 1000000) + " kt CO2-eq");
   //.text(`${root.data.name}\n ${Math.round(root.value/1000000)} kt CO2-eq`);
 
+  window.root = root;
+  window.returnToRoot = function () {
+    clicked(null, root);
+  };
+
   return svg.node();
 });

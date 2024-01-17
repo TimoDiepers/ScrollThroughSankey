@@ -9,6 +9,11 @@ body {
   height: 100dvh;
   overflow-y: auto;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 h1,
 p {
