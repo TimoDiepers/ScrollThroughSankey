@@ -155,6 +155,7 @@ d3.json("data/data_grid.json").then((data) => {
       .style("opacity", 0);
 
     parent.datum(p.parent || root);
+    window.currentNodeName = p.data.name;
 
     root.each(
       (d) =>
