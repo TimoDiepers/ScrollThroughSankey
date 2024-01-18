@@ -43,7 +43,7 @@ d3.json("data/data_grid.json").then((data) => {
   const svg = d3
     .select("#chart-sunburst")
     .attr("viewBox", [-width / 2, -height / 2 - offset, width, height + offset]) //Added  offset from middle
-    .style("font-size", "2rem")
+    .style("font-size", "2.5rem")
     .style("font-family", fontFamily)
     //.style("font-stretch", "condensed")
     //.style("letter-spacing", "-0.1rem")
@@ -116,8 +116,8 @@ d3.json("data/data_grid.json").then((data) => {
     .attr("x", 0) // X position
     .attr("y", -height / 2 + 70 - offset) // Y position
     .style("font-family", fontFamily)
-    .style("font-size", "5rem")
-    .style("font-weight", "bold")
+    .style("font-size", "6rem")
+    .style("font-weight", 500)
     .style("fill", darkmode ? "#F1F3F4" : "#262626")
     .style("text-anchor", "middle")
     .text("0 kt CO2-eq"); // Initial text, update it as needed
@@ -129,7 +129,7 @@ d3.json("data/data_grid.json").then((data) => {
     .attr("x", 0) // X position
     .attr("y", -height / 2 + 120 - offset) // Y position, adjust as needed
     .style("font-family", fontFamily)
-    .style("font-size", "2.5rem")
+    .style("font-size", "4rem")
     .style("fill", darkmode ? "#F1F3F4" : "#262626")
     .style("text-anchor", "middle")
     .text("Initial Text"); // Initial text, update it as needed

@@ -79,6 +79,7 @@ p {
 
 #chart-sunburst {
   margin: auto;
+  font-size: inherit;
 }
 
 .animate-on-scroll {
