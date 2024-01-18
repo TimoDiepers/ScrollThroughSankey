@@ -147,6 +147,7 @@ d3.json("data/data_grid.json").then((data) => {
   function clicked(event, p) {
     isTransitioning = true;
     currentFocusDepth = p.depth;
+    window.currentFocusDepth = currentFocusDepth;
 
     tooltip
       .transition()
@@ -376,6 +377,14 @@ d3.json("data/data_grid.json").then((data) => {
   window.returnToRoot = function () {
     clicked(null, root);
   };
+  window.path = path;
+  window.parent = parent;
+  window.svg = svg;
+  window.label = label;
+  window.textBox = textBox;
+  window.clicked = clicked;
+  window.currentFocusDepth = currentFocusDepth;
+  window.fadeDuration = fadeDuration;
 
   return svg.node();
 });

@@ -172,7 +172,7 @@ p {
     /* margin: 50% auto; */
     z-index: 1;
     /* height: 40px; */
-    height: calc(100dvh-var(--charts-height));
+    height: calc(100dvh - var(--charts-height));
     /* overflow-y: auto; */
     margin: 0;
     position: absolute;
@@ -197,7 +197,7 @@ p {
     /* height: calc(100dvh - var(--charts-height)); */
     height: fit-content;
     scroll-snap-align: unset;
-    padding-bottom: 40px;
+    padding-bottom: 80px;
   }
 
   #charts {
@@ -209,8 +209,8 @@ p {
     top: 0px;
     /* height: 50%; */
     width: 100vw;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding-left: 7vw;
+    padding-right: 7vw;
     /* max-width: 50vh; */
     background-color: #1f2123;
     /* display: flex; */

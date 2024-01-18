@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const normalOpacity = 1; // Normal opacity for elements
   const fadedOpacity = 0.3; // Reduced opacity for non-hovered elements
   const fadeDuration = 300; // Duration of fade in milliseconds
-  function fadeOthers(element, datasetName) {
+  function fadeOthers(datasetName, delay) {
     d3.select("#chart-sunburst")
       .selectAll("path")
       // Select the specific element and apply fadeOthers
@@ -24,12 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
         d3.select("#chart-sunburst")
           .selectAll("path")
           .transition()
+          .delay(delay)
           .duration(fadeDuration)
           .style("opacity", fadedOpacity);
 
         // Highlight the current element
         d3.select(this)
           .transition()
+          .delay(delay)
           .duration(fadeDuration)
           .style("opacity", normalOpacity);
         // console.log(d.data.name);
@@ -49,20 +51,31 @@ document.addEventListener("DOMContentLoaded", function () {
             .duration(fadeDuration)
             .selectAll("path")
             .style("opacity", normalOpacity);
+          window.returnToRoot();
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           // const clickEvent = new Event("click");
           // window.root.dispatchEvent(clickEvent);
-          fadeOthers(this, "Land cable, vpe al");
+          if (window.currentFocusDepth === 0) {
+            fadeOthers("Land cable, vpe al", 0);
+          } else {
+            window.returnToRoot();
+            fadeOthers("Land cable, vpe al", 750);
+          }
           //TODO: zoom out to correct level!
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
-          d3.select("#chart-sunburst")
-            .transition()
-            .duration(fadeDuration)
+          const elementToZoomInto = d3
+            .select("#chart-sunburst")
             .selectAll("path")
+            .filter((d) => d.data.name === "Land cable, vpe al");
+          const clickEvent = new Event("click");
+          elementToZoomInto.node().dispatchEvent(clickEvent);
+          d3.select("#chart-sunburst")
+            .selectAll("path")
+            .transition()
+            .delay(750)
             .style("opacity", normalOpacity);
-          window.returnToRoot();
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
           const elementToZoomInto = d3
@@ -95,7 +108,7 @@ const documentHeight = () => {
 window.addEventListener("resize", documentHeight);
 documentHeight();
 
-// Get the actual height of the div with id "charts"
+// Get the actual height of thew div with id "charts"
 const chartsDiv = document.getElementById("charts");
 const chartsHeight = () => {
   const chartsHeight = chartsDiv.offsetHeight;
