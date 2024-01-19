@@ -80,7 +80,7 @@ d3.json("data/data_grid.json").then((data) => {
   // Make them clickable if they have children.
   path
     .filter((d) => d.children)
-    .style("cursor", "pointer")
+    .style("cursor", "zoom-in")
     .on("click", clicked);
 
   const format = d3.format(",d");
@@ -106,7 +106,7 @@ d3.json("data/data_grid.json").then((data) => {
     .attr("r", radius)
     .attr("fill", "none")
     .attr("pointer-events", "all")
-    .style("cursor", (d) => (currentFocusDepth === 0 ? "default" : "pointer"))
+    .style("cursor", (d) => (currentFocusDepth === 0 ? "default" : "zoom-in"))
     .on("click", clicked);
 
   // Append a text element for the counter
@@ -213,12 +213,18 @@ d3.json("data/data_grid.json").then((data) => {
       .style("opacity", normalOpacity);
 
     path
-      .filter((d) => d.children)
-      .style("cursor", "pointer")
+      .filter((d) => arcVisible(d.target))
+      .style("cursor", "zoom-in")
       .on("click", clicked);
 
+    path
+      .filter((d) => !arcVisible(d.target))
+      .style("cursor", "default")
+      .on("click", null);
+    // .attr("pointer-events", (d) => (arcVisible(d.target) ? "auto" : "none"));
+
     parent.style("cursor", (d) =>
-      currentFocusDepth === 0 ? "default" : "pointer"
+      currentFocusDepth === 0 ? "default" : "zoom-out"
     );
 
     label
@@ -329,6 +335,7 @@ d3.json("data/data_grid.json").then((data) => {
   path
     .on("mouseover", function (event, d) {
       if (isTransitioning) return;
+      if (!arcVisible(d.current)) return;
       // Smoothly fade all elements
       fadeOthers(this);
 
