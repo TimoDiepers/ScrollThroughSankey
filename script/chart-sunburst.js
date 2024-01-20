@@ -5,14 +5,17 @@ d3.json("data/data_grid.json").then((data) => {
   const height = 1400;
   const radius = 320;
   //const fontFamily = "Arial"
-  //const fontFamily = "Courier New, monospace"; //"Courier New, monospace"
-  //const fontFamily = "Verdana, sans-serif"; //"Courier New, monospace"
+  // const fontFamily = "Courier New, monospace"; //"Courier New, monospace"
+  // const fontFamily = "Verdana, sans-serif"; //"Courier New, monospace"
   //const fontFamily = "Tahoma, sans-serif"; //"Courier New, monospace"
   const fontFamily = "Helvetica Neue, Helvetica, Arial, sans-serif";
 
   // Create the color scale.
   //const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
+  // const color = d3.scaleOrdinal(d3.schemeCategory10);
   const color = d3.scaleOrdinal(d3.schemeTableau10);
+  // const color = d3.scaleOrdinal(d3.schemeSet1);
+  // const color = d3.scaleOrdinal(d3.schemeDark2);
 
   // Compute the layout.
   const hierarchy = d3
@@ -43,7 +46,7 @@ d3.json("data/data_grid.json").then((data) => {
   const svg = d3
     .select("#chart-sunburst")
     .attr("viewBox", [-width / 2, -height / 2 - offset, width, height + offset]) //Added  offset from middle
-    .style("font-size", "2.5rem")
+    .style("font-size", "2em")
     .style("font-family", fontFamily)
     //.style("font-stretch", "condensed")
     //.style("letter-spacing", "-0.1rem")
@@ -117,8 +120,8 @@ d3.json("data/data_grid.json").then((data) => {
     .attr("x", 0) // X position
     .attr("y", -height / 2 + 70 - offset) // Y position
     .style("font-family", fontFamily)
-    .style("font-size", "6rem")
-    .style("font-weight", 500)
+    .style("font-size", "4.2rem")
+    .style("font-weight", 600)
     .style("fill", darkmode ? "#F1F3F4" : "#262626")
     .style("text-anchor", "middle")
     .text("0 kt CO2-eq"); // Initial text, update it as needed
@@ -128,9 +131,9 @@ d3.json("data/data_grid.json").then((data) => {
     .append("text")
     .attr("class", "text-box")
     .attr("x", 0) // X position
-    .attr("y", -height / 2 + 120 - offset) // Y position, adjust as needed
+    .attr("y", -height / 2 + 125 - offset) // Y position, adjust as needed
     .style("font-family", fontFamily)
-    .style("font-size", "4rem")
+    .style("font-size", "2.8rem")
     .style("fill", darkmode ? "#F1F3F4" : "#262626")
     .style("text-anchor", "middle")
     .text("Initial Text"); // Initial text, update it as needed
@@ -276,7 +279,8 @@ d3.json("data/data_grid.json").then((data) => {
     .style("border-radius", "6px")
     .style("pointer-events", "none")
     .style("font-size", "0.7rem")
-    .style("font-family", fontFamily);
+    .style("font-family", fontFamily)
+    .style("z-index", 9999);
 
   function buildAncestorString(ancestors) {
     let result = "";
@@ -355,12 +359,12 @@ d3.json("data/data_grid.json").then((data) => {
         )
 
         .style("left", event.pageX + 4 + "px")
-        .style("top", event.pageY - 50 + "px");
+        .style("top", event.pageY - 70 + "px");
     })
     .on("mousemove", function (event, d) {
       tooltip
         .style("left", event.pageX + 4 + "px")
-        .style("top", event.pageY - 50 + "px");
+        .style("top", event.pageY - 70 + "px");
     });
 
   // Step 3: Hide tooltip and smoothly restore element opacities on mouseout

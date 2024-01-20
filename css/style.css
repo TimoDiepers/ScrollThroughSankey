@@ -3,6 +3,9 @@
 }
 
 body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
   background-color: #1f2123;
   scroll-snap-type: y mandatory;
   width: 100vw;
@@ -15,9 +18,16 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
-h1,
-p {
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+  font-weight: 500;
   margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+p {
+  margin: 0 0 10px;
   padding: 0;
 }
 .container {
