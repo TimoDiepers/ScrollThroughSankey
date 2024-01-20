@@ -359,12 +359,12 @@ d3.json("data/data_grid.json").then((data) => {
         )
 
         .style("left", event.pageX + 4 + "px")
-        .style("top", event.pageY - 70 + "px");
+        .style("top", event.pageY - 50 + "px");
     })
     .on("mousemove", function (event, d) {
       tooltip
         .style("left", event.pageX + 4 + "px")
-        .style("top", event.pageY - 70 + "px");
+        .style("top", event.pageY - 50 + "px");
     });
 
   // Step 3: Hide tooltip and smoothly restore element opacities on mouseout
