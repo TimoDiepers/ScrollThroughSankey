@@ -1,3 +1,22 @@
+const container = document.querySelector(".container");
+const sections = container.querySelectorAll("section");
+const dots = document.querySelectorAll(".dot");
+
+function activateDot(index) {
+  dots.forEach((dot) => dot.classList.remove("active"));
+  dots[index - 1].classList.add("active");
+}
+
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    sections[i].scrollIntoView({ behavior: "instant" });
+  });
+});
+
+document.querySelector(".arrow").addEventListener("click", () => {
+  sections[1].scrollIntoView({ behavior: "smooth" });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   // Function to add 'visible' class
   const setVisible = (element, visible) => {
@@ -11,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const normalOpacity = 1; // Normal opacity for elements
   const fadedOpacity = 0.3; // Reduced opacity for non-hovered elements
   const fadeDuration = 300; // Duration of fade in milliseconds
+
   function fadeOthers(datasetName, delay) {
     d3.select("#chart-sunburst")
       .selectAll("path")
@@ -55,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Additional check for the specific container 'id1'
         if (entry.target.id === "section1" && entry.isIntersecting) {
+          activateDot(1);
           d3.select("#chart-sunburst")
             .transition()
             .duration(fadeDuration)
@@ -64,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           // const clickEvent = new Event("click");
+          activateDot(2);
           // window.root.dispatchEvent(clickEvent);
           if (window.currentFocusDepth === 0) {
             fadeOthers("Land cable, vpe al", 0);
@@ -74,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
           //TODO: zoom out to correct level!
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
+          activateDot(3);
           zoomInto("Land cable, vpe al", 0);
 
           d3.select("#chart-sunburst")
@@ -83,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .style("opacity", normalOpacity);
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
+          activateDot(4);
           if (window.currentNodeName === "Land cable, vpe al") {
             fadeOthers("market for aluminiu", 0);
           } else {
@@ -91,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
         if (entry.target.id === "section5" && entry.isIntersecting) {
+          activateDot(5);
           window.returnToRoot();
         }
       });

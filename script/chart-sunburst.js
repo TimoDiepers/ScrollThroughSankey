@@ -48,6 +48,7 @@ d3.json("data/data_grid.json").then((data) => {
     //.style("font-stretch", "condensed")
     //.style("letter-spacing", "-0.1rem")
     .style("fill", (d) => (darkmode ? "#F1F3F4" : "#262626"));
+  // .attr("filter", "url(#dropshadow)");
 
   // Append the arcs.
   const path = svg
