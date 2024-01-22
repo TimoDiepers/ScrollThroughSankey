@@ -30,10 +30,25 @@ p {
   margin: 0 0 10px;
   padding: 0;
 }
+
+#header {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  text-align: center;
+  background-color: #f1f3f4;
+  color: #1f2123;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  z-index: 9999;
+}
 .container {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   height: var(--doc-height);
   padding-left: 34px;
   padding-right: 34px;
@@ -50,16 +65,16 @@ p {
 }
 
 #sections {
+  /* box-sizing: border-box; */
   flex: 1;
   width: 30%;
   max-width: 300px;
   top: 0px;
   color: #f1f3f4;
-  /* height: fit-content; */
+  height: fit-content;
   align-self: self-start;
   margin-bottom: 0;
   z-index: 1;
-  overscroll-behavior: auto;
   padding: 0;
   margin: 0;
   transition: 0.25s ease-out;
