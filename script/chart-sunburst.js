@@ -13,9 +13,9 @@ d3.json("data/data_grid.json").then((data) => {
   // Create the color scale.
   //const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
   // const color = d3.scaleOrdinal(d3.schemeCategory10);
-  const color = d3.scaleOrdinal(d3.schemeTableau10);
+  // const color = d3.scaleOrdinal(d3.schemeTableau10);
   // const color = d3.scaleOrdinal(d3.schemeSet1);
-  // const color = d3.scaleOrdinal(d3.schemeDark2);
+  const color = d3.scaleOrdinal(d3.schemeDark2);
 
   // Compute the layout.
   const hierarchy = d3
@@ -71,7 +71,7 @@ d3.json("data/data_grid.json").then((data) => {
           // Node is in the outer layer of the current focus
           return 0.4; // Reduced opacity for outer layer
         } else {
-          return 0.6;
+          return 0.7;
         }
       } else {
         // Node is not visible
@@ -200,7 +200,7 @@ d3.json("data/data_grid.json").then((data) => {
             // Node is in the outer layer of the current focus
             return 0.4; // Reduced opacity for outer layer
           } else {
-            return 0.6;
+            return 0.7;
           }
         } else {
           // Node is not visible

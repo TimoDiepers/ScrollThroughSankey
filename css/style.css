@@ -4,13 +4,13 @@
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.42857143;
   background-color: #1f2123;
   scroll-snap-type: y mandatory;
   width: 100vw;
   height: 100dvh;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -36,7 +36,7 @@ p {
   height: 100vh;
   height: var(--doc-height);
   padding-left: 34px;
-  padding-right: 24px;
+  padding-right: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,7 +79,9 @@ p {
 
 #charts {
   /* flex: 3; */
-  width: clamp(500px, 70%, 100vh);
+  /* width: clamp(500px, 70%, 100vh); */
+  width: 70%;
+  max-width: 100vh;
   position: sticky;
   top: calc(50vh - var(--charts-height) / 2);
   transform: none;
@@ -92,6 +94,27 @@ p {
 #chart-sunburst {
   margin: auto;
   font-size: inherit;
+}
+
+#socials {
+  display: grid;
+  grid-auto-flow: column;
+  width: 100px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 99999;
+  gap: 15px;
+}
+
+#socials > a {
+  opacity: 0.5;
+  transition: 0.2s ease;
+}
+
+#socials > a:hover {
+  opacity: 1;
 }
 
 .animate-on-scroll {
@@ -174,6 +197,7 @@ p {
 @media screen and (max-width: 768px) {
   body {
     height: 100lvh;
+    overflow-y: auto;
   }
   .container {
     flex-direction: column-reverse;
@@ -253,8 +277,11 @@ p {
   #chart-sunburst {
     margin: auto;
     display: grid;
-
     max-width: 50vh;
+  }
+
+  #socials {
+    position: static;
   }
   .animate-on-scroll {
     opacity: 1;
