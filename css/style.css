@@ -46,7 +46,7 @@ p {
   z-index: 9999;
 }
 .container {
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   width: 100vw;
   height: fit-content;
   height: var(--doc-height);
