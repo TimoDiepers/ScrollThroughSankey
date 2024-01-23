@@ -103,9 +103,22 @@ p {
   align-self: center;
   max-height: 100vh;
   z-index: 2;
-  background-color: #1f2123;
+  /* background-color: #1f2123; */
+  /* backdrop-filter: blur(30px); */
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
+#charts::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
 
+  background: #1f2123;
+  /* background: red; */
+  mask: linear-gradient(to top, transparent, black 5%);
+  /* backdrop-filter: blur(20px) brightness(0.2); */
+}
 #chart-sunburst {
   margin: auto;
   font-size: inherit;
@@ -277,7 +290,7 @@ p {
     padding-left: 7vw;
     padding-right: 7vw;
     /* max-width: 50vh; */
-    background-color: #1f2123;
+    /* background-color: #1f2123; */
     /* display: flex; */
     /* height: 100px; */
     /* width: 90%;
