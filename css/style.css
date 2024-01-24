@@ -108,6 +108,7 @@ p {
   padding-top: 10px;
   padding-bottom: 15px;
 }
+
 #charts::after {
   content: "";
   position: absolute;
@@ -119,6 +120,7 @@ p {
   mask: linear-gradient(to top, transparent, black 5%);
   /* backdrop-filter: blur(20px) brightness(0.2); */
 }
+
 #chart-sunburst {
   margin: auto;
   font-size: inherit;
@@ -258,8 +260,8 @@ p {
     padding-left: 4vw;
     padding-right: 4vw;
     padding-bottom: 0;
-    /* transition: margin-top 0.4s ease-out; */
-    transition: 0.25s ease-out;
+    /* transition: 0.25s ease-out; */
+    transition: none;
 
     /* overscroll-behavior: contain; */
 
