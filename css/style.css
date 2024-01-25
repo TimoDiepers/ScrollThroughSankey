@@ -32,18 +32,25 @@ p {
 }
 
 #header {
-  display: none;
   position: fixed;
+  display: flex;
+  align-items: center;
   top: 0;
   left: 0;
-  height: 20px;
+  height: fit-content;
   width: 100%;
-  text-align: center;
-  background-color: #f1f3f4;
-  color: #1f2123;
+  /* text-align: center; */
+  /* background-color: #f1f3f4; */
+  color: #f1f3f48b;
+  font-size: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   z-index: 9999;
+}
+
+#header-logo {
+  width: 100px;
+  margin-inline: 20px;
 }
 .container {
   box-sizing: border-box;

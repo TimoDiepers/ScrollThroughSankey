@@ -11,7 +11,7 @@ d3.json("data/data_grid.json").then((data) => {
   const fontFamily = "Helvetica Neue, Helvetica, Arial, sans-serif";
 
   // Create the color scale.
-  //const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
+  // const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
   // const color = d3.scaleOrdinal(d3.schemeCategory10);
   // const color = d3.scaleOrdinal(d3.schemeTableau10);
   // const color = d3.scaleOrdinal(d3.schemeSet1);
