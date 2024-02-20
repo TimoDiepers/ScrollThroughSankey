@@ -6,7 +6,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.42857143;
-  background-color: #1f2123;
+  /* background-color: #1f2123; */
   scroll-snap-type: y mandatory;
   width: 100vw;
   height: 100dvh;
@@ -14,6 +14,8 @@ body {
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  /* background-image: url('../assets/background.png'); */
+  background: linear-gradient(75deg, #0f0c29, #181732, #201e40, #0f0c29);
 }
 body::-webkit-scrollbar {
   display: none;
@@ -122,9 +124,9 @@ p {
   inset: 0;
   z-index: -1;
 
-  background: #1f2123;
   /* background: red; */
-  mask: linear-gradient(to top, transparent, black 5%);
+  background: unset;
+  mask: unset;
   /* backdrop-filter: blur(20px) brightness(0.2); */
 }
 
@@ -235,6 +237,7 @@ p {
   body {
     height: 100lvh;
     overflow-y: auto;
+    background: #0f0c29;
   }
   .container {
     flex-direction: column-reverse;
@@ -310,6 +313,17 @@ p {
     /* z-index: 2; Ensure it's above the text */
     /* transform: translateX(-50%); */
     /* left: 50%; */
+  }
+  #charts::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  
+    /* background: red; */
+    background: #0f0c29;
+    mask: linear-gradient(to top, transparent, black 5%);
+    /* backdrop-filter: blur(20px) brightness(0.2); */
   }
   #chart-sunburst {
     margin: auto;
