@@ -1,0 +1,60 @@
+{
+  "name": "grid status quo",
+  "children": [
+    {
+      "name": "cables",
+      "children": [
+        { "name": "SF6", "value": 0.0 },
+        { "name": "aluminium", "value": 15387901103.747974 },
+        { "name": "concrete & cement", "value": 0.0 },
+        { "name": "copper", "value": 2194954047.297282 },
+        { "name": "iron & steel", "value": 356732966.7714186 },
+        { "name": "other materials", "value": 4301511587.551288 }
+      ]
+    },
+    {
+      "name": "overhead lines",
+      "children": [
+        { "name": "SF6", "value": 0.0 },
+        { "name": "aluminium", "value": 17309579815.3762 },
+        { "name": "concrete & cement", "value": 2120464186.4103017 },
+        { "name": "copper", "value": 1478935726.3993742 },
+        { "name": "iron & steel", "value": 8906012604.156124 },
+        { "name": "other materials", "value": 579997018.7428353 }
+      ]
+    },
+    {
+      "name": "substations",
+      "children": [
+        { "name": "SF6", "value": 0.0 },
+        { "name": "aluminium", "value": 0.0 },
+        { "name": "concrete & cement", "value": 336775321586.96313 },
+        { "name": "copper", "value": 0.0 },
+        { "name": "iron & steel", "value": 765517599.7299033 },
+        { "name": "other materials", "value": 0.0 }
+      ]
+    },
+    {
+      "name": "switchgears",
+      "children": [
+        { "name": "SF6", "value": 511110524.80100316 },
+        { "name": "aluminium", "value": 325221230.8795976 },
+        { "name": "concrete & cement", "value": 0.0 },
+        { "name": "copper", "value": 47598139.54101151 },
+        { "name": "iron & steel", "value": 39064546.51933356 },
+        { "name": "other materials", "value": 5814137442.00807 }
+      ]
+    },
+    {
+      "name": "transformers",
+      "children": [
+        { "name": "SF6", "value": 0.0 },
+        { "name": "aluminium", "value": 809189493.0709611 },
+        { "name": "concrete & cement", "value": 0.0 },
+        { "name": "copper", "value": 525239556.86274046 },
+        { "name": "iron & steel", "value": 762453871.1060386 },
+        { "name": "other materials", "value": 636371374.5920863 }
+      ]
+    }
+  ]
+}
