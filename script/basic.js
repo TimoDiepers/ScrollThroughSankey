@@ -2,95 +2,97 @@ const container = document.querySelector(".container");
 const sections = container.querySelectorAll("section");
 const dots = document.querySelectorAll(".dot");
 
+let initialLoad = true;
+
 const darkmode = true;
-  const blau100 = "#00549F";
-  const blau75 = "#407FB7";
-  const blau50 = "#8EBAE5";
-  const blau25 = "#C7DDF2";
-  const blau10 = "#E8F1FA";
-  const schwarz100 = "#000000";
-  const schwarz75 = "#646567";
-  const schwarz50 = "#9C9E9F";
-  const schwarz25 = "#CFD1D2";
-  const schwarz10 = "#ECEDED";
-  const magenta100 = "#E30066";
-  const magenta75 = "#E96088";
-  const magenta50 = "#F19EB1";
-  const magenta25 = "#F9D2DA";
-  const magenta10 = "#FDEEF0";
-  const gelb100 = "#FFED00";
-  const gelb75 = "#FFF055";
-  const gelb50 = "#FFF59B";
-  const gelb25 = "#FFFAD1";
-  const gelb10 = "#FFFDEE";
-  const petrol100 = "#006165";
-  const petrol75 = "#2D7F83";
-  const petrol50 = "#7DA4A7";
-  const petrol25 = "#BFD0D1";
-  const petrol10 = "#E6ECEC";
-  const tuerkis100 = "#0098A1";
-  const tuerkis75 = "#00B1B7";
-  const tuerkis50 = "#89CCCF";
-  const tuerkis25 = "#CAE7E7";
-  const tuerkis10 = "#EBF6F6";
-  const gruen100 = "#57AB27";
-  const gruen75 = "#8DC060";
-  const gruen50 = "#B8D698";
-  const gruen25 = "#DDEBCE";
-  const gruen10 = "#F2F7EC";
-  const maigruen100 = "#BDCD00";
-  const maigruen75 = "#D0D95C";
-  const maigruen50 = "#E0E69A";
-  const maigruen25 = "#F0F3D0";
-  const maigruen10 = "#F9FAED";
-  const orange100 = "#F6A800";
-  const orange75 = "#FABE50";
-  const orange50 = "#FDD48F";
-  const orange25 = "#FEEAC9";
-  const orange10 = "#FFF7EA";
-  const rot100 = "#CC071E";
-  const rot75 = "#D85C41";
-  const rot50 = "#E69679";
-  const rot25 = "#F3CDBB";
-  const rot10 = "#FAEBE3";
-  const bordeaux100 = "#A11035";
-  const bordeaux75 = "#B65256";
-  const bordeaux50 = "#CD8B87";
-  const bordeaux25 = "#E5C5C0";
-  const bordeaux10 = "#F5E8E5";
-  const violett100 = "#612158";
-  const violett75 = "#834E75";
-  const violett50 = "#A8859E";
-  const violett25 = "#D2C0CD";
-  const violett10 = "#EDE5EA";
-  const lila100 = "#7A6FAC";
-  const lila75 = "#9B91C1";
-  const lila50 = "#BCB5D7";
-  const lila25 = "#DEDAEB";
-  const lila10 = "#F2F0F7";
+const blau100 = "#00549F";
+const blau75 = "#407FB7";
+const blau50 = "#8EBAE5";
+const blau25 = "#C7DDF2";
+const blau10 = "#E8F1FA";
+const schwarz100 = "#000000";
+const schwarz75 = "#646567";
+const schwarz50 = "#9C9E9F";
+const schwarz25 = "#CFD1D2";
+const schwarz10 = "#ECEDED";
+const magenta100 = "#E30066";
+const magenta75 = "#E96088";
+const magenta50 = "#F19EB1";
+const magenta25 = "#F9D2DA";
+const magenta10 = "#FDEEF0";
+const gelb100 = "#FFED00";
+const gelb75 = "#FFF055";
+const gelb50 = "#FFF59B";
+const gelb25 = "#FFFAD1";
+const gelb10 = "#FFFDEE";
+const petrol100 = "#006165";
+const petrol75 = "#2D7F83";
+const petrol50 = "#7DA4A7";
+const petrol25 = "#BFD0D1";
+const petrol10 = "#E6ECEC";
+const tuerkis100 = "#0098A1";
+const tuerkis75 = "#00B1B7";
+const tuerkis50 = "#89CCCF";
+const tuerkis25 = "#CAE7E7";
+const tuerkis10 = "#EBF6F6";
+const gruen100 = "#57AB27";
+const gruen75 = "#8DC060";
+const gruen50 = "#B8D698";
+const gruen25 = "#DDEBCE";
+const gruen10 = "#F2F7EC";
+const maigruen100 = "#BDCD00";
+const maigruen75 = "#D0D95C";
+const maigruen50 = "#E0E69A";
+const maigruen25 = "#F0F3D0";
+const maigruen10 = "#F9FAED";
+const orange100 = "#F6A800";
+const orange75 = "#FABE50";
+const orange50 = "#FDD48F";
+const orange25 = "#FEEAC9";
+const orange10 = "#FFF7EA";
+const rot100 = "#CC071E";
+const rot75 = "#D85C41";
+const rot50 = "#E69679";
+const rot25 = "#F3CDBB";
+const rot10 = "#FAEBE3";
+const bordeaux100 = "#A11035";
+const bordeaux75 = "#B65256";
+const bordeaux50 = "#CD8B87";
+const bordeaux25 = "#E5C5C0";
+const bordeaux10 = "#F5E8E5";
+const violett100 = "#612158";
+const violett75 = "#834E75";
+const violett50 = "#A8859E";
+const violett25 = "#D2C0CD";
+const violett10 = "#EDE5EA";
+const lila100 = "#7A6FAC";
+const lila75 = "#9B91C1";
+const lila50 = "#BCB5D7";
+const lila25 = "#DEDAEB";
+const lila10 = "#F2F0F7";
 
-  const labelColorMapping = {
-    "grid status quo": blau100,
-    "substations": gruen100,
-    "overhead lines": petrol100,
-    "cables": violett100,
-    "transformers": bordeaux100,
-    "switchgears": rot100,
-    "concrete & cement": orange100,
-    "aluminium": tuerkis100,
-    "copper": maigruen100,
-    "iron & steel": bordeaux75,
-    "clinker": rot100,
-    "electricity": violett75,
-    "aluminium (process emissions)": tuerkis50,
-    "iron & steel (process emissions)": bordeaux50,
-    "coal": schwarz75,
-    "heat": bordeaux75,
-    "SF6": gelb100,
-    // Add other mappings as needed
-    };
+const labelColorMapping = {
+  "grid status quo": blau100,
+  "substations": gruen100,
+  "overhead lines": petrol100,
+  "cables": violett100,
+  "transformers": bordeaux100,
+  "switchgears": rot100,
+  "concrete & cement": orange100,
+  "aluminium": tuerkis100,
+  "copper": maigruen100,
+  "iron & steel": bordeaux75,
+  "clinker": rot100,
+  "electricity": violett75,
+  "aluminium (process emissions)": tuerkis50,
+  "iron & steel (process emissions)": bordeaux50,
+  "coal": schwarz75,
+  "heat": bordeaux75,
+  "SF6": gelb100,
+  // Add other mappings as needed
+  };
 
-  const color = d => labelColorMapping[d.name] || "rgb(156,158,159)"; // default color if not mapped
+const color = d => labelColorMapping[d.name] || "rgb(156,158,159)"; // default color if not mapped
 
 
 function activateDot(index) {
@@ -108,7 +110,8 @@ document.querySelector(".arrow").addEventListener("click", () => {
   sections[1].scrollIntoView({ behavior: "smooth" });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function () {
+
   // Function to add 'visible' class
   const setVisible = (element, visible) => {
     if (visible) {
@@ -121,6 +124,156 @@ document.addEventListener("DOMContentLoaded", function () {
   const normalOpacity = 1; // Normal opacity for elements
   const fadedOpacity = 0.3; // Reduced opacity for non-hovered elements
   const fadeDuration = 400; // Duration of fade in milliseconds
+  const delayDuration = 200; // Duration of delay in milliseconds
+  const fadeDurationInitialShow = 400;
+
+  const first_level_names = ["grid status quo"]
+  const first_level_conns = ["->gridstatusquo"]
+  const second_level_names = ["substations", "overhead lines", "cables", "transformers", "switchgears"]
+  const second_level_conns = ["->substations", "->overheadlines", "->cables", "->transformers", "->switchgears"]
+  const third_level_names = ["concrete & cement", "aluminium", "copper", "iron & steel", "other materials"]
+  const third_level_conns = ["->concrete&cement", "->aluminium", "->copper", "->iron&steel", "->othermaterials"]
+  const fourth_level_names = ["clinker", "electricity", "aluminium (process em.)", "iron & steel (process em.)", "coal", "heat", "SF6", "other processes"]
+  const fourth_level_conns = ["->clinker", "->electricity", "->aluminium(processem.)", "->iron&steel(processem.)", "->coal", "->heat", "->SF6", "->otherprocesses"]
+  
+  d3.select("#chart-sankey")
+    .selectAll("path")
+    .filter(d => first_level_conns.some(substr => d.uid.includes(substr)))
+    .style("opacity", 0)
+    .transition()
+    .delay(delayDuration)
+    .duration(fadeDuration)
+    .style("opacity", normalOpacity)
+
+    d3.select("#chart-sankey")
+    .selectAll("path")
+    .filter(d => second_level_conns.some(substr => d.uid.includes(substr)))
+    .style("opacity", 0)
+    .transition()
+    .delay(delayDuration*2)
+    .duration(fadeDurationInitialShow)
+    .style("opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("path")
+    .filter(d => third_level_conns.some(substr => d.uid.includes(substr)))
+    .style("opacity", 0)
+    .transition()
+    .delay(delayDuration*3)
+    .duration(fadeDurationInitialShow)
+    .style("opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("path")
+    .filter(d => fourth_level_conns.some(substr => d.uid.includes(substr)))
+    .style("opacity", 0)
+    .transition()
+    .delay(delayDuration*4)
+    .duration(fadeDurationInitialShow)
+    .style("opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("rect")
+    .filter(d => first_level_names.includes(d.name))
+    .style("opacity", 0)
+    .transition()
+    .duration(fadeDurationInitialShow)
+    .style("opacity", normalOpacity) 
+
+  d3.select("#chart-sankey")
+    .selectAll("rect")
+    .filter(d => second_level_names.includes(d.name))
+    .style("opacity", 0)
+    .transition()
+    .delay(delayDuration)
+    .duration(fadeDurationInitialShow)
+    .style("opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("rect")
+    .filter(d => third_level_names.includes(d.name))
+    .style("opacity", 0)
+    .transition()
+    .delay(delayDuration*2)
+    .duration(fadeDurationInitialShow)
+    .style("opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("rect")
+    .filter(d => fourth_level_names.includes(d.name))
+    .style("opacity", 0)
+    .transition()
+    .delay(delayDuration*3)
+    .duration(fadeDurationInitialShow)
+    .style("opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("text.label")
+    .filter(d => first_level_names.includes(d.name))
+    .style("fill-opacity", 0)
+    .transition()
+    .duration(fadeDurationInitialShow)
+    .style("fill-opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("text.label")
+    .filter(d => second_level_names.includes(d.name))
+    .style("fill-opacity", 0)
+    .transition()
+    .delay(delayDuration)
+    .duration(fadeDurationInitialShow)
+    .style("fill-opacity", normalOpacity)
+
+  d3.select("#chart-sankey")
+    .selectAll("text.label")
+    .filter(d => third_level_names.includes(d.name))
+    .style("fill-opacity", 0)
+    .transition()
+    .delay(delayDuration*2)
+    .duration(fadeDurationInitialShow)
+    .style("fill-opacity", normalOpacity)
+  
+  d3.select("#chart-sankey")
+    .selectAll("text.label")
+    .filter(d => fourth_level_names.includes(d.name))
+    .style("fill-opacity", 0)
+    .transition()
+    .delay(delayDuration*3)
+    .duration(fadeDurationInitialShow)
+    .style("fill-opacity", normalOpacity)
+
+    d3.select("#chart-sankey")
+    .selectAll("text.title")
+    .filter(function() {
+      return d3.select(this).text() === "components"
+    })
+    .style("fill-opacity", 0)
+    .transition()
+    .delay(delayDuration)
+    .duration(fadeDurationInitialShow)
+    .style("fill-opacity", 1)
+
+  d3.select("#chart-sankey")
+    .selectAll("text.title")
+    .filter(function() {
+      return d3.select(this).text() === "materials"
+    })
+    .style("fill-opacity", 0)
+    .transition()
+    .delay(delayDuration*2)
+    .duration(fadeDurationInitialShow)
+    .style("fill-opacity", 1)
+  
+  d3.select("#chart-sankey")
+    .selectAll("text.title")
+    .filter(function() {
+      return d3.select(this).text() === "direct emissions"
+    })
+    .style("fill-opacity", 0)
+    .transition()
+    .delay(delayDuration*3)
+    .duration(fadeDurationInitialShow)
+    .style("fill-opacity", 1)
 
   function fadeOtherLinks(connection, delay=0, localFadeDuration = fadeDuration) {
     d3.select("#chart-sankey")
@@ -173,6 +326,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .transition()
       .delay(delay)
       .duration(localFadeDuration)
+      .style("opacity", normalOpacity)
       .style("fill", d => color(d));
   }
 
@@ -183,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setVisible(entry.target, entry.isIntersecting);
 
         // Additional check for the specific container 'id1'
-        if (entry.target.id === "section1" && entry.isIntersecting) {
+        if (entry.target.id === "section1" && entry.isIntersecting && !initialLoad) {
           activateDot(1);
           showAllLinks();
           showAllRects();
@@ -223,7 +377,13 @@ document.addEventListener("DOMContentLoaded", function () {
   elements.forEach((element) => {
     observer.observe(element); // Start observing
   });
-});
+
+    // Set initialLoad to false after the startup animation
+    setTimeout(() => {
+      initialLoad = false;
+    }, 2000); // Adjust the timeout to match your startup animation duration
+    
+}
 
 //for responsive
 const documentHeight = () => {
