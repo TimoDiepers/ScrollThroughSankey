@@ -324,3 +324,5 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
 
   return svg.node();
 });
+
+window.svg = svg;

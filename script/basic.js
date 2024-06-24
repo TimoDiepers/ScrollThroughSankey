@@ -2,7 +2,7 @@ const container = document.querySelector(".container");
 const sections = container.querySelectorAll("section");
 const dots = document.querySelectorAll(".dot");
 
-let initialLoad = true;
+let startUpAnimationHasRun = false;
 
 const darkmode = true;
 const blau100 = "#00549F";
@@ -110,7 +110,11 @@ document.querySelector(".arrow").addEventListener("click", () => {
   sections[1].scrollIntoView({ behavior: "smooth" });
 });
 
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(function() {
+    console.log("This message will be displayed after 3 seconds.");
+  }, 3000);
+
 
   // Function to add 'visible' class
   const setVisible = (element, visible) => {
@@ -126,154 +130,155 @@ window.onload = function () {
   const fadeDuration = 400; // Duration of fade in milliseconds
   const delayDuration = 200; // Duration of delay in milliseconds
   const fadeDurationInitialShow = 400;
-
-  const first_level_names = ["grid status quo"]
-  const first_level_conns = ["->gridstatusquo"]
-  const second_level_names = ["substations", "overhead lines", "cables", "transformers", "switchgears"]
-  const second_level_conns = ["->substations", "->overheadlines", "->cables", "->transformers", "->switchgears"]
-  const third_level_names = ["concrete & cement", "aluminium", "copper", "iron & steel", "other materials"]
-  const third_level_conns = ["->concrete&cement", "->aluminium", "->copper", "->iron&steel", "->othermaterials"]
-  const fourth_level_names = ["clinker", "electricity", "aluminium (process em.)", "iron & steel (process em.)", "coal", "heat", "SF6", "other processes"]
-  const fourth_level_conns = ["->clinker", "->electricity", "->aluminium(processem.)", "->iron&steel(processem.)", "->coal", "->heat", "->SF6", "->otherprocesses"]
   
-  d3.select("#chart-sankey")
-    .selectAll("path")
-    .filter(d => first_level_conns.some(substr => d.uid.includes(substr)))
-    .style("opacity", 0)
-    .transition()
-    .delay(delayDuration)
-    .duration(fadeDuration)
-    .style("opacity", normalOpacity)
+  function startupTransition() {
+    const first_level_names = ["grid status quo"]
+    const first_level_conns = ["->gridstatusquo"]
+    const second_level_names = ["substations", "overhead lines", "cables", "transformers", "switchgears"]
+    const second_level_conns = ["->substations", "->overheadlines", "->cables", "->transformers", "->switchgears"]
+    const third_level_names = ["concrete & cement", "aluminium", "copper", "iron & steel", "other materials"]
+    const third_level_conns = ["->concrete&cement", "->aluminium", "->copper", "->iron&steel", "->othermaterials"]
+    const fourth_level_names = ["clinker", "electricity", "aluminium (process em.)", "iron & steel (process em.)", "coal", "heat", "SF6", "other processes"]
+    const fourth_level_conns = ["->clinker", "->electricity", "->aluminium(processem.)", "->iron&steel(processem.)", "->coal", "->heat", "->SF6", "->otherprocesses"]
+    d3.select("#chart-sankey")
+      .selectAll("path")
+      .filter(d => first_level_conns.some(substr => d.uid.includes(substr)))
+      .style("opacity", 0)
+      .transition()
+      .delay(delayDuration)
+      .duration(fadeDuration)
+      .style("opacity", normalOpacity)
+
+      d3.select("#chart-sankey")
+      .selectAll("path")
+      .filter(d => second_level_conns.some(substr => d.uid.includes(substr)))
+      .style("opacity", 0)
+      .transition()
+      .delay(delayDuration*2)
+      .duration(fadeDurationInitialShow)
+      .style("opacity", normalOpacity)
 
     d3.select("#chart-sankey")
-    .selectAll("path")
-    .filter(d => second_level_conns.some(substr => d.uid.includes(substr)))
-    .style("opacity", 0)
-    .transition()
-    .delay(delayDuration*2)
-    .duration(fadeDurationInitialShow)
-    .style("opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("path")
-    .filter(d => third_level_conns.some(substr => d.uid.includes(substr)))
-    .style("opacity", 0)
-    .transition()
-    .delay(delayDuration*3)
-    .duration(fadeDurationInitialShow)
-    .style("opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("path")
-    .filter(d => fourth_level_conns.some(substr => d.uid.includes(substr)))
-    .style("opacity", 0)
-    .transition()
-    .delay(delayDuration*4)
-    .duration(fadeDurationInitialShow)
-    .style("opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("rect")
-    .filter(d => first_level_names.includes(d.name))
-    .style("opacity", 0)
-    .transition()
-    .duration(fadeDurationInitialShow)
-    .style("opacity", normalOpacity) 
-
-  d3.select("#chart-sankey")
-    .selectAll("rect")
-    .filter(d => second_level_names.includes(d.name))
-    .style("opacity", 0)
-    .transition()
-    .delay(delayDuration)
-    .duration(fadeDurationInitialShow)
-    .style("opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("rect")
-    .filter(d => third_level_names.includes(d.name))
-    .style("opacity", 0)
-    .transition()
-    .delay(delayDuration*2)
-    .duration(fadeDurationInitialShow)
-    .style("opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("rect")
-    .filter(d => fourth_level_names.includes(d.name))
-    .style("opacity", 0)
-    .transition()
-    .delay(delayDuration*3)
-    .duration(fadeDurationInitialShow)
-    .style("opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("text.label")
-    .filter(d => first_level_names.includes(d.name))
-    .style("fill-opacity", 0)
-    .transition()
-    .duration(fadeDurationInitialShow)
-    .style("fill-opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("text.label")
-    .filter(d => second_level_names.includes(d.name))
-    .style("fill-opacity", 0)
-    .transition()
-    .delay(delayDuration)
-    .duration(fadeDurationInitialShow)
-    .style("fill-opacity", normalOpacity)
-
-  d3.select("#chart-sankey")
-    .selectAll("text.label")
-    .filter(d => third_level_names.includes(d.name))
-    .style("fill-opacity", 0)
-    .transition()
-    .delay(delayDuration*2)
-    .duration(fadeDurationInitialShow)
-    .style("fill-opacity", normalOpacity)
-  
-  d3.select("#chart-sankey")
-    .selectAll("text.label")
-    .filter(d => fourth_level_names.includes(d.name))
-    .style("fill-opacity", 0)
-    .transition()
-    .delay(delayDuration*3)
-    .duration(fadeDurationInitialShow)
-    .style("fill-opacity", normalOpacity)
+      .selectAll("path")
+      .filter(d => third_level_conns.some(substr => d.uid.includes(substr)))
+      .style("opacity", 0)
+      .transition()
+      .delay(delayDuration*3)
+      .duration(fadeDurationInitialShow)
+      .style("opacity", normalOpacity)
 
     d3.select("#chart-sankey")
-    .selectAll("text.title")
-    .filter(function() {
-      return d3.select(this).text() === "components"
-    })
-    .style("fill-opacity", 0)
-    .transition()
-    .delay(delayDuration)
-    .duration(fadeDurationInitialShow)
-    .style("fill-opacity", 1)
+      .selectAll("path")
+      .filter(d => fourth_level_conns.some(substr => d.uid.includes(substr)))
+      .style("opacity", 0)
+      .transition()
+      .delay(delayDuration*4)
+      .duration(fadeDurationInitialShow)
+      .style("opacity", normalOpacity)
 
-  d3.select("#chart-sankey")
-    .selectAll("text.title")
-    .filter(function() {
-      return d3.select(this).text() === "materials"
-    })
-    .style("fill-opacity", 0)
-    .transition()
-    .delay(delayDuration*2)
-    .duration(fadeDurationInitialShow)
-    .style("fill-opacity", 1)
-  
-  d3.select("#chart-sankey")
-    .selectAll("text.title")
-    .filter(function() {
-      return d3.select(this).text() === "direct emissions"
-    })
-    .style("fill-opacity", 0)
-    .transition()
-    .delay(delayDuration*3)
-    .duration(fadeDurationInitialShow)
-    .style("fill-opacity", 1)
+    d3.select("#chart-sankey")
+      .selectAll("rect")
+      .filter(d => first_level_names.includes(d.name))
+      .style("opacity", 0)
+      .transition()
+      .duration(fadeDurationInitialShow)
+      .style("opacity", normalOpacity) 
+
+    d3.select("#chart-sankey")
+      .selectAll("rect")
+      .filter(d => second_level_names.includes(d.name))
+      .style("opacity", 0)
+      .transition()
+      .delay(delayDuration)
+      .duration(fadeDurationInitialShow)
+      .style("opacity", normalOpacity)
+
+    d3.select("#chart-sankey")
+      .selectAll("rect")
+      .filter(d => third_level_names.includes(d.name))
+      .style("opacity", 0)
+      .transition()
+      .delay(delayDuration*2)
+      .duration(fadeDurationInitialShow)
+      .style("opacity", normalOpacity)
+
+    d3.select("#chart-sankey")
+      .selectAll("rect")
+      .filter(d => fourth_level_names.includes(d.name))
+      .style("opacity", 0)
+      .transition()
+      .delay(delayDuration*3)
+      .duration(fadeDurationInitialShow)
+      .style("opacity", normalOpacity)
+
+    d3.select("#chart-sankey")
+      .selectAll("text.label")
+      .filter(d => first_level_names.includes(d.name))
+      .style("fill-opacity", 0)
+      .transition()
+      .duration(fadeDurationInitialShow)
+      .style("fill-opacity", normalOpacity)
+
+    d3.select("#chart-sankey")
+      .selectAll("text.label")
+      .filter(d => second_level_names.includes(d.name))
+      .style("fill-opacity", 0)
+      .transition()
+      .delay(delayDuration)
+      .duration(fadeDurationInitialShow)
+      .style("fill-opacity", normalOpacity)
+
+    d3.select("#chart-sankey")
+      .selectAll("text.label")
+      .filter(d => third_level_names.includes(d.name))
+      .style("fill-opacity", 0)
+      .transition()
+      .delay(delayDuration*2)
+      .duration(fadeDurationInitialShow)
+      .style("fill-opacity", normalOpacity)
+    
+    d3.select("#chart-sankey")
+      .selectAll("text.label")
+      .filter(d => fourth_level_names.includes(d.name))
+      .style("fill-opacity", 0)
+      .transition()
+      .delay(delayDuration*3)
+      .duration(fadeDurationInitialShow)
+      .style("fill-opacity", normalOpacity)
+
+      d3.select("#chart-sankey")
+      .selectAll("text.title")
+      .filter(function() {
+        return d3.select(this).text() === "components"
+      })
+      .style("fill-opacity", 0)
+      .transition()
+      .delay(delayDuration)
+      .duration(fadeDurationInitialShow)
+      .style("fill-opacity", 1)
+
+    d3.select("#chart-sankey")
+      .selectAll("text.title")
+      .filter(function() {
+        return d3.select(this).text() === "materials"
+      })
+      .style("fill-opacity", 0)
+      .transition()
+      .delay(delayDuration*2)
+      .duration(fadeDurationInitialShow)
+      .style("fill-opacity", 1)
+    
+    d3.select("#chart-sankey")
+      .selectAll("text.title")
+      .filter(function() {
+        return d3.select(this).text() === "direct emissions"
+      })
+      .style("fill-opacity", 0)
+      .transition()
+      .delay(delayDuration*3)
+      .duration(fadeDurationInitialShow)
+      .style("fill-opacity", 1)
+    } 
 
   function fadeOtherLinks(connection, delay=0, localFadeDuration = fadeDuration) {
     d3.select("#chart-sankey")
@@ -330,6 +335,14 @@ window.onload = function () {
       .style("fill", d => color(d));
   }
 
+  function showAllTexts(delay=0, localFadeDuration=fadeDuration) {
+    d3.select("#chart-sankey")
+      .selectAll("text")
+      .transition()
+      .delay(delay)
+      .duration(localFadeDuration)
+      .style("fill-opacity", normalOpacity);
+  }
   // Setting up the observer
   const observer = new IntersectionObserver(
     (entries, observer) => {
@@ -337,10 +350,17 @@ window.onload = function () {
         setVisible(entry.target, entry.isIntersecting);
 
         // Additional check for the specific container 'id1'
-        if (entry.target.id === "section1" && entry.isIntersecting && !initialLoad) {
+        if (entry.target.id === "section1" && entry.isIntersecting) {
           activateDot(1);
-          showAllLinks();
-          showAllRects();
+          if (!startUpAnimationHasRun) {
+            startupTransition();
+            startUpAnimationHasRun = true;
+          }
+          else {
+            showAllLinks();
+            showAllRects();
+            showAllTexts();
+          }
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           activateDot(2);
@@ -377,13 +397,9 @@ window.onload = function () {
   elements.forEach((element) => {
     observer.observe(element); // Start observing
   });
+  
+});
 
-    // Set initialLoad to false after the startup animation
-    setTimeout(() => {
-      initialLoad = false;
-    }, 2000); // Adjust the timeout to match your startup animation duration
-    
-}
 
 //for responsive
 const documentHeight = () => {
