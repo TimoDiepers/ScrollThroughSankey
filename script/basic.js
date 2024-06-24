@@ -397,7 +397,12 @@ document.addEventListener("DOMContentLoaded", function () {
   elements.forEach((element) => {
     observer.observe(element); // Start observing
   });
-  
+
+  setTimeout(() => {
+    showAllLinks()
+    showAllRects()
+    showAllTexts();
+  }, 1700);
 });
 
 
