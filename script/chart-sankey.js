@@ -98,8 +98,8 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
     "SF6": gelb100,
     // Add other mappings as needed
     };
-  const fontsize = "26px"; 
-  const fontsizeTitle = "32px"
+  const fontsize = "32px"; 
+  const fontsizeTitle = "36px"
   // Specify the dimensions of the chart.
   const width = 1600;
   const height = 1200;
@@ -128,8 +128,8 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
   const sankey = d3.sankey()
       .nodeId(d => d.name)
       .nodeAlign(d3.sankeyJustify) // d3.sankeyLeft, etc.
-      .nodeWidth(35)
-      .nodePadding(20)
+      .nodeWidth(30)
+      .nodePadding(30)
       .extent([[1, 5], [width - 1, height - 5]]);
 
   // Applies it to the data. We make a copy of the nodes and links objects

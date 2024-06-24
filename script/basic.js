@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     },
-    { threshold: 0.5 }
+    { threshold: 0.3 }
   ); // Adjust threshold value as needed
 
   // Targeting elements with 'animate-on-scroll' class

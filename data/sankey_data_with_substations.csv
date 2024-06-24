@@ -25,7 +25,7 @@ copper,transformers,525239556.86274046
 iron & steel,transformers,762453871.1060386
 other materials,transformers,636371374.5920863
 SF6,other materials,489831096.7863329
-aluminium (process emissions),aluminium,4293560874.245476
+aluminium (process em.),aluminium,4293560874.245476
 clinker,concrete & cement,246861741865.93793
 clinker,copper,50553244.89763536
 clinker,iron & steel,218145379.7420936
@@ -44,11 +44,11 @@ heat,concrete & cement,3570346482.608962
 heat,copper,498076150.2270032
 heat,other materials,3274574921.1327524
 heat,iron & steel,155796530.9261439
-iron & steel (process emissions),iron & steel,5704721704.128531
+iron & steel (process em.),iron & steel,5704721704.128531
 other processes,aluminium,608658226.0446007
 other processes,concrete & cement,46982192095.85786
 other processes,copper,620735998.9474794
 other processes,other materials,3410044655.3888993
 other processes,iron & steel,1349258592.1138358
 SF6,switchgears,5245400229.963696
-aluminium (process emissions),aluminium,2620909112.629814
+aluminium (process em.),aluminium,2620909112.629814
