@@ -197,10 +197,10 @@ document.addEventListener("DOMContentLoaded", function () {
           activateDot(3);
           fadeOtherRects(["substations", "grid status quo"])
           fadeOtherLinks("substations->gridstatusquo", 0);
-          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 0);
-          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 300);
-          fadeOtherRects(["concrete & cement", "substations", "grid status quo"])
-          fadeOtherRects(["clinker", "concrete & cement", "substations", "grid status quo"], 300)
+          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 200);
+          fadeOtherRects(["concrete & cement", "substations", "grid status quo"], 200)
+          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 400);
+          fadeOtherRects(["clinker", "concrete & cement", "substations", "grid status quo"], 400)
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
           activateDot(4);
