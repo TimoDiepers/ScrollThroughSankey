@@ -8,7 +8,7 @@ body {
   line-height: 1.42857143;
   /* background-color: #1f2123; */
   scroll-snap-type: y mandatory;
-  width: 100vw;
+  width: 100svw;
   height: 100dvh;
   overflow-y: hidden;
   overflow-x: hidden;
@@ -56,7 +56,7 @@ p {
 }
 .container {
   box-sizing: border-box;
-  width: 100vw;
+  /* width: 100vw; */
   height: fit-content;
   height: var(--doc-height);
   padding-left: 34px;
@@ -68,6 +68,7 @@ p {
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  margin: 0;
 }
 .container::-webkit-scrollbar {
   display: none;
@@ -92,13 +93,14 @@ p {
 
 #sections > section {
   height: 100vh;
+  width: 100%;
   scroll-snap-align: center;
   display: flex;
   align-items: center;
 }
 
 #extra-space {
-  height: 300px;
+  height: 400px;
   background-color: red;
 }
 
@@ -237,8 +239,11 @@ p {
 @media screen and (max-width: 768px) {
   body {
     height: 100lvh;
+    width: 100svw;
     overflow-y: auto;
     background: #0f0c29;
+    margin-left: 0;
+    margin-right: 0;
   }
   .container {
     flex-direction: column-reverse;
@@ -268,8 +273,8 @@ p {
     margin: 0;
     position: absolute;
     top: var(--charts-height);
-    padding-left: 4vw;
-    padding-right: 4vw;
+    padding-left: 6vw;
+    padding-right: 6vw;
     padding-bottom: 0;
     /* transition: 0.25s ease-out; */
     transition: none;
@@ -299,9 +304,10 @@ p {
     justify-self: start;
     top: 0px;
     /* height: 50%; */
-    width: 100vw;
-    padding-left: 7vw;
-    padding-right: 7vw;
+    width: auto;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-bottom: 35px;
     /* max-width: 50vh; */
     /* background-color: #1f2123; */
     /* display: flex; */
@@ -327,7 +333,7 @@ p {
     /* backdrop-filter: blur(20px) brightness(0.2); */
   }
   #chart-sunburst, #chart-sankey {
-    margin: auto;
+    /* margin: auto; */
     display: grid;
     max-width: 60vh;
   }

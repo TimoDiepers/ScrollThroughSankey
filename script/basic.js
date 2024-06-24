@@ -81,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           // const clickEvent = new Event("click");
-          fadeOthers("substations->gridstatusquo", 0);
-          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations"], 300);
-          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 600);
+          fadeOthers("substations->gridstatusquo", 0, 400);
+          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations"], 300, 400);
+          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 600, 400);
           activateDot(2);
           //TODO: zoom out to correct level!
         }
