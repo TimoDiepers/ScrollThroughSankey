@@ -265,15 +265,13 @@ function startupTransition() {
     .style("fill-opacity", 1)
 }; 
 
-var snky = document.getElementById("chart-sankey");
-snky.addEventListener("load", function() {
-  startupTransition();
-  setTimeout(() => {
-    startUpAnimationHasRun = true;
-  }, 500);
-});
-
 document.addEventListener("DOMContentLoaded", function () {
+  var snky = document.getElementById("chart-sankey");
+  snky.addEventListener("load", function() {
+    startupTransition();
+    // startUpAnimationHasRun = true;
+  });
+
   // Function to add 'visible' class
   const setVisible = (element, visible) => {
     if (visible) {
