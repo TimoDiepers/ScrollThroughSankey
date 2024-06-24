@@ -33,7 +33,7 @@
         { "name": "iron & steel", "value": 765517599.7299033 },
         { "name": "other materials", "value": 0.0 }
       ]
-    },
+    }
     {
       "name": "switchgears",
       "children": [

@@ -85,6 +85,7 @@ p {
   margin-bottom: 0;
   z-index: 1;
   padding: 0;
+  padding-right: 5%;
   margin: 0;
   transition: 0.25s ease-out;
 }
@@ -130,7 +131,7 @@ p {
   /* backdrop-filter: blur(20px) brightness(0.2); */
 }
 
-#chart-sunburst {
+#chart-sunburst, #chart-sankey {
   margin: auto;
   font-size: inherit;
 }
@@ -325,10 +326,10 @@ p {
     mask: linear-gradient(to top, transparent, black 5%);
     /* backdrop-filter: blur(20px) brightness(0.2); */
   }
-  #chart-sunburst {
+  #chart-sunburst, #chart-sankey {
     margin: auto;
     display: grid;
-    max-width: 50vh;
+    max-width: 60vh;
   }
 
   #socials {

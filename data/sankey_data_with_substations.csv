@@ -1,0 +1,54 @@
+source,target,value
+substations,grid status quo,337540839186.693
+overhead lines,grid status quo,30394989351.085594
+cables,grid status quo,22241099713.0666
+switchgears,grid status quo,11982532113.712711
+transformers,grid status quo,2733254313.5285316
+aluminium,cables,15387901103.747974
+copper,cables,2194954047.297282
+iron & steel,cables,356732966.7714186
+other materials,cables,4301511587.551288
+aluminium,overhead lines,17309579815.3762
+concrete & cement,overhead lines,2120464186.4103017
+copper,overhead lines,1478935726.3993742
+iron & steel,overhead lines,8906012604.156124
+other materials,overhead lines,579997018.7428353
+concrete & cement,substations,336775321586.96313
+iron & steel,substations,765517599.7299033
+SF6,switchgears,511110524.80100316
+aluminium,switchgears,325221230.8795976
+copper,switchgears,47598139.54101151
+iron & steel,switchgears,39064546.51933356
+other materials,switchgears,5814137442.00807
+aluminium,transformers,809189493.0709611
+copper,transformers,525239556.86274046
+iron & steel,transformers,762453871.1060386
+other materials,transformers,636371374.5920863
+SF6,other materials,489831096.7863329
+aluminium (process emissions),aluminium,4293560874.245476
+clinker,concrete & cement,246861741865.93793
+clinker,copper,50553244.89763536
+clinker,iron & steel,218145379.7420936
+coal,aluminium,2970776425.467858
+coal,concrete & cement,5217932322.731071
+coal,copper,212901425.6510577
+coal,other materials,407494862.3214533
+coal,iron & steel,1419159490.497887
+electricity,aluminium,17819303324.89252
+electricity,concrete & cement,36263573006.23759
+electricity,copper,2305200937.769158
+electricity,other materials,2755644119.240128
+electricity,iron & steel,1454542252.522094
+heat,aluminium,5518683679.794464
+heat,concrete & cement,3570346482.608962
+heat,copper,498076150.2270032
+heat,other materials,3274574921.1327524
+heat,iron & steel,155796530.9261439
+iron & steel (process emissions),iron & steel,5704721704.128531
+other processes,aluminium,608658226.0446007
+other processes,concrete & cement,46982192095.85786
+other processes,copper,620735998.9474794
+other processes,other materials,3410044655.3888993
+other processes,iron & steel,1349258592.1138358
+SF6,switchgears,5245400229.963696
+aluminium (process emissions),aluminium,2620909112.629814

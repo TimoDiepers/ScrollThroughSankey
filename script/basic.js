@@ -29,21 +29,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const normalOpacity = 1; // Normal opacity for elements
   const fadedOpacity = 0.3; // Reduced opacity for non-hovered elements
-  const fadeDuration = 300; // Duration of fade in milliseconds
+  const fadeDuration = 400; // Duration of fade in milliseconds
 
-  function fadeOthers(datasetName, delay) {
-    d3.select("#chart-sunburst")
+  function fadeOthers(connection, delay, localFadeDuration=fadeDuration) {
+    d3.select("#chart-sankey")
       .selectAll("path")
       .transition()
       .delay(delay)
-      .duration(fadeDuration)
+      .duration(localFadeDuration)
       .style("opacity", fadedOpacity);
 
-    d3.select("#chart-sunburst")
+    d3.select("#chart-sankey")
       .selectAll("path")
       // Select the specific element and apply fadeOthers
       // path;
-      .filter((d) => d.data.name === datasetName)
+      .filter((d) => {
+        if (Array.isArray(connection)) {
+          return connection.includes(d.uid);
+        } else {
+          return d.uid === connection;
+        }
+      })
       // .filter(function (d) {
       //   return d.data.name === "Land cable, vpe al";
       // })
@@ -52,21 +58,12 @@ document.addEventListener("DOMContentLoaded", function () {
         d3.select(this)
           .transition()
           .delay(delay)
-          .duration(fadeDuration)
+          .duration(localFadeDuration)
           .style("opacity", normalOpacity);
         // console.log(d.data.name);
       });
   }
-  function zoomInto(name, delay) {
-    const elementToZoomInto = d3
-      .select("#chart-sunburst")
-      .selectAll("path")
-      .transition()
-      .delay(delay)
-      .filter((d) => d.data.name === name);
-    const clickEvent = new Event("click");
-    elementToZoomInto.node().dispatchEvent(clickEvent);
-  }
+
   // Setting up the observer
   const observer = new IntersectionObserver(
     (entries, observer) => {
@@ -76,47 +73,34 @@ document.addEventListener("DOMContentLoaded", function () {
         // Additional check for the specific container 'id1'
         if (entry.target.id === "section1" && entry.isIntersecting) {
           activateDot(1);
-          d3.select("#chart-sunburst")
+          d3.select("#chart-sankey")
             .transition()
             .duration(fadeDuration)
             .selectAll("path")
             .style("opacity", normalOpacity);
-          window.returnToRoot();
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           // const clickEvent = new Event("click");
+          fadeOthers("substations->gridstatusquo", 0);
+          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations"], 300);
+          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 600);
           activateDot(2);
-          // window.root.dispatchEvent(clickEvent);
-          if (window.currentFocusDepth === 0) {
-            fadeOthers("Land cable, vpe al", 0);
-          } else {
-            window.returnToRoot();
-            fadeOthers("Land cable, vpe al", 750);
-          }
           //TODO: zoom out to correct level!
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
+          // fadeOthers(["substations->gridstatusquo", "concrete&cement->substations"], 0);
           activateDot(3);
-          zoomInto("Land cable, vpe al", 0);
-
-          d3.select("#chart-sunburst")
-            .selectAll("path")
-            .transition()
-            .delay(750)
-            .style("opacity", normalOpacity);
+          // d3.select("#chart-sankey")
+          //   .selectAll("g")
+          //   .transition()
+          //   .delay(750)
+          //   .style("opacity", normalOpacity);
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
           activateDot(4);
-          if (window.currentNodeName === "Land cable, vpe al") {
-            fadeOthers("market for aluminiu", 0);
-          } else {
-            zoomInto("Land cable, vpe al", 0);
-            fadeOthers("market for aluminiu", 750);
-          }
         }
         if (entry.target.id === "section5" && entry.isIntersecting) {
           activateDot(5);
-          window.returnToRoot();
         }
       });
     },
