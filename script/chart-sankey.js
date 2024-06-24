@@ -165,42 +165,13 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
   const fadedOpacity = 0.3; // Reduced opacity for non-hovered elements
   const fadeDuration = 400; // Duration of fade in milliseconds
 
-    // Creates the rects that represent the nodes.
-  const rect = svg.append("g")
-    .attr("stroke", "#ccc")
-    .attr("stroke-width", 0)
-    .selectAll()
-    .data(nodes)
-    .join("rect")
-      .attr("x", d => d.x0 - radius)
-      .attr("y", d => d.y0)
-      .attr("rx", radius)
-      .attr("ry", radius)
-      .attr("height", d => d.y1 - d.y0 )
-      .attr("width", d => d.x1 - d.x0 + radius * 2)
-      .attr("fill", d => color(d))
-      .attr("opacity", 0.8)
-      .on("mouseover", (event, d) => {
-        tooltip.transition().duration(200).style("opacity", .9);
-        tooltip.html(`${d.name}<br/>${format(d.value)} kg CO2-eq`)
-          .style("left", (event.pageX) + "px")
-          .style("top", (event.pageY - 28) + "px");
-      })
-      .on("mousemove", function (event, d) {
-        tooltip.style("left", (event.pageX + 4) + "px")
-          .style("top", (event.pageY - 50) + "px");
-      })
-      .on("mouseout", () => {
-        tooltip.transition().duration(500).style("opacity", 0);
-      });
-
   // Adds a title on the nodes.
   //rect.append("title")
     //  .text(d => `${d.name}\n${format(d.value)} TWh`);
   // Creates the paths that represent the links.
   const link = svg.append("g")
     .attr("fill", "none")
-    .attr("stroke-opacity", 0.3)
+    .attr("stroke-opacity", 0.5)
     .selectAll("g")
     .data(links)
     .join("g")
@@ -245,6 +216,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .attr("d", d3.sankeyLinkHorizontal())
       .attr("stroke", d => `url(#${d.uid})`)
       .attr("stroke-width", d => Math.max(1, d.width))
+      .style("z-index", -1) // Set a high z-index value
       .on("mouseover", function (event, d) {
         fadeOtherLinks(this);
         tooltip.transition().duration(200).style("opacity", .9);
@@ -261,6 +233,35 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
         tooltip.transition().duration(500).style("opacity", 0);
       });
 
+        // Creates the rects that represent the nodes.
+  const rect = svg.append("g")
+    .attr("stroke", "#ccc")
+    .attr("stroke-width", 0)
+    .selectAll()
+    .data(nodes)
+    .join("rect")
+      .attr("x", d => d.x0 - radius)
+      .attr("y", d => d.y0)
+      .attr("rx", radius)
+      .attr("ry", radius)
+      .attr("height", d => d.y1 - d.y0 )
+      .attr("width", d => d.x1 - d.x0 + radius * 2)
+      .attr("fill", d => color(d))
+      .attr("opacity", 1)
+      .style("z-index", 1000) // Set a high z-index value
+      .on("mouseover", (event, d) => {
+        tooltip.transition().duration(200).style("opacity", .9);
+        tooltip.html(`${d.name}<br/>${format(d.value)} kg CO2-eq`)
+          .style("left", (event.pageX) + "px")
+          .style("top", (event.pageY - 28) + "px");
+      })
+      .on("mousemove", function (event, d) {
+        tooltip.style("left", (event.pageX + 4) + "px")
+          .style("top", (event.pageY - 50) + "px");
+      })
+      .on("mouseout", () => {
+        tooltip.transition().duration(500).style("opacity", 0);
+      });
   //link.append("title")
     //  .text(d => `${d.source.name} → ${d.target.name}\n${format(d.value)} TWh`);
 

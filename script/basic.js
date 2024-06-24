@@ -2,6 +2,97 @@ const container = document.querySelector(".container");
 const sections = container.querySelectorAll("section");
 const dots = document.querySelectorAll(".dot");
 
+const darkmode = true;
+  const blau100 = "#00549F";
+  const blau75 = "#407FB7";
+  const blau50 = "#8EBAE5";
+  const blau25 = "#C7DDF2";
+  const blau10 = "#E8F1FA";
+  const schwarz100 = "#000000";
+  const schwarz75 = "#646567";
+  const schwarz50 = "#9C9E9F";
+  const schwarz25 = "#CFD1D2";
+  const schwarz10 = "#ECEDED";
+  const magenta100 = "#E30066";
+  const magenta75 = "#E96088";
+  const magenta50 = "#F19EB1";
+  const magenta25 = "#F9D2DA";
+  const magenta10 = "#FDEEF0";
+  const gelb100 = "#FFED00";
+  const gelb75 = "#FFF055";
+  const gelb50 = "#FFF59B";
+  const gelb25 = "#FFFAD1";
+  const gelb10 = "#FFFDEE";
+  const petrol100 = "#006165";
+  const petrol75 = "#2D7F83";
+  const petrol50 = "#7DA4A7";
+  const petrol25 = "#BFD0D1";
+  const petrol10 = "#E6ECEC";
+  const tuerkis100 = "#0098A1";
+  const tuerkis75 = "#00B1B7";
+  const tuerkis50 = "#89CCCF";
+  const tuerkis25 = "#CAE7E7";
+  const tuerkis10 = "#EBF6F6";
+  const gruen100 = "#57AB27";
+  const gruen75 = "#8DC060";
+  const gruen50 = "#B8D698";
+  const gruen25 = "#DDEBCE";
+  const gruen10 = "#F2F7EC";
+  const maigruen100 = "#BDCD00";
+  const maigruen75 = "#D0D95C";
+  const maigruen50 = "#E0E69A";
+  const maigruen25 = "#F0F3D0";
+  const maigruen10 = "#F9FAED";
+  const orange100 = "#F6A800";
+  const orange75 = "#FABE50";
+  const orange50 = "#FDD48F";
+  const orange25 = "#FEEAC9";
+  const orange10 = "#FFF7EA";
+  const rot100 = "#CC071E";
+  const rot75 = "#D85C41";
+  const rot50 = "#E69679";
+  const rot25 = "#F3CDBB";
+  const rot10 = "#FAEBE3";
+  const bordeaux100 = "#A11035";
+  const bordeaux75 = "#B65256";
+  const bordeaux50 = "#CD8B87";
+  const bordeaux25 = "#E5C5C0";
+  const bordeaux10 = "#F5E8E5";
+  const violett100 = "#612158";
+  const violett75 = "#834E75";
+  const violett50 = "#A8859E";
+  const violett25 = "#D2C0CD";
+  const violett10 = "#EDE5EA";
+  const lila100 = "#7A6FAC";
+  const lila75 = "#9B91C1";
+  const lila50 = "#BCB5D7";
+  const lila25 = "#DEDAEB";
+  const lila10 = "#F2F0F7";
+
+  const labelColorMapping = {
+    "grid status quo": blau100,
+    "substations": gruen100,
+    "overhead lines": petrol100,
+    "cables": violett100,
+    "transformers": bordeaux100,
+    "switchgears": rot100,
+    "concrete & cement": orange100,
+    "aluminium": tuerkis100,
+    "copper": maigruen100,
+    "iron & steel": bordeaux75,
+    "clinker": rot100,
+    "electricity": violett75,
+    "aluminium (process emissions)": tuerkis50,
+    "iron & steel (process emissions)": bordeaux50,
+    "coal": schwarz75,
+    "heat": bordeaux75,
+    "SF6": gelb100,
+    // Add other mappings as needed
+    };
+
+  const color = d => labelColorMapping[d.name] || "rgb(156,158,159)"; // default color if not mapped
+
+
 function activateDot(index) {
   dots.forEach((dot) => dot.classList.remove("active"));
   dots[index - 1].classList.add("active");
@@ -31,37 +122,58 @@ document.addEventListener("DOMContentLoaded", function () {
   const fadedOpacity = 0.3; // Reduced opacity for non-hovered elements
   const fadeDuration = 400; // Duration of fade in milliseconds
 
-  function fadeOthers(connection, delay, localFadeDuration=fadeDuration) {
+  function fadeOtherLinks(connection, delay=0, localFadeDuration = fadeDuration) {
+    d3.select("#chart-sankey")
+    .selectAll("path")
+    .transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    .style("opacity", d => (Array.isArray(connection) ? connection.includes(d.uid) : d.uid === connection) ? normalOpacity : fadedOpacity);
+  };
+  
+
+  function fadeLinksInSubstring(connection, delay=0, localFadeDuration = fadeDuration) {
+    const paths = d3.select("#chart-sankey").selectAll("path");
+  
+    paths.transition()
+      .delay(delay)
+      .duration(localFadeDuration)
+      .style("opacity", fadedOpacity);
+  
+    paths.filter(d => Array.isArray(connection) ? connection.some(conn => d.uid.includes(conn)) : d.uid === connection || d.uid.includes(connection))
+      .transition()
+      .delay(delay)
+      .duration(localFadeDuration)
+      .style("opacity", normalOpacity);
+  };
+  
+  function showAllLinks(delay=0, localFadeDuration=fadeDuration) {
     d3.select("#chart-sankey")
       .selectAll("path")
       .transition()
       .delay(delay)
       .duration(localFadeDuration)
-      .style("opacity", fadedOpacity);
+      .style("opacity", normalOpacity);
+  }
 
+  function fadeOtherRects(names, delay=0, localFadeDuration=fadeDuration) {
     d3.select("#chart-sankey")
-      .selectAll("path")
-      // Select the specific element and apply fadeOthers
-      // path;
-      .filter((d) => {
-        if (Array.isArray(connection)) {
-          return connection.includes(d.uid);
-        } else {
-          return d.uid === connection;
-        }
-      })
-      // .filter(function (d) {
-      //   return d.data.name === "Land cable, vpe al";
-      // })
-      .each(function (d) {
-        // Highlight the current element
-        d3.select(this)
-          .transition()
-          .delay(delay)
-          .duration(localFadeDuration)
-          .style("opacity", normalOpacity);
-        // console.log(d.data.name);
-      });
+      .selectAll("rect")
+      .transition()
+      .delay(delay)
+      .duration(localFadeDuration)
+      // .style("fill", d => names.includes(d.name) ? d3.color(color(d)) : d3.color(color(d)).darker(2));
+      .style("fill", d => names.includes(d.name) ? color(d) : d3.color(color(d)).darker(2));
+      // .style("opacity", d=> names.includes(d.name) ? normalOpacity : fadedOpacity);
+  }
+
+  function showAllRects(delay=0, localFadeDuration=fadeDuration) {
+    d3.select("#chart-sankey")
+      .selectAll("rect")
+      .transition()
+      .delay(delay)
+      .duration(localFadeDuration)
+      .style("fill", d => color(d));
   }
 
   // Setting up the observer
@@ -73,34 +185,33 @@ document.addEventListener("DOMContentLoaded", function () {
         // Additional check for the specific container 'id1'
         if (entry.target.id === "section1" && entry.isIntersecting) {
           activateDot(1);
-          d3.select("#chart-sankey")
-            .transition()
-            .duration(fadeDuration)
-            .selectAll("path")
-            .style("opacity", normalOpacity);
+          showAllLinks();
+          showAllRects();
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
-          // const clickEvent = new Event("click");
-          fadeOthers("substations->gridstatusquo", 0, 400);
-          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations"], 300, 400);
-          fadeOthers(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 600, 400);
           activateDot(2);
-          //TODO: zoom out to correct level!
+          fadeOtherLinks("substations->gridstatusquo");
+          fadeOtherRects(["substations", "grid status quo"])
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
-          // fadeOthers(["substations->gridstatusquo", "concrete&cement->substations"], 0);
           activateDot(3);
-          // d3.select("#chart-sankey")
-          //   .selectAll("g")
-          //   .transition()
-          //   .delay(750)
-          //   .style("opacity", normalOpacity);
+          fadeOtherRects(["substations", "grid status quo"])
+          fadeOtherLinks("substations->gridstatusquo", 0);
+          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 0);
+          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 300);
+          fadeOtherRects(["concrete & cement", "substations", "grid status quo"])
+          fadeOtherRects(["clinker", "concrete & cement", "substations", "grid status quo"], 300)
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
           activateDot(4);
+          fadeLinksInSubstring(["electricity->", "clinker->"], 0);
+          fadeOtherRects(["electricity", "clinker"]);
+          
         }
         if (entry.target.id === "section5" && entry.isIntersecting) {
           activateDot(5);
+          showAllRects();
+          showAllLinks();
         }
       });
     },
