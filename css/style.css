@@ -134,10 +134,23 @@ p {
   /* backdrop-filter: blur(20px) brightness(0.2); */
 }
 
-#chart-sunburst, #chart-sankey {
+#chart-sankey {
   margin: auto;
   font-size: inherit;
+  opacity: 0;
+  transform: translateX(-10%);
+  /* -webkit-clip-path: inset(0 0 0 100%); Safari compatibility */
+  /* clip-path: inset(0 0 0 100%); */
+  transition: transform 0.5s ease-in-out, opacity 1s ease-in-out, scale 0.3s ease-in-out;
 }
+
+#chart-sankey.fade-in {
+  opacity: 1;
+  transform: translateX(0);
+  -webkit-clip-path: inset(0 0 0 0); /* Safari compatibility */
+  clip-path: inset(0 0 0 0);
+}
+
 
 #socials {
   display: grid;

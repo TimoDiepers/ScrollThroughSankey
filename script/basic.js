@@ -112,9 +112,9 @@ document.querySelector(".arrow").addEventListener("click", () => {
 
 const normalOpacity = 1; // Normal opacity for elements
 const fadedOpacity = 0.3; // Reduced opacity for non-hovered elements
-const fadeDuration = 400; // Duration of fade in milliseconds
+const fadeDuration = 500; // Duration of fade in milliseconds
 const delayDuration = 200; // Duration of delay in milliseconds
-const fadeDurationInitialShow = 400;
+const fadeDurationInitialShow = 500;
 
 function startupTransition() {
   const first_level_names = ["grid status quo"]
@@ -266,11 +266,8 @@ function startupTransition() {
 }; 
 
 document.addEventListener("DOMContentLoaded", function () {
-  var snky = document.getElementById("chart-sankey");
-  snky.addEventListener("load", function() {
-    startupTransition();
-    // startUpAnimationHasRun = true;
-  });
+
+  document.querySelector('#chart-sankey').classList.add('fade-in');
 
   // Function to add 'visible' class
   const setVisible = (element, visible) => {
@@ -353,15 +350,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Additional check for the specific container 'id1'
         if (entry.target.id === "section1" && entry.isIntersecting) {
           activateDot(1);
-          if (!startUpAnimationHasRun) {
-            startupTransition();
-            startUpAnimationHasRun = true;
-          }
-          else {
-            showAllLinks();
-            showAllRects();
-            showAllTexts();
-          }
+          showAllLinks();
+          showAllRects();
+          showAllTexts();
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           activateDot(2);
@@ -372,10 +363,10 @@ document.addEventListener("DOMContentLoaded", function () {
           activateDot(3);
           fadeOtherRects(["substations", "grid status quo"])
           fadeOtherLinks("substations->gridstatusquo", 0);
-          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 200);
-          fadeOtherRects(["concrete & cement", "substations", "grid status quo"], 200)
-          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 400);
-          fadeOtherRects(["clinker", "concrete & cement", "substations", "grid status quo"], 400)
+          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 300);
+          fadeOtherRects(["concrete & cement", "substations", "grid status quo"], 300)
+          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 600);
+          fadeOtherRects(["clinker", "concrete & cement", "substations", "grid status quo"], 600)
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
           activateDot(4);
@@ -398,12 +389,6 @@ document.addEventListener("DOMContentLoaded", function () {
   elements.forEach((element) => {
     observer.observe(element); // Start observing
   });
-
-  setTimeout(() => {
-    showAllLinks()
-    showAllRects()
-    showAllTexts();
-  }, 1700);
 });
 
 

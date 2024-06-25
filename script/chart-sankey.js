@@ -217,7 +217,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .attr("stroke", d => `url(#${d.uid})`)
       .attr("stroke-width", d => Math.max(1, d.width))
       .style("z-index", -1) // Set a high z-index value
-      .style("opacity", 0)
+      // .style("opacity", 0)
       .on("mouseover", function (event, d) {
         fadeOtherLinks(this);
         tooltip.transition().duration(200).style("opacity", .9);
@@ -248,7 +248,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .attr("height", d => d.y1 - d.y0 )
       .attr("width", d => d.x1 - d.x0 + radius * 2)
       .attr("fill", d => color(d))
-      .attr("opacity", 0)
+      // .attr("opacity", 0)
       .style("z-index", 1000) // Set a high z-index value
       .on("mouseover", (event, d) => {
         tooltip.transition().duration(200).style("opacity", .9);
@@ -279,7 +279,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .style("font-size", fontsizeTitle)
       .style("fill", darkmode ? "#F1F3F4" : "black")
       .style("font-weight", "bold")
-      .style("fill-opacity", 0)
+      // .style("fill-opacity", 0)
       .attr("class", "title");
   });
     
@@ -305,7 +305,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       })
       .style("font-size", fontsize)
       .style("fill", d => darkmode? "#F1F3F4" : "black")
-      .style("fill-opacity", 0)
+      // .style("fill-opacity", 0)
       .style("font-weight", d => d.name === "grid status quo" ? "bold" : "normal");
 
 
