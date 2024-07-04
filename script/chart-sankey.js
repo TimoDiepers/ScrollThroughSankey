@@ -6,8 +6,18 @@ function removeBlanks(str) {
   return str.replace(/\s+/g, '');
 }
 
-d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
-  const snodes = Array.from(new Set(slinks.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")}));
+Promise.all([
+  d3.csv("data/sankey_data_with_substations-8.csv"),
+  d3.csv("data/sankey_data_2045.csv"),
+]).then(([slinks2023, slinks2045]) => {
+  
+  const snodes2023 = Array.from(new Set(slinks2023.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")})).map(d => Object.assign({}, d));
+  const snodes2045 = Array.from(new Set(slinks2045.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")})).map(d => Object.assign({}, d));
+
+  window.slinks2023 = slinks2023;
+  window.slinks2045 = slinks2045;
+  window.snodes2023 = snodes2023;
+  window.snodes2045 = snodes2045;
 
   const linkColor = "source-target";
 
@@ -99,13 +109,13 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
     // Add other mappings as needed
     };
   const fontsize = "32px"; 
-  const fontsizeTitle = "36px"
+  const fontsizeTitle = "38px"
   // Specify the dimensions of the chart.
   const width = 1600;
   const height = 1200;
   const format = d3.format(",.0f");
   const radius = 10; //of rect
-  const totalScore = 470421128650
+  const totalScore = 397.306839
 
     // for titles
   const verticalOffset = 50
@@ -125,7 +135,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .attr("style", "max-width: 100%; height: auto; font: 1rem sans-serif;");
 
   // Constructs and configures a Sankey generator.
-  const sankey = d3.sankey()
+  const sankeyDia = d3.sankey()
       .nodeId(d => d.name)
       .nodeAlign(d3.sankeyJustify) // d3.sankeyLeft, etc.
       .nodeWidth(30)
@@ -134,9 +144,9 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
 
   // Applies it to the data. We make a copy of the nodes and links objects
   // so as to avoid mutating the original.
-  const {nodes, links} = sankey({
-    nodes: snodes.map(d => Object.assign({}, d)),
-    links: slinks.map(d => Object.assign({}, d))
+  const {nodes, links} = sankeyDia({
+    nodes: snodes2023,
+    links: slinks2023,
   });
 
   const tooltip = d3.select("body").append("div")
@@ -221,7 +231,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .on("mouseover", function (event, d) {
         fadeOtherLinks(this);
         tooltip.transition().duration(200).style("opacity", .9);
-        tooltip.html(`${d.source.name} → ${d.target.name}<br/>${format(d.value)} kg CO2-eq`)
+        tooltip.html(`${d.source.name} → ${d.target.name}<br/>${format(d.value)} Mt CO2-eq`)
           .style("left", (event.pageX) + "px")
           .style("top", (event.pageY - 28) + "px");
       })
@@ -252,7 +262,7 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .style("z-index", 1000) // Set a high z-index value
       .on("mouseover", (event, d) => {
         tooltip.transition().duration(200).style("opacity", .9);
-        tooltip.html(`${d.name}<br/>${format(d.value)} kg CO2-eq`)
+        tooltip.html(`${d.name}<br/>${format(d.value)} Mt CO2-eq`)
           .style("left", (event.pageX) + "px")
           .style("top", (event.pageY - 28) + "px");
       })
@@ -315,14 +325,14 @@ d3.csv("data/sankey_data_with_substations.csv").then((slinks) => {
       .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
       .attr("dy", "1.2em")
       .attr("text-anchor", d => d.x0 < width - 50 ? "start" : "end")
-      .text(d => d3.format(".2e")(d.value) + " kg CO2-eq")
+      .text(d => format(d.value) + " Mt CO2-eq")
       .style("font-size", "1em")
       .style("fill", d => darkmode ? "#F1F3F4" : "black");
     
   link.lower()
   rect.raise()
 
+  window.svg = svg;
+
   return svg.node();
 });
-
-window.svg = svg;

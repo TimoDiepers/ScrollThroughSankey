@@ -356,6 +356,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           activateDot(2);
+          // window.sankeyDia.update({nodes: window.snodes2045, links: window.slinks2045});
           fadeOtherLinks("substations->gridstatusquo");
           fadeOtherRects(["substations", "grid status quo"])
         }
