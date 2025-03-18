@@ -8,7 +8,7 @@ function removeBlanks(str) {
 
 Promise.all([
   d3.csv("data/sankey_data_with_substations-8.csv"),
-  d3.csv("data/sankey_data_2045.csv"),
+  d3.csv("data/sankey_data_with_substations-8_2045.csv"),
 ]).then(([slinks2023, slinks2045]) => {
   
   const snodes2023 = Array.from(new Set(slinks2023.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")})).map(d => Object.assign({}, d));
@@ -18,6 +18,19 @@ Promise.all([
   window.slinks2045 = slinks2045;
   window.snodes2023 = snodes2023;
   window.snodes2045 = snodes2045;
+
+  renderSankey(snodes2023, slinks2023);
+});
+
+function renderSankey(nodesData, linksData) {
+  const sankeyElements = d3.select("#chart-sankey").selectAll("*");
+  sankeyElements.remove()
+
+  // Immediately proceed with rendering the new Sankey
+  drawSankey(nodesData, linksData); // Call a separate function for rendering
+}
+
+function drawSankey(nodesData, linksData) {
 
   const linkColor = "source-target";
 
@@ -140,13 +153,13 @@ Promise.all([
       .nodeAlign(d3.sankeyJustify) // d3.sankeyLeft, etc.
       .nodeWidth(30)
       .nodePadding(30)
-      .extent([[1, 5], [width - 1, height - 5]]);
+      .extent([[1, 5], [width - 1, height - 5]])
 
   // Applies it to the data. We make a copy of the nodes and links objects
   // so as to avoid mutating the original.
   const {nodes, links} = sankeyDia({
-    nodes: snodes2023,
-    links: slinks2023,
+    nodes: nodesData.map(d => ({...d})),
+    links: linksData.map(d => ({...d})),
   });
 
   const tooltip = d3.select("body").append("div")
@@ -162,12 +175,6 @@ Promise.all([
     .style("font-size", "0.7rem")
     .style("font-family", "sans-serif")
     .style("z-index", 1000) // Set a high z-index value
-    
-    // Defines a color scale.
-    //const color = d3.scaleOrdinal(d3.schemeCategory10);
-    //const color = d3.scaleOrdinal()
-    //.domain(["overhead lines", "cables", "transformers", "switchgear", "buildings"])
-    //.range(["rgb(87,171,39)", "rgb(0,84,159)", "rgb(246,168,0)", "rgb(204,7,30)", "rgb(97,33,889)", "rgb(122,111,172)", "rgb(0,177,183)", "rgb(216,92,65)", "rgb(208,217,92)", "rgb(156,158,159)", "rgb(233,96,136)", "rgb(163,133,158)", "rgb(144,186,229)", "rgb(204,7,30)", "rgb(50,51,52)", "rgb(156,158,159)", "rgb(156,158,159)"]);
     
   const color = d => labelColorMapping[d.name] || "rgb(156,158,159)"; // default color if not mapped
   
@@ -331,8 +338,5 @@ Promise.all([
     
   link.lower()
   rect.raise()
+}
 
-  window.svg = svg;
-
-  return svg.node();
-});

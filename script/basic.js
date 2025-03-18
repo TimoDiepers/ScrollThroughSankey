@@ -350,18 +350,22 @@ document.addEventListener("DOMContentLoaded", function () {
         // Additional check for the specific container 'id1'
         if (entry.target.id === "section1" && entry.isIntersecting) {
           activateDot(1);
+          renderSankey(window.snodes2023, window.slinks2023);
           showAllLinks();
           showAllRects();
           showAllTexts();
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           activateDot(2);
-          // window.sankeyDia.update({nodes: window.snodes2045, links: window.slinks2045});
-          fadeOtherLinks("substations->gridstatusquo");
-          fadeOtherRects(["substations", "grid status quo"])
+          if (window.snodes2045 && window.slinks2045) {
+            renderSankey(window.snodes2045, window.slinks2045);
+          } else {
+            console.error("snodes2045 or slinks2045 is not defined");
+          }
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
           activateDot(3);
+          renderSankey(window.snodes2023, window.slinks2023);
           fadeOtherRects(["substations", "grid status quo"])
           fadeOtherLinks("substations->gridstatusquo", 0);
           fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 300);
