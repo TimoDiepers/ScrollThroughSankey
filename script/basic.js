@@ -341,6 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .duration(localFadeDuration)
       .style("fill-opacity", normalOpacity);
   }
+
   // Setting up the observer
   const observer = new IntersectionObserver(
     (entries, observer) => {
@@ -350,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Additional check for the specific container 'id1'
         if (entry.target.id === "section1" && entry.isIntersecting) {
           activateDot(1);
-          renderSankey(window.snodes2023, window.slinks2023);
+          updateSankey(window.snodes2023, window.slinks2023);
           showAllLinks();
           showAllRects();
           showAllTexts();
@@ -358,14 +359,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (entry.target.id === "section2" && entry.isIntersecting) {
           activateDot(2);
           if (window.snodes2045 && window.slinks2045) {
-            renderSankey(window.snodes2045, window.slinks2045);
+            updateSankey(window.snodes2045, window.slinks2045);
+            showAllLinks();
+            showAllRects();
+            showAllTexts();
           } else {
             console.error("snodes2045 or slinks2045 is not defined");
           }
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
           activateDot(3);
-          renderSankey(window.snodes2023, window.slinks2023);
+          updateSankey(window.snodes2023, window.slinks2023);
           fadeOtherRects(["substations", "grid status quo"])
           fadeOtherLinks("substations->gridstatusquo", 0);
           fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 300);
@@ -421,3 +425,19 @@ const observer = new MutationObserver(chartsHeight);
 observer.observe(chartsDiv, { childList: true, subtree: true });
 
 chartsHeight();
+
+Promise.all([
+  d3.csv("data/sankey_data_with_substations-8.csv"),
+  d3.csv("data/sankey_data_with_substations-8_2045.csv"),
+]).then(([slinks2023, slinks2045]) => {
+  
+  const snodes2023 = Array.from(new Set(slinks2023.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")})).map(d => Object.assign({}, d));
+  const snodes2045 = Array.from(new Set(slinks2045.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")})).map(d => Object.assign({}, d));
+
+  window.slinks2023 = slinks2023;
+  window.slinks2045 = slinks2045;
+  window.snodes2023 = snodes2023;
+  window.snodes2045 = snodes2045;
+
+  renderSankey(snodes2023, slinks2023);
+});

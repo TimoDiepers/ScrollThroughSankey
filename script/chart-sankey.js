@@ -6,28 +6,63 @@ function removeBlanks(str) {
   return str.replace(/\s+/g, '');
 }
 
-Promise.all([
-  d3.csv("data/sankey_data_with_substations-8.csv"),
-  d3.csv("data/sankey_data_with_substations-8_2045.csv"),
-]).then(([slinks2023, slinks2045]) => {
-  
-  const snodes2023 = Array.from(new Set(slinks2023.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")})).map(d => Object.assign({}, d));
-  const snodes2045 = Array.from(new Set(slinks2045.flatMap(l => [l.source, l.target])), name => ({name, category: name.replace(/ .*/, "")})).map(d => Object.assign({}, d));
+function processLinks(links, yearIndex) {
+  return links.map(link => ({
+    source: window.sankeyData.nodes[link.source].name,
+    target: window.sankeyData.nodes[link.target].name,
+    value: link.values[yearIndex]
+  }));
+}
 
-  window.slinks2023 = slinks2023;
-  window.slinks2045 = slinks2045;
-  window.snodes2023 = snodes2023;
-  window.snodes2045 = snodes2045;
+function updateSankey(nodesData, linksData) {
+  const { nodes, links } = window.sankeyDia({
+    nodes: nodesData.map(d => ({...d})),
+    links: linksData.map(d => ({...d})),
+  });
 
-  renderSankey(snodes2023, slinks2023);
-});
+  const radius = 10; //of rect
+  const totalScore = d3.sum(links.filter(l => l.target.name === "grid status quo"), l => l.value);
+
+  // Update links
+  window.link = window.link
+    .data(links, d => removeBlanks(d.source.name) + "->" + removeBlanks(d.target.name));
+
+  window.link.transition()
+    .duration(600)
+    .attr("d", d3.sankeyLinkHorizontal())
+    .attr("stroke-width", d => Math.max(1, d.width));
+
+  // Update nodes (correctly updating position AND size)
+  window.rect = window.rect
+    .data(nodes, d => d.name);
+
+  window.rect.transition()
+    .duration(600)
+    .attr("x", d => d.x0 - radius)
+    .attr("y", d => d.y0)
+    .attr("height", d => d.y1 - d.y0)   // size update is crucial
+    .attr("width", d => d.x1 - d.x0 + radius * 2);
+
+  // Update labels
+  window.labels = window.labels
+    .data(nodes, d => d.name);
+
+  window.labels.transition()
+    .duration(600)
+    .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
+    .attr("y", d => (d.y1 + d.y0) / 2)
+    .text(d => {
+      if (d.name === "grid status quo") return d.name;
+      const percentage = (d.value / totalScore) * 100;
+      const percentageText = percentage < 0.01 ? "<0.1%" : `${percentage.toFixed(1)}%`;
+      return `${d.name} (${percentageText})`;
+    });
+}
 
 function renderSankey(nodesData, linksData) {
   const sankeyElements = d3.select("#chart-sankey").selectAll("*");
-  sankeyElements.remove()
-
-  // Immediately proceed with rendering the new Sankey
-  drawSankey(nodesData, linksData); // Call a separate function for rendering
+  sankeyElements.remove();
+  drawSankey(nodesData, linksData);
 }
 
 function drawSankey(nodesData, linksData) {
@@ -128,7 +163,6 @@ function drawSankey(nodesData, linksData) {
   const height = 1200;
   const format = d3.format(",.0f");
   const radius = 10; //of rect
-  const totalScore = 397.306839
 
     // for titles
   const verticalOffset = 50
@@ -154,13 +188,28 @@ function drawSankey(nodesData, linksData) {
       .nodeWidth(30)
       .nodePadding(30)
       .extent([[1, 5], [width - 1, height - 5]])
+      .nodeSort((a, b) => {
+        // Check if either node's name contains "other"
+        const isOtherA = a.name.toLowerCase().includes("other");
+        const isOtherB = b.name.toLowerCase().includes("other");
+
+        // Place "other" nodes at the bottom by returning 1 if a is "other", -1 if b is "other"
+        if (isOtherA && !isOtherB) return 1;
+        if (!isOtherA && isOtherB) return -1;
+
+        // For non-"other" nodes, sort by descending value
+        return b.value - a.value;});
+  
+  window.sankeyDia = sankeyDia;
 
   // Applies it to the data. We make a copy of the nodes and links objects
   // so as to avoid mutating the original.
-  const {nodes, links} = sankeyDia({
+  const {nodes, links} = window.sankeyDia({
     nodes: nodesData.map(d => ({...d})),
     links: linksData.map(d => ({...d})),
   });
+
+  const totalScore = d3.sum(links.filter(links => links.target.name === "grid status quo"), links => links.value);
 
   const tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -174,6 +223,7 @@ function drawSankey(nodesData, linksData) {
     .style("pointer-events", "none")
     .style("font-size", "0.7rem")
     .style("font-family", "sans-serif")
+    .style("color", "black")
     .style("z-index", 1000) // Set a high z-index value
     
   const color = d => labelColorMapping[d.name] || "rgb(156,158,159)"; // default color if not mapped
@@ -185,14 +235,7 @@ function drawSankey(nodesData, linksData) {
   // Adds a title on the nodes.
   //rect.append("title")
     //  .text(d => `${d.name}\n${format(d.value)} TWh`);
-  // Creates the paths that represent the links.
-  const link = svg.append("g")
-    .attr("fill", "none")
-    .attr("stroke-opacity", 0.5)
-    .selectAll("g")
-    .data(links)
-    .join("g")
-      .style("mix-blend-mode", "normal");
+
 
   // Creates a gradient for the source-target color option.
   const gradient = svg.append("defs").selectAll("linearGradient")
@@ -229,12 +272,18 @@ function drawSankey(nodesData, linksData) {
       .style("opacity", normalOpacity);
   }
 
-  link.append("path")
+  // Links
+  window.link = svg.append("g")
+    .attr("fill", "none")
+    .attr("stroke-opacity", 0.5)
+    .selectAll("path.link")
+    .data(links, d => removeBlanks(d.source.name) + "->" + removeBlanks(d.target.name))
+    .join("path")
+      .attr("class", "link")
       .attr("d", d3.sankeyLinkHorizontal())
       .attr("stroke", d => `url(#${d.uid})`)
       .attr("stroke-width", d => Math.max(1, d.width))
-      .style("z-index", -1) // Set a high z-index value
-      // .style("opacity", 0)
+      .style("mix-blend-mode", "normal")
       .on("mouseover", function (event, d) {
         fadeOtherLinks(this);
         tooltip.transition().duration(200).style("opacity", .9);
@@ -252,21 +301,22 @@ function drawSankey(nodesData, linksData) {
       });
 
         // Creates the rects that represent the nodes.
-  const rect = svg.append("g")
+  // Nodes (rectangles)
+  window.rect = svg.append("g")
     .attr("stroke", "#ccc")
     .attr("stroke-width", 0)
-    .selectAll()
-    .data(nodes)
+    .selectAll("rect.node")
+    .data(nodes, d => d.name)
     .join("rect")
+      .attr("class", "node")
       .attr("x", d => d.x0 - radius)
       .attr("y", d => d.y0)
       .attr("rx", radius)
       .attr("ry", radius)
-      .attr("height", d => d.y1 - d.y0 )
+      .attr("height", d => d.y1 - d.y0)
       .attr("width", d => d.x1 - d.x0 + radius * 2)
       .attr("fill", d => color(d))
-      // .attr("opacity", 0)
-      .style("z-index", 1000) // Set a high z-index value
+      .style("z-index", 1000)
       .on("mouseover", (event, d) => {
         tooltip.transition().duration(200).style("opacity", .9);
         tooltip.html(`${d.name}<br/>${format(d.value)} Mt CO2-eq`)
@@ -300,34 +350,31 @@ function drawSankey(nodesData, linksData) {
       .attr("class", "title");
   });
     
-  // Adds labels on the nodes.
-  const labels = svg.append("g")
-    .selectAll()
-    .data(nodes)
-    .join("text")
-      .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
-      .attr("y", d => (d.y1 + d.y0) / 2)
-      .attr("dy", "0.35em")
-      //.attr("text-anchor", d => d.x0 < width / 2 ? "start" : "end")
-      .attr("text-anchor", d => d.x0 < width - 50 ? "start" : "end")
-      .attr("class", "label")
-      //.text(d => d.name)
-      .text(d => {
-        if (d.name === "grid status quo") {
-          return d.name;
-        }
-        const percentage = ((d.value / totalScore) * 100)
-        const percentageText = percentage < 0.01 ? "<0.1%" : `${percentage.toFixed(1)}%`;
-        return `${d.name} (${percentageText})`;
-      })
-      .style("font-size", fontsize)
-      .style("fill", d => darkmode? "#F1F3F4" : "black")
-      // .style("fill-opacity", 0)
-      .style("font-weight", d => d.name === "grid status quo" ? "bold" : "normal");
+    // Labels
+    window.labels = svg.append("g")
+      .selectAll("text.label")
+      .data(nodes, d => d.name)
+      .join("text")
+        .attr("class", "label")
+        .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
+        .attr("y", d => (d.y1 + d.y0) / 2)
+        .attr("dy", "0.35em")
+        .attr("text-anchor", d => d.x0 < width - 50 ? "start" : "end")
+        .text(d => {
+          if (d.name === "grid status quo") {
+            return d.name;
+          }
+          const percentage = ((d.value / totalScore) * 100)
+          const percentageText = percentage < 0.01 ? "<0.1%" : `${percentage.toFixed(1)}%`;
+          return `${d.name} (${percentageText})`;
+        })
+        .style("font-size", fontsize)
+        .style("fill", d => darkmode? "#F1F3F4" : "black")
+        .style("font-weight", d => d.name === "grid status quo" ? "bold" : "normal");
 
 
   // Adds total number beneath the "grid status quo" label
-  labels.filter(d => d.name === "grid status quo")
+  window.labels.filter(d => d.name === "grid status quo")
     .append("tspan")
       .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
       .attr("dy", "1.2em")
@@ -336,7 +383,6 @@ function drawSankey(nodesData, linksData) {
       .style("font-size", "1em")
       .style("fill", d => darkmode ? "#F1F3F4" : "black");
     
-  link.lower()
-  rect.raise()
+  window.link.lower()
+  window.rect.raise()
 }
-
