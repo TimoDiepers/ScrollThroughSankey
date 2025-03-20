@@ -1,0 +1,82 @@
+source,target,value
+cables,grid status quo,24.882819634847383
+overhead lines,grid status quo,33.04811893305462
+substations,grid status quo,1.091668849540489
+switchgears,grid status quo,0.9894780280469139
+transformers,grid status quo,3.669435057682783
+aluminium,cables,15.497149890608934
+copper,cables,2.977899257511775
+iron & steel,cables,0.43881900648798
+other materials,cables,0.41217973125739843
+plastics,cables,5.556771748981294
+aluminium,overhead lines,17.43247185784212
+concrete,overhead lines,2.912747317514744
+copper,overhead lines,1.5085378901802733
+iron & steel,overhead lines,10.561137552662764
+other materials,overhead lines,0.624215119607603
+plastics,overhead lines,0.009009195247108128
+concrete,substations,0.2186912650980049
+iron & steel,substations,0.8729775844424842
+SF6,switchgears,0.5096686775240045
+aluminium,switchgears,0.3299822925476325
+copper,switchgears,0.04855085702373102
+iron & steel,switchgears,0.04208438969262959
+other materials,switchgears,0.05919181125891637
+aluminium,transformers,0.8166427010752734
+copper,transformers,0.5357167063782146
+iron & steel,transformers,1.613075450129652
+other materials,transformers,0.7040002000996433
+SF6,aluminium,0.0012874857003143912
+aluminium (process emissions),aluminium,4.294088945784234
+clinker,aluminium,0.08021734341030647
+coal,aluminium,2.81823992323058
+electricity,aluminium,18.245265700174986
+heat,aluminium,5.798993894582645
+iron & steel (process emissions),aluminium,0.12938865762624405
+other processes,aluminium,1.6064541319142063
+transport,aluminium,1.102312151789949
+SF6,concrete,1.2028176636477601e-05
+aluminium (process emissions),concrete,0.0023833585720887305
+clinker,concrete,1.931034982774359
+coal,concrete,0.08490951284163205
+electricity,concrete,0.36704385985481913
+heat,concrete,0.09185879958472572
+iron & steel (process emissions),concrete,0.023458624386791235
+other processes,concrete,0.21064626868997444
+transport,concrete,0.41475645956404744
+SF6,copper,0.00010635196098646702
+aluminium (process emissions),copper,0.024352531472001247
+clinker,copper,0.06172646023440146
+coal,copper,0.29768550073301764
+electricity,copper,2.75145105223821
+heat,copper,0.628604233829279
+iron & steel (process emissions),copper,0.06520695223074142
+other processes,copper,0.7647094042888468
+transport,copper,0.47686223948686507
+SF6,iron & steel,5.073426313476648e-05
+aluminium (process emissions),iron & steel,0.0050778882288750994
+clinker,iron & steel,0.22803609928500843
+coal,iron & steel,2.431753961841168
+electricity,iron & steel,1.8805470816664425
+heat,iron & steel,0.5080320653292467
+iron & steel (process emissions),iron & steel,6.62346241725756
+other processes,iron & steel,0.8938213545751543
+transport,iron & steel,0.9573120202567277
+SF6,other materials,0.4897169304074592
+aluminium (process emissions),other materials,0.0023498863304002816
+clinker,other materials,0.02163575325387843
+coal,other materials,0.06745916195340261
+electricity,other materials,0.5478747885500913
+heat,other materials,0.30099701385373373
+iron & steel (process emissions),other materials,0.02416299560203934
+other processes,other materials,0.6680536041999192
+transport,other materials,0.19234017220675545
+SF6,plastics,5.640447657733015e-05
+aluminium (process emissions),plastics,0.0046734115634049665
+clinker,plastics,0.028099642196743064
+coal,plastics,0.327898407233315
+electricity,plastics,1.5847256627318742
+heat,plastics,0.3012409975052234
+iron & steel (process emissions),plastics,0.05971215812915888
+other processes,plastics,2.932190145218422
+transport,plastics,0.32718405086277985

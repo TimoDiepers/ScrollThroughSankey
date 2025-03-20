@@ -3,7 +3,7 @@ function generateUID(prefix) {
 }
 
 function removeBlanks(str) {
-  return str.replace(/\s+/g, '');
+  return str.replace(/[\s()]/g, '');
 }
 
 function processLinks(links, yearIndex) {
@@ -20,6 +20,7 @@ function updateSankey(nodesData, linksData) {
     links: linksData.map(d => ({...d})),
   });
 
+  const width = 1600;
   const radius = 10; //of rect
   const totalScore = d3.sum(links.filter(l => l.target.name === "grid status quo"), l => l.value);
 
@@ -138,24 +139,27 @@ function drawSankey(nodesData, linksData) {
 
   const labelColorMapping = {
     "grid status quo": blau100,
-    "substations": gruen100,
-    "overhead lines": petrol100,
-    "cables": violett100,
-    "transformers": bordeaux100,
-    "switchgears": rot100,
-    "concrete & cement": orange100,
-    "aluminium": tuerkis100,
-    "copper": maigruen100,
-    "iron & steel": bordeaux75,
-    "clinker": rot100,
-    "electricity": violett75,
-    "aluminium (process emissions)": tuerkis50,
-    "iron & steel (process emissions)": bordeaux50,
+    "substations": violett100,
+    "overhead lines": gruen100,
+    "cables": petrol100,
+    "transformers": lila100,
+    "switchgears": magenta100,
+    "concrete": petrol50,
+    "aluminium": orange100,
+    "copper": rot75,
+    "iron & steel": tuerkis100,
+    "clinker": violett75,
+    "electricity": gelb100,
+    "aluminium (process emissions)": orange50,
+    "iron & steel (process emissions)": tuerkis50,
     "coal": schwarz75,
-    "heat": bordeaux75,
-    "SF6": gelb100,
+    "heat": rot100,
+    "SF6": maigruen100,
+    "transport": blau50,
+    "plastics": gelb75
     // Add other mappings as needed
     };
+
   const fontsize = "32px"; 
   const fontsizeTitle = "38px"
   // Specify the dimensions of the chart.
