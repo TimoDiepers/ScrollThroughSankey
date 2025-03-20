@@ -96,6 +96,88 @@ const labelColorMapping = {
 
 const color = d => labelColorMapping[d.name] || "rgb(156,158,159)"; // default color if not mapped
 
+// Function to add 'visible' class
+const setVisible = (element, visible) => {
+  if (visible) {
+    element.classList.add("visible");
+  } else {
+    element.classList.remove("visible");
+  }
+};
+
+function fadeOtherLinks(connection, delay = 0, localFadeDuration = fadeDuration) {
+  // Ensure connection is an array
+  const connections = Array.isArray(connection) ? connection : [connection];
+
+  // Select all links
+  window.link
+    .transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    .style("opacity", function (d) {
+      const linkId = this.id; // Get the actual ID from the DOM element
+      return connections.includes(linkId) ? normalOpacity : fadedOpacity;
+    });
+}
+
+
+function fadeLinksInSubstring(connection, delay = 0, localFadeDuration = fadeDuration) {
+  const paths = d3.select("#chart-sankey").selectAll("path");
+
+  // Ensure connection is an array
+  const connections = Array.isArray(connection) ? connection : [connection];
+
+  // Fade all links
+  paths.transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    .style("opacity", fadedOpacity);
+
+  // Highlight links that contain any substring from the connections array
+  paths.filter(function () {
+      const linkId = this.id; // Get actual ID from the DOM element
+      return connections.some(conn => linkId.includes(conn));
+    })
+    .transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    .style("opacity", normalOpacity);
+}
+
+function showAllLinks(delay=0, localFadeDuration=fadeDuration) {
+  window.link
+    .transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    .style("opacity", normalOpacity);
+}
+
+function fadeOtherRects(names, delay=0, localFadeDuration=fadeDuration) {
+  window.rect
+    .transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    // .style("fill", d => names.includes(d.name) ? d3.color(color(d)) : d3.color(color(d)).darker(2));
+    .style("fill", d => names.includes(d.name) ? color(d) : d3.color(color(d)).darker(2));
+    // .style("opacity", d=> names.includes(d.name) ? normalOpacity : fadedOpacity);
+}
+
+function showAllRects(delay=0, localFadeDuration=fadeDuration) {
+  window.rect
+    .transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    .style("opacity", normalOpacity)
+    .style("fill", d => color(d));
+}
+
+function showAllTexts(delay=0, localFadeDuration=fadeDuration) {
+  window.labels
+    .transition()
+    .delay(delay)
+    .duration(localFadeDuration)
+    .style("fill-opacity", normalOpacity);
+}
 
 function activateDot(index) {
   dots.forEach((dot) => dot.classList.remove("active"));
@@ -289,77 +371,10 @@ document.addEventListener("DOMContentLoaded", function () {
     window.snodes2045 = snodes2045;
   
     renderSankey(snodes2023, slinks2023);
-  });
 
   document.querySelector('#chart-sankey').classList.add('fade-in');
 
-  // Function to add 'visible' class
-  const setVisible = (element, visible) => {
-    if (visible) {
-      element.classList.add("visible");
-    } else {
-      element.classList.remove("visible");
-    }
-  };
 
-  function fadeOtherLinks(connection, delay=0, localFadeDuration = fadeDuration) {
-    window.link
-    .transition()
-    .delay(delay)
-    .duration(localFadeDuration)
-    .style("opacity", d => (Array.isArray(connection) ? connection.includes(d.uid) : d.uid === connection) ? normalOpacity : fadedOpacity);
-  };
-  
-
-  function fadeLinksInSubstring(connection, delay=0, localFadeDuration = fadeDuration) {
-    const paths = d3.select("#chart-sankey").selectAll("path");
-  
-    paths.transition()
-      .delay(delay)
-      .duration(localFadeDuration)
-      .style("opacity", fadedOpacity);
-  
-    paths.filter(d => Array.isArray(connection) ? connection.some(conn => d.uid.includes(conn)) : d.uid === connection || d.uid.includes(connection))
-      .transition()
-      .delay(delay)
-      .duration(localFadeDuration)
-      .style("opacity", normalOpacity);
-  };
-  
-  function showAllLinks(delay=0, localFadeDuration=fadeDuration) {
-    window.link
-      .transition()
-      .delay(delay)
-      .duration(localFadeDuration)
-      .style("opacity", normalOpacity);
-  }
-
-  function fadeOtherRects(names, delay=0, localFadeDuration=fadeDuration) {
-    window.rect
-      .transition()
-      .delay(delay)
-      .duration(localFadeDuration)
-      // .style("fill", d => names.includes(d.name) ? d3.color(color(d)) : d3.color(color(d)).darker(2));
-      .style("fill", d => names.includes(d.name) ? color(d) : d3.color(color(d)).darker(2));
-      // .style("opacity", d=> names.includes(d.name) ? normalOpacity : fadedOpacity);
-  }
-
-  function showAllRects(delay=0, localFadeDuration=fadeDuration) {
-    window.rect
-      .transition()
-      .delay(delay)
-      .duration(localFadeDuration)
-      .style("opacity", normalOpacity)
-      .style("fill", d => color(d));
-  }
-
-  function showAllTexts(delay=0, localFadeDuration=fadeDuration) {
-    window.labels
-      .transition()
-      .delay(delay)
-      .duration(localFadeDuration)
-      .style("fill-opacity", normalOpacity);
-  }
   
   // Setting up the observer
   const observer = new IntersectionObserver(
@@ -370,38 +385,40 @@ document.addEventListener("DOMContentLoaded", function () {
         // Additional check for the specific container 'id1'
         if (entry.target.id === "section1" && entry.isIntersecting) {
           activateDot(1);
-          updateSankey(snodes2023, slinks2023);
+          updateSankey(window.snodes2023, window.slinks2023);
+          showAllLinks();
+          showAllRects();
         }
         if (entry.target.id === "section2" && entry.isIntersecting) {
           activateDot(2);
-          if (snodes2045 && slinks2045) {
-            updateSankey(snodes2045, slinks2045);
-            showAllRects(600);
-            showAllLinks(600);
-          } else {
-            console.error("snodes2045 or slinks2045 is not defined");
-          }
+          updateSankey(window.snodes2023, window.slinks2023);
+          fadeOtherRects(["overhead lines", "cables", "grid status quo"])
+          fadeOtherRects(["aluminium", "overhead lines", "cables", "grid status quo"], 300)
+          fadeOtherRects(["electricity", "aluminium", "overhead lines", "cables", "grid status quo"], 600)
+          fadeOtherLinks(["overheadlines->gridstatusquo","cables->gridstatusquo"], 0);
+          fadeOtherLinks(["overheadlines->gridstatusquo","cables->gridstatusquo", "aluminium->overheadlines","aluminium->cables"], 300);
+          fadeOtherLinks(["electricity->aluminium", "overheadlines->gridstatusquo","cables->gridstatusquo", "aluminium->cables","aluminium->overheadlines"], 600);
         }
         if (entry.target.id === "section3" && entry.isIntersecting) {
           activateDot(3);
           updateSankey(window.snodes2023, window.slinks2023);
-          fadeOtherRects(["substations", "grid status quo"])
-          fadeOtherLinks("substations->gridstatusquo", 0);
-          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations"], 300);
-          fadeOtherRects(["concrete & cement", "substations", "grid status quo"], 300)
-          fadeOtherLinks(["substations->gridstatusquo", "concrete&cement->substations", "clinker->concrete&cement"], 600);
-          fadeOtherRects(["clinker", "concrete & cement", "substations", "grid status quo"], 600)
+          fadeLinksInSubstring(["electricity->"], 0);
+          fadeOtherRects(["electricity"]);
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
           activateDot(4);
-          fadeLinksInSubstring(["electricity->", "clinker->"], 0);
-          fadeOtherRects(["electricity", "clinker"]);
-          
-        }
+          updateSankey(window.snodes2023, window.slinks2023);
+          showAllRects(600);
+          showAllLinks(600);
+          showAllTexts(600);
+        }        
         if (entry.target.id === "section5" && entry.isIntersecting) {
           activateDot(5);
-          showAllRects();
-          showAllLinks();
+          updateSankey(window.snodes2045, window.slinks2045);
+        }
+        if (entry.target.id === "section6" && entry.isIntersecting) {
+          activateDot(6);
+          updateSankey(window.snodes2023, window.slinks2023);
         }
       });
     },
@@ -439,3 +456,4 @@ const observer = new MutationObserver(chartsHeight);
 observer.observe(chartsDiv, { childList: true, subtree: true });
 
 chartsHeight();
+});

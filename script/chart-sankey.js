@@ -22,6 +22,7 @@ function updateSankey(nodesData, linksData) {
 
   const width = 1600;
   const radius = 10; //of rect
+  const format = d3.format(",.0f");
   const totalScore = d3.sum(links.filter(l => l.target.name === "grid status quo"), l => l.value);
 
   // Update links
@@ -48,16 +49,30 @@ function updateSankey(nodesData, linksData) {
   window.labels = window.labels
     .data(nodes, d => d.name);
 
-  window.labels.transition()
+    window.labels.transition()
     .duration(600)
     .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
     .attr("y", d => (d.y1 + d.y0) / 2)
-    .text(d => {
-      if (d.name === "grid status quo") return d.name;
-      const percentage = (d.value / totalScore) * 100;
-      const percentageText = percentage < 0.01 ? "<0.1%" : `${percentage.toFixed(1)}%`;
-      return `${d.name} (${percentageText})`;
-    });
+    .tween("text", function(d) {
+      const sel = d3.select(this);
+      sel.text(""); // Clear existing text
+      sel.append("tspan").text(d.name);
+  
+      if (d.name === "grid status quo") {
+        sel.append("tspan")
+          .attr("x", d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
+          .attr("dy", "1.2em") // Moves it down
+          .text(format(d.value) + " Mt CO2-eq")
+          .style("font-size", "1em");
+      } else {
+        const percentage = (d.value / totalScore) * 100;
+        const percentageText = percentage < 0.01 ? "<0.1%" : `${percentage.toFixed(1)}%`;
+        sel.append("tspan")
+          .text(` (${percentageText})`);
+      }
+    })
+    .style("fill", d => darkmode ? "#F1F3F4" : "black");
+    
 }
 
 function renderSankey(nodesData, linksData) {
@@ -284,6 +299,7 @@ function drawSankey(nodesData, linksData) {
     .data(links, d => removeBlanks(d.source.name) + "->" + removeBlanks(d.target.name))
     .join("path")
       .attr("class", "link")
+      .attr("id", d => d.uid = removeBlanks(d.source.name) + "->" + removeBlanks(d.target.name))
       .attr("d", d3.sankeyLinkHorizontal())
       .attr("stroke", d => `url(#${d.uid})`)
       .attr("stroke-width", d => Math.max(1, d.width))
