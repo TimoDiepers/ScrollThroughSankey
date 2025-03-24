@@ -407,10 +407,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (entry.target.id === "section4" && entry.isIntersecting) {
           activateDot(4);
-          updateSankey(window.snodes2023, window.slinks2023);
-          showAllRects(600);
-          showAllLinks(600);
-          showAllTexts(600);
+          showAllRects(0);
+          showAllLinks(0);
+          showAllTexts(0);
+          updateSankey(window.snodes2023, window.slinks2023, 600);
         }        
         if (entry.target.id === "section5" && entry.isIntersecting) {
           activateDot(5);

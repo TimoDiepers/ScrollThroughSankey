@@ -14,7 +14,7 @@ function processLinks(links, yearIndex) {
   }));
 }
 
-function updateSankey(nodesData, linksData) {
+function updateSankey(nodesData, linksData, delay=0) {
   const { nodes, links } = window.sankeyDia({
     nodes: nodesData.map(d => ({...d})),
     links: linksData.map(d => ({...d})),
@@ -30,6 +30,7 @@ function updateSankey(nodesData, linksData) {
     .data(links, d => removeBlanks(d.source.name) + "->" + removeBlanks(d.target.name));
 
   window.link.transition()
+    .delay(delay)
     .duration(600)
     .attr("d", d3.sankeyLinkHorizontal())
     .attr("stroke-width", d => Math.max(1, d.width));
@@ -38,7 +39,8 @@ function updateSankey(nodesData, linksData) {
   window.rect = window.rect
     .data(nodes, d => d.name);
 
-  window.rect.transition()
+    window.rect.transition()
+    .delay(delay)
     .duration(600)
     .attr("x", d => d.x0 - radius)
     .attr("y", d => d.y0)
@@ -49,7 +51,8 @@ function updateSankey(nodesData, linksData) {
   window.labels = window.labels
     .data(nodes, d => d.name);
 
-    window.labels.transition()
+  window.labels.transition()
+    .delay(delay)
     .duration(600)
     .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
     .attr("y", d => (d.y1 + d.y0) / 2)
@@ -57,22 +60,39 @@ function updateSankey(nodesData, linksData) {
       const sel = d3.select(this);
       sel.text(""); // Clear existing text
       sel.append("tspan").text(d.name);
-  
+    
       if (d.name === "grid status quo") {
-        sel.append("tspan")
+        const prev = +this.getAttribute("data-prev") || 0;
+        const next = d.value;
+        const i = d3.interpolateNumber(prev, next);
+        this.setAttribute("data-prev", next);
+    
+        const tspan = sel.append("tspan")
           .attr("x", d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
-          .attr("dy", "1.2em") // Moves it down
-          .text(format(d.value) + " Mt CO2-eq")
+          .attr("dy", "1.2em")
           .style("font-size", "1em");
+    
+        return function(t) {
+          tspan.text(format(i(t)) + " Mt CO2-eq");
+        };
       } else {
-        const percentage = (d.value / totalScore) * 100;
-        const percentageText = percentage < 0.01 ? "<0.1%" : `${percentage.toFixed(1)}%`;
-        sel.append("tspan")
-          .text(` (${percentageText})`);
+        const prev = +this.getAttribute("data-prev") || 0;
+        const next = (d.value / totalScore) * 100;
+        const i = d3.interpolateNumber(prev, next);
+        this.setAttribute("data-prev", next);
+    
+        const tspan = sel.append("tspan")
+          .attr("class", "percent")
+          .text("");
+    
+        return function(t) {
+          const val = i(t);
+          const formatted = val < 0.1 ? "<0.1%" : `${val.toFixed(1)}%`;
+          tspan.text(` (${formatted})`);
+        };
       }
     })
     .style("fill", d => darkmode ? "#F1F3F4" : "black");
-    
 }
 
 function renderSankey(nodesData, linksData) {
