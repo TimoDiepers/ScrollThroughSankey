@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (entry.isIntersecting) {
             const id = entry.target.id;
             if (id === "section0") {
+              currentSection = 0;
               activateDot(0);
               if (window.innerWidth > 768) {
                 document.getElementById("sections").classList.add("wider");
@@ -145,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (id === "section1") {
+              currentSection = 1;
               activateDot(1);
               document.getElementById("charts").style.visibility = "visible";
               document.getElementById("sections").classList.remove("wider");
@@ -154,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
               showAllLinks();
               showAllRects();
             } else if (id === "section2") {
+              currentSection = 2;
               activateDot(2);
               updateSankey(window.snodes2023, window.slinks2023, 0, 0);
               fadeOtherRects(["overhead lines", "cables", "grid status quo"]);
@@ -227,16 +230,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 300
               );
             } else if (id === "section4") {
+              currentSection = 4;
               activateDot(4);
               updateSankey(window.snodes2023, window.slinks2023, 0, 0);
               fadeLinksInSubstring("electricity->");
               fadeOtherRects(["electricity"]);
             } else if (id === "section5") {
+              currentSection = 5;
               activateDot(5);
               showAllLinks();
               showAllRects();
               updateSankey(window.snodes2023, window.slinks2023, 300);
             } else if (id === "section6") {
+              currentSection = 6;
               activateDot(6);
               updateSankey(window.snodes2045, window.slinks2045);
             }
