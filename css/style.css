@@ -142,7 +142,7 @@ p {
   transform: translateX(-5%);
   /* -webkit-clip-path: inset(0 0 0 100%); Safari compatibility */
   /* clip-path: inset(0 0 0 100%); */
-  transition: transform 0.5s ease-in-out, opacity 1s ease-in-out, scale 0.3s ease-in-out;
+  transition: transform 0.5s ease-in-out, opacity 0.8s ease-in-out, scale 0.3s ease-in-out;
 }
 
 #chart-sankey.fade-in {
@@ -262,7 +262,7 @@ p {
     height: 100lvh;
     width: 100svw;
     overflow-y: auto;
-    background: #0f0c29;
+    background: #0b0f16;
     margin-left: 0;
     margin-right: 0;
   }
@@ -328,7 +328,7 @@ p {
     width: 90svw;
     /* padding-left: 4vw; */
     /* padding-right: 4vw; */
-    padding-bottom: 35px;
+    padding-bottom: 40px;
     /* max-width: 50vh; */
     /* background-color: #1f2123; */
     /* display: flex; */
@@ -349,7 +349,7 @@ p {
     z-index: -1;
   
     /* background: red; */
-    background: #0f0c29;
+    background: #0b0f16;
     mask: linear-gradient(to top, transparent, black 5%);
     /* backdrop-filter: blur(20px) brightness(0.2); */
   }

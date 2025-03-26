@@ -8,16 +8,9 @@ const dots = document.querySelectorAll(".dot");
 const darkmode = true;
 const normalOpacity = 1,
   fadedOpacity = 0.3,
-  fadeDuration = 500,
-  delayDuration = 200,
-  fadeDurationInitialShow = 500;
+  fadeDuration = 500;
 
-// Helper: toggle "visible" class
 const setVisible = (el, visible) => el.classList.toggle("visible", visible);
-
-// Transition helpers
-const transitionStyle = (sel, delay, duration, styleName, val) =>
-  sel.transition().delay(delay).duration(duration).style(styleName, val);
 
 // Link & rect fading functions
 function fadeOtherLinks(connection, delay = 0, duration = fadeDuration) {
@@ -137,9 +130,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const id = entry.target.id;
             if (id === "section0") {
               activateDot(0);
-              document.getElementById("charts").style.visibility = "collapse";
-              document.getElementById("sections").classList.add("wider");
-              document.getElementById("chart-sankey").classList.remove("fade-in");
+              if (window.innerWidth > 768) {
+                document.getElementById("sections").classList.add("wider");
+                document.getElementById("chart-sankey").classList.remove("fade-in");
+                setTimeout(() => {
+                  document.getElementById("charts").style.visibility = "collapse";
+                  }, 800);
+              }
+              else {
+                document.getElementById("chart-sankey").classList.add("fade-in");
+                document.getElementById("charts").style.visibility = "visible";
+                document.getElementById("sections").classList.remove("wider");
+              }
             }
 
             if (id === "section1") {
