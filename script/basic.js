@@ -83,14 +83,17 @@ const showAllTexts = (delay = 0, duration = fadeDuration) =>
 
 function activateDot(index) {
   dots.forEach((dot) => dot.classList.remove("active"));
-  dots[index - 1].classList.add("active");
+  dots[index].classList.add("active");
 }
 
 // Dot & arrow event listeners
 dots.forEach((dot, i) =>
-  dot.addEventListener("click", () =>
-    sections[i].scrollIntoView({ behavior: "instant" })
-  )
+  dot.addEventListener("click", () => {
+    document.getElementById("charts").style.visibility = "visible";
+    document.getElementById("sections").classList.remove("wider");
+    document.getElementById("chart-sankey").classList.add("fade-in");
+    sections[i].scrollIntoView({ behavior: "instant" });
+  })
 );
 document
   .querySelector(".arrow")
@@ -124,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.slinks2045 = slinks2045;
 
     renderSankey(window.snodes2023, window.slinks2023);
-    document.querySelector("#chart-sankey").classList.add("fade-in");
 
     // Intersection observer for scroll-triggered animations
     const observer = new IntersectionObserver(
@@ -133,14 +135,25 @@ document.addEventListener("DOMContentLoaded", () => {
           setVisible(entry.target, entry.isIntersecting);
           if (entry.isIntersecting) {
             const id = entry.target.id;
+            if (id === "section0") {
+              activateDot(0);
+              document.getElementById("charts").style.visibility = "collapse";
+              document.getElementById("sections").classList.add("wider");
+              document.getElementById("chart-sankey").classList.remove("fade-in");
+            }
+
             if (id === "section1") {
               activateDot(1);
-              updateSankey(window.snodes2023, window.slinks2023);
+              document.getElementById("charts").style.visibility = "visible";
+              document.getElementById("sections").classList.remove("wider");
+              document.getElementById("chart-sankey").classList.add("fade-in");
+
+              updateSankey(window.snodes2023, window.slinks2023, 0, 600);
               showAllLinks();
               showAllRects();
             } else if (id === "section2") {
               activateDot(2);
-              updateSankey(window.snodes2023, window.slinks2023);
+              updateSankey(window.snodes2023, window.slinks2023, 0, 0);
               fadeOtherRects(["overhead lines", "cables", "grid status quo"]);
               fadeOtherRects(
                 ["aluminium", "overhead lines", "cables", "grid status quo"],
@@ -181,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
               );
             } else if (id === "section3") {
               activateDot(3);
-              updateSankey(window.snodes2023, window.slinks2023);
+              updateSankey(window.snodes2023, window.slinks2023, 0, 0);
               fadeOtherRects(["grid status quo", "overhead lines"]);
               fadeOtherLinks(["overheadlines->gridstatusquo"]);
               fadeOtherRects(
@@ -213,15 +226,17 @@ document.addEventListener("DOMContentLoaded", () => {
               );
             } else if (id === "section4") {
               activateDot(4);
-              updateSankey(window.snodes2023, window.slinks2023, 600);
+              updateSankey(window.snodes2023, window.slinks2023, 0, 0);
               fadeLinksInSubstring("electricity->");
               fadeOtherRects(["electricity"]);
             } else if (id === "section5") {
               activateDot(5);
-              updateSankey(window.snodes2045, window.slinks2045);
+              showAllLinks();
+              showAllRects();
+              updateSankey(window.snodes2023, window.slinks2023, 300);
             } else if (id === "section6") {
               activateDot(6);
-              updateSankey(window.snodes2023, window.slinks2023);
+              updateSankey(window.snodes2045, window.slinks2045);
             }
           }
         });

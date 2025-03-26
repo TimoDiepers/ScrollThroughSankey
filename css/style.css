@@ -15,7 +15,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   /* background-image: url('../assets/background.png'); */
-  background: linear-gradient(75deg, #0f0c29, #181732, #201e40, #0f0c29);
+  background: linear-gradient(135deg, #0b0f16, #101622, #0e1a2b, #0c1f33, #0b0f16);
 }
 body::-webkit-scrollbar {
   display: none;
@@ -90,8 +90,8 @@ p {
   padding: 0;
   padding-right: 3%;
   margin: 0;
-  transition: 0.25s ease-out;
 }
+
 
 #sections > section {
   height: 100vh;
@@ -139,7 +139,7 @@ p {
   margin: auto;
   font-size: inherit;
   opacity: 0;
-  transform: translateX(-10%);
+  transform: translateX(-5%);
   /* -webkit-clip-path: inset(0 0 0 100%); Safari compatibility */
   /* clip-path: inset(0 0 0 100%); */
   transition: transform 0.5s ease-in-out, opacity 1s ease-in-out, scale 0.3s ease-in-out;
@@ -172,6 +172,12 @@ p {
 
 #socials > a:hover {
   opacity: 1;
+}
+
+.welcome {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
 }
 
 .animate-on-scroll {

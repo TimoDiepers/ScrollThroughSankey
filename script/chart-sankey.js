@@ -16,14 +16,23 @@ function processLinks(links, yearIndex) {
   }));
 }
 
-export function updateSankey(nodesData, linksData, delay = 0) {
+export function updateSankey(nodesData, linksData, delay = 0, transitionDuration = 600) {
   const { nodes, links } = window.sankeyDia({
     nodes: nodesData.map(d => ({ ...d })),
     links: linksData.map(d => ({ ...d }))
   });
+
+  const svgWidth = 1620;
+  // Flip x positions
+  nodes.forEach(d => {
+    const x0 = d.x0;
+    const x1 = d.x1;
+    d.x0 = svgWidth - x1;
+    d.x1 = svgWidth - x0;
+  });
+
   const width = 1600,
         radius = 10,
-        transitionDuration = 600,
         format = d3.format(",.0f");
   const totalScore = d3.sum(
     links.filter(l => l.target.name === "grid status quo"),
@@ -55,7 +64,7 @@ export function updateSankey(nodesData, linksData, delay = 0) {
   window.labels.transition()
     .delay(delay)
     .duration(transitionDuration)
-    .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
+    .attr("x", d => d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
     .attr("y", d => (d.y1 + d.y0) / 2)
     .tween("text", function(d) {
       const sel = d3.select(this);
@@ -68,7 +77,7 @@ export function updateSankey(nodesData, linksData, delay = 0) {
         interpolate = d3.interpolateNumber(prev, next);
         this.setAttribute("data-prev", next);
         tspan = sel.append("tspan")
-          .attr("x", d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
+          .attr("x", d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
           .attr("dy", "1.2em")
           .style("font-size", "1em");
         return t => {
@@ -104,9 +113,9 @@ function drawSankey(nodesData, linksData) {
         verticalOffset = 50,
         verticalOffsetTitles = 20;
   const titlePositions = [
-    { x: 0, y: -verticalOffsetTitles },
-    { x: 525, y: -verticalOffsetTitles },
-    { x: 1050, y: -verticalOffsetTitles }
+    { x: 360, y: -verticalOffsetTitles },
+    { x: 940, y: -verticalOffsetTitles },
+    { x: 1330, y: -verticalOffsetTitles }
   ];
   // Create SVG container
   const svg = d3.select("#chart-sankey")
@@ -129,6 +138,7 @@ function drawSankey(nodesData, linksData) {
       if (!isOtherA && isOtherB) return -1;
       return b.value - a.value;
     });
+
   window.sankeyDia = sankeyDia;
 
   // Apply the generator
@@ -136,6 +146,16 @@ function drawSankey(nodesData, linksData) {
     nodes: nodesData.map(d => ({ ...d })),
     links: linksData.map(d => ({ ...d }))
   });
+
+  const svgWidth = width + 2 * radius;
+  // Flip x positions
+  nodes.forEach(d => {
+    const x0 = d.x0;
+    const x1 = d.x1;
+    d.x0 = svgWidth - x1;
+    d.x1 = svgWidth - x0;
+  });
+
   const totalScore = d3.sum(
     links.filter(l => l.target.name === "grid status quo"),
     l => l.value
@@ -190,7 +210,7 @@ function drawSankey(nodesData, linksData) {
   // Draw links
   window.link = svg.append("g")
     .attr("fill", "none")
-    .attr("stroke-opacity", 0.5)
+    .attr("stroke-opacity", 0.4)
     .selectAll("path.link")
     .data(links, d => removeBlanks(d.source.name) + "->" + removeBlanks(d.target.name))
     .join("path")
@@ -249,7 +269,7 @@ function drawSankey(nodesData, linksData) {
       });
 
   // Add titles for groups
-  const titles = ["direct emissions", "materials", "components"];
+  const titles = ["components", "materials", "direct emissions"];
   const titleGroup = svg.append("g");
   titles.forEach((title, i) => {
     titleGroup.append("text")
@@ -268,10 +288,10 @@ function drawSankey(nodesData, linksData) {
     .data(nodes, d => d.name)
     .join("text")
       .attr("class", "label")
-      .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
+      .attr("x", d => d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
       .attr("y", d => (d.y1 + d.y0) / 2)
       .attr("dy", "0.35em")
-      .attr("text-anchor", d => d.x0 < width - 50 ? "start" : "end")
+      .attr("text-anchor", d => d.x0 < 50 ? "start" : "end")
       .text(d => {
         if (d.name === "grid status quo") return d.name;
         const perc = (d.value / totalScore) * 100;
@@ -285,9 +305,9 @@ function drawSankey(nodesData, linksData) {
   // Append additional tspan for "grid status quo"
   window.labels.filter(d => d.name === "grid status quo")
     .append("tspan")
-      .attr("x", d => d.x0 < width - 50 ? d.x1 + 20 : d.x0 - 20)
+      .attr("x", d => d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
       .attr("dy", "1.2em")
-      .attr("text-anchor", d => d.x0 < width - 50 ? "start" : "end")
+      .attr("text-anchor", d => d.x0 < 50 ? "start" : "end")
       .text(d => format(d.value) + " Mt CO2-eq")
       .style("font-size", "1em")
       .style("fill", "#F1F3F4");
