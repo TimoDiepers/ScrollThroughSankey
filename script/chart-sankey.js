@@ -86,7 +86,7 @@ export function updateSankey(nodesData, linksData, delay = 0, transitionDuration
   window.labels.transition()
     .delay(delay)
     .duration(transitionDuration)
-    .attr("x", d => d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
+    .attr("x", d => d.x0 < 50 ? d.x1 + 25 : d.x0 - 25)
     .attr("y", d => (d.y1 + d.y0) / 2)
     .tween("text", function(d) {
       const sel = d3.select(this);
@@ -99,9 +99,9 @@ export function updateSankey(nodesData, linksData, delay = 0, transitionDuration
         interpolate = d3.interpolateNumber(prev, next);
         this.setAttribute("data-prev", next);
         tspan = sel.append("tspan")
-          .attr("x", d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
+          .attr("x", d.x0 < 50 ? d.x1 + 25 : d.x0 - 25)
           .attr("dy", "1.2em")
-          .style("font-size", "1em");
+          .style("font-size", "`calc(${fontsize} * 1.3)`");
         return t => {
           tspan.text(format(interpolate(t)) + " Mt CO2-eq");
         };
@@ -315,7 +315,7 @@ function drawSankey(nodesData, linksData) {
     .data(nodes, d => d.name)
     .join("text")
       .attr("class", "label")
-      .attr("x", d => d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
+      .attr("x", d => d.x0 < 50 ? d.x1 + 25 : d.x0 - 25)
       .attr("y", d => (d.y1 + d.y0) / 2)
       .attr("dy", "0.35em")
       .attr("text-anchor", d => d.x0 < 50 ? "start" : "end")
@@ -325,14 +325,14 @@ function drawSankey(nodesData, linksData) {
         const percText = perc < 0.01 ? "<0.1%" : `${perc.toFixed(1)}%`;
         return `${d.name} (${percText})`;
       })
-      .style("font-size", fontsize)
+      .style("font-size", d => d.name === "grid status quo" ? `calc(${fontsize} * 1.3)` : fontsize)
       .style("fill", "#F1F3F4")
       .style("font-weight", d => d.name === "grid status quo" ? "bold" : "normal");
 
   // Append additional tspan for "grid status quo"
   window.labels.filter(d => d.name === "grid status quo")
     .append("tspan")
-      .attr("x", d => d.x0 < 50 ? d.x1 + 20 : d.x0 - 20)
+      .attr("x", d => d.x0 < 50 ? d.x1 + 25 : d.x0 - 25)
       .attr("dy", "1.2em")
       .attr("text-anchor", d => d.x0 < 50 ? "start" : "end")
       .text(d => format(d.value) + " Mt CO2-eq")

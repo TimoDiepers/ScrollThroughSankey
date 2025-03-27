@@ -186,10 +186,11 @@ p {
   align-items: baseline;
   gap: 12px;
   font-size: 48px;
+  font-weight: 500;
 }
 
 .stat .label {
-  font-size: 18px;
+  font-size: 20px;
   opacity: 0.8;
 }
 #socials {

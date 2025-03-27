@@ -96,17 +96,16 @@ function showStats() {
   }, 300);
 
   // Animate numbers
-  const animateValue = (id, end, duration = 1000, format = d3.format(",.0f")) => {
+  const animateValue = (id, end, duration = 1000, format = d3.format(",.0f"), unit = "") => {
     const sel = d3.select(`#${id}`);
     sel.transition().duration(duration).tween("text", () => {
       const interp = d3.interpolateNumber(0, end);
-      return t => sel.text(format(interp(t)));
+      return t => sel.text(format(interp(t)) + unit);
     });
   };
-
-  animateValue("stat1", 1823000);
-  animateValue("stat2", 237000);
-  animateValue("stat3", 586000);
+  animateValue("stat1", 1823000, 1000, d3.format(",.0f"), "");
+  animateValue("stat2", 237000, 1000, d3.format(",.0f"), "");
+  animateValue("stat3", 586000, 1000, d3.format(",.0f"), "");
 }
 
 function showChart() {
@@ -188,11 +187,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (id === "section1") {
               currentSection = 1;
               activateDot(1);
-              showChart()
-                updateSankey(window.snodes2023, window.slinks2023);
-                showAllLinks(600);
-                showAllRects(600);
-                showAllTexts(600);
+              showChart();
+              updateSankey(window.snodes2023, window.slinks2023, 0, 1000);
+              showAllLinks(600);
+              showAllRects(600);
+              showAllTexts(1000);
             } else if (id === "section2") {
               currentSection = 2;
               activateDot(2);
