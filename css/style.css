@@ -80,7 +80,7 @@ p {
   /* box-sizing: border-box; */
   flex: 1;
   width: 35%;
-  max-width: 350px;
+  max-width: 450px;
   top: 0px;
   color: #f1f3f4;
   height: fit-content;
@@ -115,7 +115,7 @@ p {
   top: calc(50vh - var(--charts-height) / 2);
   transform: none;
   align-self: center;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   z-index: 2;
   /* background-color: #1f2123; */
   /* backdrop-filter: blur(30px); */
@@ -138,21 +138,60 @@ p {
 #chart-sankey {
   margin: auto;
   font-size: inherit;
+  max-height: 0;
   opacity: 0;
   transform: translateX(-5%);
   /* -webkit-clip-path: inset(0 0 0 100%); Safari compatibility */
   /* clip-path: inset(0 0 0 100%); */
-  transition: transform 0.5s ease-in-out, opacity 0.8s ease-in-out, scale 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, scale 0.3s ease-in-out, max-height 0.3s ease-in-out;
 }
 
 #chart-sankey.fade-in {
+  visibility: inherit;
+  max-height: 100%;
   opacity: 1;
   transform: translateX(0);
   -webkit-clip-path: inset(0 0 0 0); /* Safari compatibility */
   clip-path: inset(0 0 0 0);
 }
 
+#chart-sankey.fade-out {
+  opacity: 0;
+  max-height: 0;
+  transform: translateX(-5%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, max-height 0.2s ease-in-out;
+}
 
+#stats {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-size: 1.8rem;
+  color: #F1F3F4;
+  text-align: left;
+  margin-left: 100px;
+  padding: 20px;
+  max-height: 100%;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#stats.fade-out {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 48px;
+}
+
+.stat .label {
+  font-size: 18px;
+  opacity: 0.8;
+}
 #socials {
   display: grid;
   grid-auto-flow: column;
@@ -172,12 +211,6 @@ p {
 
 #socials > a:hover {
   opacity: 1;
-}
-
-.welcome {
-  width: 100%;
-  max-width: 100%;
-  text-align: center;
 }
 
 .animate-on-scroll {

@@ -1,5 +1,5 @@
 import { getColor } from "./colors.js";
-import { renderSankey, updateSankey } from "./chart-sankey.js";
+import { renderSankey, updateSankey, transformIntoBars } from "./chart-sankey.js";
 
 // DOM & constants
 const container = document.querySelector(".container");
@@ -15,7 +15,7 @@ const setVisible = (el, visible) => el.classList.toggle("visible", visible);
 // Link & rect fading functions
 function fadeOtherLinks(connection, delay = 0, duration = fadeDuration) {
   const conns = Array.isArray(connection) ? connection : [connection];
-  window.link
+  d3.selectAll(".link")
     .transition()
     .delay(delay)
     .duration(duration)
@@ -43,14 +43,17 @@ function fadeLinksInSubstring(connection, delay = 0, duration = fadeDuration) {
 }
 
 const showAllLinks = (delay = 0, duration = fadeDuration) =>
-  window.link
+  d3.selectAll(".link")
+    .style("visibility", "visible")
+    .style("pointer-events", "auto")
     .transition()
     .delay(delay)
     .duration(duration)
-    .style("opacity", normalOpacity);
+    .style("opacity", 1)               // fully visible
+    .style("stroke-opacity", 0.4);     // reset stroke-opacity
 
 function fadeOtherRects(names, delay = 0, duration = fadeDuration) {
-  window.rect
+  d3.selectAll("rect.node")
     .transition()
     .delay(delay)
     .duration(duration)
@@ -60,32 +63,81 @@ function fadeOtherRects(names, delay = 0, duration = fadeDuration) {
 }
 
 const showAllRects = (delay = 0, duration = fadeDuration) =>
-  window.rect
+  d3.selectAll("rect.node")
+    .style("visibility", "visible")
+    .style("pointer-events", "auto")
     .transition()
     .delay(delay)
     .duration(duration)
     .style("opacity", normalOpacity)
-    .style("fill", (d) => getColor(d));
+    .style("fill", d => getColor(d));
 
 const showAllTexts = (delay = 0, duration = fadeDuration) =>
-  window.labels
+  d3.selectAll("text.title, text.label")
+    .style("visibility", "visible")
+    .style("pointer-events", "auto")
     .transition()
     .delay(delay)
     .duration(duration)
-    .style("fill-opacity", normalOpacity);
+    .style("opacity", normalOpacity);
+
+function showStats() {
+  const stats = document.getElementById("stats");
+  const chart = document.getElementById("chart-sankey");
+
+  // Fade out chart
+  chart.classList.remove("fade-in");
+  chart.classList.add("fade-out");
+
+  // After it's hidden, show stats
+  setTimeout(() => {
+    stats.style.display = "flex";
+    requestAnimationFrame(() => stats.classList.remove("fade-out"));
+  }, 300);
+
+  // Animate numbers
+  const animateValue = (id, end, duration = 1000, format = d3.format(",.0f")) => {
+    const sel = d3.select(`#${id}`);
+    sel.transition().duration(duration).tween("text", () => {
+      const interp = d3.interpolateNumber(0, end);
+      return t => sel.text(format(interp(t)));
+    });
+  };
+
+  animateValue("stat1", 1823000);
+  animateValue("stat2", 237000);
+  animateValue("stat3", 586000);
+}
+
+function showChart() {
+  const stats = document.getElementById("stats");
+  const chart = document.getElementById("chart-sankey");
+
+  // Add fade-out + absolute positioning
+  stats.classList.add("fade-out");
+
+  // After transition, hide completely
+  setTimeout(() => {
+    stats.style.display = "none"; // Remove from layout entirely
+    chart.classList.remove("fade-out");
+    chart.classList.add("fade-in");
+  }, 300);
+}
 
 function activateDot(index) {
   dots.forEach((dot) => dot.classList.remove("active"));
   dots[index].classList.add("active");
 }
 
-// Dot & arrow event listeners
 dots.forEach((dot, i) =>
   dot.addEventListener("click", () => {
-    document.getElementById("charts").style.visibility = "visible";
-    document.getElementById("sections").classList.remove("wider");
-    document.getElementById("chart-sankey").classList.add("fade-in");
-    sections[i].scrollIntoView({ behavior: "instant" });
+    const targetId = sections[i].querySelector(".animate-on-scroll")?.id;
+    if (targetId === "section0") {
+      showStats();
+    } else {
+      showChart();
+    }
+    sections[i].scrollIntoView({ behavior: "smooth" });
   })
 );
 document
@@ -131,30 +183,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (id === "section0") {
               currentSection = 0;
               activateDot(0);
-              if (window.innerWidth > 768) {
-                document.getElementById("sections").classList.add("wider");
-                document.getElementById("chart-sankey").classList.remove("fade-in");
-                setTimeout(() => {
-                  document.getElementById("charts").style.visibility = "collapse";
-                  }, 800);
-              }
-              else {
-                document.getElementById("chart-sankey").classList.add("fade-in");
-                document.getElementById("charts").style.visibility = "visible";
-                document.getElementById("sections").classList.remove("wider");
-              }
+              showStats()
             }
-
             if (id === "section1") {
               currentSection = 1;
               activateDot(1);
-              document.getElementById("charts").style.visibility = "visible";
-              document.getElementById("sections").classList.remove("wider");
-              document.getElementById("chart-sankey").classList.add("fade-in");
-
-              updateSankey(window.snodes2023, window.slinks2023, 0, 600);
-              showAllLinks();
-              showAllRects();
+              showChart()
+                updateSankey(window.snodes2023, window.slinks2023);
+                showAllLinks(600);
+                showAllRects(600);
+                showAllTexts(600);
             } else if (id === "section2") {
               currentSection = 2;
               activateDot(2);
@@ -199,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
               );
             } else if (id === "section3") {
               activateDot(3);
-              updateSankey(window.snodes2023, window.slinks2023, 0, 0);
+              updateSankey(window.snodes2023, window.slinks2023,0,0);
               fadeOtherRects(["grid status quo", "overhead lines"]);
               fadeOtherLinks(["overheadlines->gridstatusquo"]);
               fadeOtherRects(
@@ -238,13 +276,42 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (id === "section5") {
               currentSection = 5;
               activateDot(5);
+              updateSankey(window.snodes2023, window.slinks2023, 0, 0);
               showAllLinks();
               showAllRects();
-              updateSankey(window.snodes2023, window.slinks2023, 300);
+              showAllTexts();
             } else if (id === "section6") {
               currentSection = 6;
               activateDot(6);
-              updateSankey(window.snodes2045, window.slinks2045);
+              const years = ["2025", "2030", "2035", "2040", "2045"];
+              const allData = [
+                { component: "cables", year: "2025", value: 24.882819634847383 },
+                { component: "overhead lines", year: "2025", value: 33.04811893305462 },
+                { component: "transformers", year: "2025", value: 3.669435057682783 },
+                { component: "switchgears", year: "2025", value: 0.9894780280469139 },
+                { component: "substations", year: "2025", value: 1.091668849540489 },
+                { component: "cables", year: "2030", value: 18 },
+                { component: "overhead lines", year: "2030", value: 23 },
+                { component: "substations", year: "2030", value: 9 },
+                { component: "switchgears", year: "2030", value: 9 },
+                { component: "transformers", year: "2030", value: 9 },
+                { component: "cables", year: "2035", value: 10 },
+                { component: "overhead lines", year: "2035", value: 14 },
+                { component: "substations", year: "2035", value: 6 },
+                { component: "switchgears", year: "2035", value: 6 },
+                { component: "transformers", year: "2035", value: 6 },
+                { component: "cables", year: "2040", value: 9 },
+                { component: "overhead lines", year: "2040", value: 10 },
+                { component: "substations", year: "2040", value: 4 },
+                { component: "switchgears", year: "2040", value: 2 },
+                { component: "transformers", year: "2040", value: 2 },
+                { component: "cables", year: "2045", value: 7 },
+                { component: "overhead lines", year: "2045", value: 9 },
+                { component: "substations", year: "2045", value: 3 },
+                { component: "switchgears", year: "2045", value: 1 },
+                { component: "transformers", year: "2045", value: 1 }
+              ];              
+              transformIntoBars({ allData, years });
             }
           }
         });
