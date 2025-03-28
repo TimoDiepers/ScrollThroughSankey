@@ -183,8 +183,8 @@ p {
 
 .stat {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
+  align-items: center;
+  gap: 24px;
   font-size: 48px;
   font-weight: 500;
 }
@@ -193,6 +193,22 @@ p {
   font-size: 20px;
   opacity: 0.8;
 }
+
+.stat .icon {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat .icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 #socials {
   display: grid;
   grid-auto-flow: column;

@@ -157,6 +157,20 @@ document.addEventListener("keydown", (e) => {
 
 // Main initialization on DOM load
 document.addEventListener("DOMContentLoaded", () => {
+  const loadSVG = (id, path) => {
+    fetch(path)
+      .then(res => res.text())
+      .then(svg => {
+        document.getElementById(id).innerHTML = svg;
+      });
+  };
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    // loadSVG("icon-cables", "cable.svg");
+    loadSVG("icon-overhead", "overheadline.svg");
+    loadSVG("icon-transformer", "transformer.svg");
+  });
+
   Promise.all([
     d3.csv("data/sankey_data_paper_2023.csv"),
     d3.csv("data/sankey_data_paper_2045.csv"),
