@@ -103,8 +103,8 @@ function showStats() {
       return t => sel.text(format(interp(t)) + unit);
     });
   };
-  animateValue("stat1", 1823000, 1000, d3.format(",.0f"), "");
-  animateValue("stat2", 237000, 1000, d3.format(",.0f"), "");
+  animateValue("stat1", 237000, 1000, d3.format(",.0f"), "");
+  animateValue("stat2", 1823000, 1000, d3.format(",.0f"), "");
   animateValue("stat3", 586000, 1000, d3.format(",.0f"), "");
 }
 
@@ -157,20 +157,6 @@ document.addEventListener("keydown", (e) => {
 
 // Main initialization on DOM load
 document.addEventListener("DOMContentLoaded", () => {
-  const loadSVG = (id, path) => {
-    fetch(path)
-      .then(res => res.text())
-      .then(svg => {
-        document.getElementById(id).innerHTML = svg;
-      });
-  };
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    // loadSVG("icon-cables", "cable.svg");
-    loadSVG("icon-overhead", "overheadline.svg");
-    loadSVG("icon-transformer", "transformer.svg");
-  });
-
   Promise.all([
     d3.csv("data/sankey_data_paper_2023.csv"),
     d3.csv("data/sankey_data_paper_2045.csv"),
