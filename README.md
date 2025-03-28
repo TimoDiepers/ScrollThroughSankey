@@ -1,1 +1,1 @@
-Demo: https://timodiepers.github.io/ScrollThroughSankey/
+https://timodiepers.github.io/ScrollThroughSankey/
