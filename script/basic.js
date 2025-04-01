@@ -304,7 +304,14 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (id === "section8") {
               currentSection = 8;
               activateDot(8);
-              renderSankey(window.snodes2045, window.slinks2045);
+              showAllLinks(0,0);
+              showAllRects(0,0);
+              showAllTexts(0,0);
+              updateSankey(window.snodes2045, window.slinks2045);
+            } else if (id === "section9") {
+              currentSection = 9;
+              activateDot(9);
+              updateSankey(window.snodes2023, window.slinks2023);
             }
           }
         });
