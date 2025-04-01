@@ -1,5 +1,5 @@
 import { getColor } from "./colors.js";
-import { renderSankey, updateSankey, transformIntoBars } from "./chart-sankey.js";
+import { renderSankey, updateSankey, transformIntoBars, updateBars} from "./chart-sankey.js";
 
 // DOM & constants
 const container = document.querySelector(".container");
@@ -283,34 +283,22 @@ document.addEventListener("DOMContentLoaded", () => {
               currentSection = 6;
               activateDot(6);
               const years = ["2025", "2030", "2035", "2040", "2045"];
-              const allData = [
-                { component: "cables", year: "2025", value: 24.882819634847383 },
-                { component: "overhead lines", year: "2025", value: 33.04811893305462 },
-                { component: "transformers", year: "2025", value: 3.669435057682783 },
-                { component: "switchgears", year: "2025", value: 0.9894780280469139 },
-                { component: "substations", year: "2025", value: 1.091668849540489 },
-                { component: "cables", year: "2030", value: 18 },
-                { component: "overhead lines", year: "2030", value: 23 },
-                { component: "substations", year: "2030", value: 9 },
-                { component: "switchgears", year: "2030", value: 9 },
-                { component: "transformers", year: "2030", value: 9 },
-                { component: "cables", year: "2035", value: 10 },
-                { component: "overhead lines", year: "2035", value: 14 },
-                { component: "substations", year: "2035", value: 6 },
-                { component: "switchgears", year: "2035", value: 6 },
-                { component: "transformers", year: "2035", value: 6 },
-                { component: "cables", year: "2040", value: 9 },
-                { component: "overhead lines", year: "2040", value: 10 },
-                { component: "substations", year: "2040", value: 4 },
-                { component: "switchgears", year: "2040", value: 2 },
-                { component: "transformers", year: "2040", value: 2 },
-                { component: "cables", year: "2045", value: 7 },
-                { component: "overhead lines", year: "2045", value: 9 },
-                { component: "substations", year: "2045", value: 3 },
-                { component: "switchgears", year: "2045", value: 1 },
-                { component: "transformers", year: "2045", value: 1 }
-              ];              
-              transformIntoBars({ allData, years });
+              fetch("data/expansion_component_results_static.json")
+              .then(response => response.json())
+              .then(allData => {
+                transformIntoBars({ allData, years });
+              })
+              .catch(error => console.error("Error loading JSON data:", error));
+            } else if (id === "section7") {
+              currentSection = 7;
+              activateDot(7);
+              const years = ["2025", "2030", "2035", "2040", "2045"];
+              fetch("data/expansion_component_results_rcp19.json")
+              .then(response => response.json())
+              .then(allData => {
+                updateBars(allData, years );
+              })
+              .catch(error => console.error("Error loading JSON data:", error));
             }
           }
         });

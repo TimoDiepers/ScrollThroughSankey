@@ -1,0 +1,127 @@
+[
+    {
+        "component": "cables",
+        "year": "2025",
+        "value": 26.169927433836296
+    },
+    {
+        "component": "overhead lines",
+        "year": "2025",
+        "value": 34.49840102129449
+    },
+    {
+        "component": "substations",
+        "year": "2025",
+        "value": 1.125789370592649
+    },
+    {
+        "component": "switchgears",
+        "year": "2025",
+        "value": 1.2207801893045627
+    },
+    {
+        "component": "transformers",
+        "year": "2025",
+        "value": 3.798432603806266
+    },
+    {
+        "component": "cables",
+        "year": "2030",
+        "value": 29.07254532410768
+    },
+    {
+        "component": "overhead lines",
+        "year": "2030",
+        "value": 37.66894372571178
+    },
+    {
+        "component": "substations",
+        "year": "2030",
+        "value": 1.1971014438256322
+    },
+    {
+        "component": "switchgears",
+        "year": "2030",
+        "value": 1.794272948382273
+    },
+    {
+        "component": "transformers",
+        "year": "2030",
+        "value": 4.080253627761877
+    },
+    {
+        "component": "cables",
+        "year": "2035",
+        "value": 31.092805035100785
+    },
+    {
+        "component": "overhead lines",
+        "year": "2035",
+        "value": 39.99747614124252
+    },
+    {
+        "component": "substations",
+        "year": "2035",
+        "value": 1.2596815428823753
+    },
+    {
+        "component": "switchgears",
+        "year": "2035",
+        "value": 2.3547062143893704
+    },
+    {
+        "component": "transformers",
+        "year": "2035",
+        "value": 4.29652962241814
+    },
+    {
+        "component": "cables",
+        "year": "2040",
+        "value": 32.581046098161494
+    },
+    {
+        "component": "overhead lines",
+        "year": "2040",
+        "value": 41.309167983899926
+    },
+    {
+        "component": "substations",
+        "year": "2040",
+        "value": 1.315023528274812
+    },
+    {
+        "component": "switchgears",
+        "year": "2040",
+        "value": 2.8917028897211545
+    },
+    {
+        "component": "transformers",
+        "year": "2040",
+        "value": 4.466308943378969
+    },
+    {
+        "component": "cables",
+        "year": "2045",
+        "value": 33.950316681732794
+    },
+    {
+        "component": "overhead lines",
+        "year": "2045",
+        "value": 42.19515471781184
+    },
+    {
+        "component": "substations",
+        "year": "2045",
+        "value": 1.3676503766493888
+    },
+    {
+        "component": "switchgears",
+        "year": "2045",
+        "value": 3.4164802688742792
+    },
+    {
+        "component": "transformers",
+        "year": "2045",
+        "value": 4.6232336694964475
+    }
+]

@@ -562,3 +562,129 @@ export function transformIntoBars({ allData, years, containerSelector = "#chart-
     });
   }, 500);
 }
+
+export function updateBars(allData, years, containerSelector = "#chart-sankey") {
+  const svg = d3.select(containerSelector);
+  const margin = { top: 20, right: 20, bottom: 60, left: 40 };
+  const width = +svg.attr("width") - margin.left - margin.right;
+  const height = +svg.attr("height") - margin.top - margin.bottom;
+  const chart = svg.select("g").size() ? svg.select("g") : svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const barX = d3.scaleBand()
+    .domain(years)
+    .range([width * 0.15, width])
+    .padding(0.3);
+
+  const barY = d3.scaleLinear()
+    .domain([0, 100])
+    .range([height * 0.9, height * 0.1]);
+
+  const firstYear = years[0];
+
+  // Determine the order of components based on the first year's data
+  const componentOrder = allData
+    .filter(d => d.year === firstYear)
+    .sort((a, b) => a.value - b.value)
+    .map(d => d.component);
+
+  // Recalculate bar positions for each year
+  const barGroups = {};
+  years.forEach(year => {
+    let yOffset = 0;
+    barGroups[year] = {};
+    componentOrder.forEach(component => {
+      const d = allData.find(e => e.year === year && e.component === component);
+      if (d) {
+        const heightVal = barY(yOffset) - barY(yOffset + d.value);
+        barGroups[year][component] = {
+          x: barX(year),
+          y: barY(yOffset + d.value),
+          width: barX.bandwidth(),
+          height: heightVal,
+          value: d.value
+        };
+        yOffset += d.value;
+      }
+    });
+  });
+
+  // Update the first year's bars (assumed to have class "node component")
+  d3.selectAll("rect.node.component")
+    .transition()
+    .duration(1000)
+    .attr("x", d => barGroups[firstYear][d.name]?.x || d.x0)
+    .attr("y", d => barGroups[firstYear][d.name]?.y || d.y0)
+    .attr("width", d => barGroups[firstYear][d.name]?.width || (d.x1 - d.x0))
+    .attr("height", d => barGroups[firstYear][d.name]?.height || (d.y1 - d.y0))
+    .on("start", function(event, d) {
+      const val = barGroups[firstYear][d.name]?.value;
+      if (val !== undefined) {
+        d3.select(this)
+          .on("mouseover", function(event) {
+            d3.select(".tooltip").transition().duration(200).style("opacity", 0.9);
+            d3.select(".tooltip")
+              .html(`${d.name}<br/>${val} Mt CO2-eq`)
+              .style("left", `${event.pageX}px`)
+              .style("top", `${event.pageY - 28}px`);
+          })
+          .on("mousemove", event => {
+            d3.select(".tooltip")
+              .style("left", `${event.pageX + 4}px`)
+              .style("top", `${event.pageY - 50}px`);
+          })
+          .on("mouseout", () => {
+            d3.select(".tooltip").transition().duration(500).style("opacity", 0);
+          });
+      }
+    });
+
+  // Update the y-axis
+  svg.select(".y-axis")
+    .transition()
+    .duration(800)
+    .call(d3.axisLeft(barY).ticks(6));
+
+  // Update the first year's label
+  chart.selectAll("text.year-label")
+    .filter(function() { return d3.select(this).text() === firstYear; })
+    .transition()
+    .duration(400)
+    .attr("x", barX(firstYear) + barX.bandwidth() / 2)
+    .text(firstYear);
+
+  // Update bars and labels for the remaining years
+  years.slice(1).forEach(year => {
+    // Update the bars for this year (rects with class "bar{year}")
+    chart.selectAll(`rect.bar${year}`)
+      .on("mouseover", function(event, d) {
+        d3.select(".tooltip").transition().duration(200).style("opacity", 0.9);
+        d3.select(".tooltip")
+          .html(`${d}<br/>${barGroups[year][d].value} Mt CO2-eq`)
+          .style("left", `${event.pageX}px`)
+          .style("top", `${event.pageY - 28}px`);
+      })
+      .on("mousemove", event => {
+        d3.select(".tooltip")
+          .style("left", `${event.pageX + 4}px`)
+          .style("top", `${event.pageY - 50}px`);
+      })
+      .on("mouseout", () => {
+        d3.select(".tooltip").transition().duration(500).style("opacity", 0);
+      })
+      .transition()
+      .duration(1000)
+      .attr("x", d => barGroups[year][d].x)
+      .attr("y", d => barGroups[year][d].y)
+      .attr("width", d => barGroups[year][d].width)
+      .attr("height", d => barGroups[year][d].height)
+      .attr("fill", d => getColor({ name: d }));
+
+    // Update the year label for this year
+    chart.selectAll("text.year-label")
+      .filter(function() { return d3.select(this).text() === year; })
+      .transition()
+      .duration(1000)
+      .attr("x", barX(year) + barX.bandwidth() / 2)
+      .text(year);
+  });
+}
