@@ -422,6 +422,9 @@ p {
     transition: none;
   }
 
+  #stats {
+    margin-left: 0;
+  }
   .stat {
     display: flex;
     align-items: center;
