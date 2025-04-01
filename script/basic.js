@@ -103,9 +103,11 @@ function showStats() {
       return t => sel.text(format(interp(t)) + unit);
     });
   };
-  animateValue("stat1", 237000, 1000, d3.format(",.0f"), "");
-  animateValue("stat2", 1823000, 1000, d3.format(",.0f"), "");
+  animateValue("stat1", 237000, 600, d3.format(",.0f"), "");
+  animateValue("stat2", 1823000, 800, d3.format(",.0f"), "");
   animateValue("stat3", 586000, 1000, d3.format(",.0f"), "");
+  animateValue("stat4", 64000000, 1400, d3.format(",.0f"), "");
+  
 }
 
 function showChart() {
@@ -299,6 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateBars(allData, years );
               })
               .catch(error => console.error("Error loading JSON data:", error));
+            } else if (id === "section8") {
+              currentSection = 8;
+              activateDot(8);
+              renderSankey(window.snodes2045, window.slinks2045);
             }
           }
         });
