@@ -209,24 +209,28 @@ p {
   object-fit: contain;
 }
 
-#socials {
-  display: grid;
-  grid-auto-flow: column;
-  width: 100px;
+#footer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
   position: fixed;
+  padding:  10px;
   bottom: 0;
   right: 0;
-  padding: 15px;
   z-index: 99999;
-  gap: 15px;
 }
 
-#socials > a {
-  opacity: 0.5;
+#footer > a {
+  font-size: 1em;
+  color:white;
+  text-decoration: none;
+  opacity: 0.65;
   transition: 0.2s ease;
 }
 
-#socials > a:hover {
+#footer > a:hover {
+  text-decoration: underline;
   opacity: 1;
 }
 
@@ -413,7 +417,7 @@ p {
     max-width: 60vh;
   }
 
-  #socials {
+  #footer {
     position: static;
   }
   .animate-on-scroll {
