@@ -103,10 +103,12 @@ function showChart() {
   const chart = document.getElementById("chart-sankey");
   stats.classList.add("fade-out");
   setTimeout(() => {
-    stats.style.display = "none";
     chart.style.display = "block";
-    chart.classList.remove("fade-out");
-    chart.classList.add("fade-in");
+    stats.style.display = "none";
+    requestAnimationFrame(() => {
+      chart.classList.remove("fade-out");
+      chart.classList.add("fade-in");
+    });
   }, 300);
 }
 
