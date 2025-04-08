@@ -1,5 +1,5 @@
 import { getColor } from "./colors.js";
-import { renderSankey, updateSankey, transformIntoBars, updateBars} from "./chart-sankey.js";
+import { renderSankey, updateSankey, transformIntoBars, updateBars, hideAllButComponents} from "./chart-sankey.js";
 
 // DOM & constants
 const container = document.querySelector(".container");
@@ -295,12 +295,14 @@ document.addEventListener("DOMContentLoaded", () => {
               currentSection = 7;
               activateDot(7);
               const years = ["2025", "2030", "2035", "2040", "2045"];
+              d3.selectAll(".bar2030, .bar2035, .bar2040, .bar2045, .year-label, .y-axis")
+                .style("opacity", 1);
+              hideAllButComponents();
               fetch("data/expansion_component_results_rcp19.json")
               .then(response => response.json())
               .then(allData => {
                 updateBars(allData, years );
               })
-              .catch(error => console.error("Error loading JSON data:", error));
             } else if (id === "section8") {
               currentSection = 8;
               activateDot(8);

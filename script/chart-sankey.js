@@ -19,8 +19,7 @@ function processLinks(links, yearIndex) {
 export function updateSankey(nodesData, linksData, delay = 0, transitionDuration = 600) {
   // Fade out and remove other bar elements
   d3.selectAll(".bar2030, .bar2035, .bar2040, .bar2045, .year-label, .y-axis")
-    .transition().duration(transitionDuration).style("opacity", 0).remove();
-
+    .transition().duration(transitionDuration).style("opacity", 0);
     
   const { nodes, links } = window.sankeyDia({
     nodes: nodesData.map(d => ({ ...d })),
@@ -77,8 +76,11 @@ export function updateSankey(nodesData, linksData, delay = 0, transitionDuration
   window.rect.transition()
     .delay(delay)
     .duration(transitionDuration)
+    .attr("stroke-width", 0)
     .attr("x", d => d.x0 - radius)
     .attr("y", d => d.y0)
+    .attr("rx", radius)
+    .attr("ry", radius)
     .attr("height", d => d.y1 - d.y0)
     .attr("width", d => d.x1 - d.x0 + radius * 2);
 
@@ -344,13 +346,52 @@ function drawSankey(nodesData, linksData) {
   window.rect.raise();
 }
 
+export function hideAllButComponents() {
+  d3.selectAll("rect.node.other")
+  .transition()
+  .duration(800)
+  .style("opacity", 0)
+  .on("end", function() {
+    d3.select(this)
+      .style("pointer-events", "none")
+      .style("visibility", "hidden");
+  });
+d3.selectAll("text.label")
+  .transition()
+  .duration(800)
+  .style("opacity", 0)    
+  .on("end", function() {
+    d3.select(this)
+      .style("pointer-events", "none")
+      .style("visibility", "hidden");
+  });
+d3.selectAll("text.title")
+  .transition()
+  .duration(800)
+  .style("opacity", 0)
+  .on("end", function() {
+    d3.select(this)
+      .style("pointer-events", "none")
+      .style("visibility", "hidden");
+  });
+d3.selectAll(".link")
+  .transition()
+  .duration(800)
+  .style("opacity", 0)
+  .on("end", function() {
+    d3.select(this)
+      .style("pointer-events", "none")
+      .style("visibility", "hidden");
+  });
+}
+
 export function transformIntoBars({ allData, years, containerSelector = "#chart-sankey" }) {
   const svg = d3.select(containerSelector);
   const margin = { top: 20, right: 20, bottom: 60, left: 40 };
   const width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom;
   const chart = svg.select("g").size() ? svg.select("g") : svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-  const radius = 10;
+  const radius = 18;
 
   const tooltip = d3.select(".tooltip").size()
     ? d3.select(".tooltip")
@@ -391,7 +432,7 @@ export function transformIntoBars({ allData, years, containerSelector = "#chart-
     componentOrder.forEach(component => {
       const d = allData.find(e => e.year === year && e.component === component);
       if (d) {
-        const heightVal = barY(yOffset) - barY(yOffset + d.value);
+        const heightVal = barY(yOffset) - barY(yOffset + d.value) - 8;
         barGroups[year][component] = {
           x: barX(year),
           y: barY(yOffset + d.value),
@@ -404,49 +445,31 @@ export function transformIntoBars({ allData, years, containerSelector = "#chart-
     });
   });
 
-  d3.selectAll("rect.node.other")
+  svg.selectAll("rect[class^='bar']")
     .transition()
-    .duration(800)
+    .delay(300)
+    .duration(300)
     .style("opacity", 0)
-    .on("end", function() {
-      d3.select(this)
-        .style("pointer-events", "none")
-        .style("visibility", "hidden");
-    });
-  d3.selectAll("text.label")
-    .transition()
-    .duration(800)
-    .style("opacity", 0)    
-    .on("end", function() {
-      d3.select(this)
-        .style("pointer-events", "none")
-        .style("visibility", "hidden");
-    });
-  d3.selectAll("text.title")
-    .transition()
-    .duration(800)
+    .remove();
+
+  svg.selectAll("text.year-label")
+  .transition()
+    .delay(300)
+    .duration(300)
     .style("opacity", 0)
-    .on("end", function() {
-      d3.select(this)
-        .style("pointer-events", "none")
-        .style("visibility", "hidden");
-    });
-  d3.selectAll(".link")
-    .transition()
-    .duration(800)
-    .style("opacity", 0)
-    .on("end", function() {
-      d3.select(this)
-        .style("pointer-events", "none")
-        .style("visibility", "hidden");
-    });
+    .remove();
+
+  hideAllButComponents();
+  
   d3.selectAll("rect.node.component")
     .transition()
-    .duration(1000)
+    .duration(600)
     .attr("x", d => barGroups[firstYear][d.name]?.x ?? d.x0)
     .attr("y", d => barGroups[firstYear][d.name]?.y ?? d.y0)
+    .attr("rx", radius)
+    .attr("ry", radius)
     .attr("width", d => barGroups[firstYear][d.name]?.width ?? d.x1 - d.x0)
-    .attr("height", d => barGroups[firstYear][d.name]?.height ?? d.y1 - d.y0)
+    .attr("height", d => barGroups[firstYear][d.name]?.height ?? d.y1 - d.y0 - 8)
     .on("start", function(event, d) {
       const val = barGroups[firstYear][d.name]?.value;
       if (val !== undefined) {
@@ -467,6 +490,8 @@ export function transformIntoBars({ allData, years, containerSelector = "#chart-
       }
     });
 
+  svg.selectAll(".y-axis").transition().duration(300).style("opacity", 0).remove();
+
   svg.append("g")
     .attr("class", "y-axis")
     .attr("transform", `translate(${barX(firstYear) - 80},0)`)
@@ -476,11 +501,11 @@ export function transformIntoBars({ allData, years, containerSelector = "#chart-
       g.selectAll("text")
         .style("fill", "#F1F3F4")
         .style("font-size", "40px");
-
+ 
       g.selectAll("path, line")
         .style("stroke", "#F1F3F4")
         .style("stroke-width", 3);
-
+ 
       g.append("text")
         .attr("class", "y-axis-label")
         .attr("text-anchor", "middle")
@@ -492,8 +517,8 @@ export function transformIntoBars({ allData, years, containerSelector = "#chart-
         .text("Global Warming Impact [Mt CO₂-eq]");
     })
     .transition()
-    .delay(400)
-    .duration(800)
+    .delay(200)
+    .duration(400)
     .attr("opacity", 1);
 
   chart.append("text")
@@ -506,61 +531,65 @@ export function transformIntoBars({ allData, years, containerSelector = "#chart-
     .style("font-size", "40px")
     .style("opacity", 0)
     .transition()
-    .delay(400)
+    .delay(200)
     .duration(400)
     .style("opacity", 1);
 
-  setTimeout(() => {
-    years.slice(1).forEach((year, i) => {
-      setTimeout(() => {
-        chart.append("g")
-          .selectAll(`.bar${year}`)
-          .data(componentOrder)
-          .enter()
-          .append("rect")
-          .attr("class", `bar${year}`)
-          .attr("x", d => barGroups[year][d].x)
-          .attr("y", d => barGroups[year][d].y + barGroups[year][d].height)
-          .attr("rx", radius)
-          .attr("ry", radius)
-          .attr("width", d => barGroups[year][d].width)
-          .attr("height", 0)
-          .attr("fill", d => getColor({ name: d }))
-          .attr("opacity", 0)
-          .on("mouseover", function (event, d) {
-            tooltip.transition().duration(200).style("opacity", 0.9);
-            tooltip.html(`${d}<br/>${barGroups[year][d].value} Mt CO2-eq`)
-              .style("left", `${event.pageX}px`)
-              .style("top", `${event.pageY - 28}px`);
-          })
-          .on("mousemove", (event) => {
-            tooltip.style("left", `${event.pageX + 4}px`)
-              .style("top", `${event.pageY - 50}px`);
-          })
-          .on("mouseout", () => {
-            tooltip.transition().duration(500).style("opacity", 0);
-          })
-          .transition()
-          .duration(1000)
-          .attr("opacity", 1)
-          .attr("y", d => barGroups[year][d].y)
-          .attr("height", d => barGroups[year][d].height);
+  years.slice(1).forEach((year, i) => {
+    setTimeout(() => {
+      chart.append("g")
+        .selectAll(`.bar${year}`)
+        .data(componentOrder)
+        .enter()
+        .append("rect")
+        .attr("class", `bar${year}`)
+        .attr("x", d => barGroups[year][d].x)
+        .attr("y", d => barGroups[year][d].y + barGroups[year][d].height)
+        .attr("rx", radius)
+        .attr("ry", radius)
+        .attr("width", d => barGroups[year][d].width)
+        .attr("height", 0)
+        .attr("fill", d => getColor({ name: d }))
+        .attr("opacity", 0)
+        .on("mouseover", function (event, d) {
+          tooltip.transition().duration(200).style("opacity", 0.9);
+          tooltip.html(`${d}<br/>${barGroups[year][d].value} Mt CO2-eq`)
+            .style("left", `${event.pageX}px`)
+            .style("top", `${event.pageY - 28}px`);
+        })
+        .on("mousemove", (event) => {
+          tooltip.style("left", `${event.pageX + 4}px`)
+            .style("top", `${event.pageY - 50}px`);
+        })
+        .on("mouseout", () => {
+          tooltip.transition().duration(500).style("opacity", 0);
+        })
+        .transition()
+        .duration(1000)
+        .attr("opacity", 1)
+        .attr("x", d => barGroups[year][d].x)
+        .attr("y", d => barGroups[year][d].y)
+        .attr("rx", radius)
+        .attr("ry", radius)
+        .attr("width", d => barGroups[year][d].width)
+        .attr("height", d => barGroups[year][d].height)
+        .attr("fill", d => getColor({ name: d }));
 
-        chart.append("text")
-          .attr("class", "year-label")
-          .attr("x", barX(year) + barX.bandwidth() / 2)
-          .attr("y", height*0.95)
-          .attr("text-anchor", "middle")
-          .text(year)
-          .style("fill", "#F1F3F4")
-          .style("font-size", "40px")
-          .style("opacity", 0)
-          .transition()
-          .duration(1000)
-          .style("opacity", 1);
-      }, i * 200);
-    });
-  }, 500);
+
+      chart.append("text")
+        .attr("class", "year-label")
+        .attr("x", barX(year) + barX.bandwidth() / 2)
+        .attr("y", height*0.95)
+        .attr("text-anchor", "middle")
+        .text(year)
+        .style("fill", "#F1F3F4")
+        .style("font-size", "40px")
+        .style("opacity", 0)
+        .transition()
+        .duration(600)
+        .style("opacity", 1);
+    }, i * 100);
+  });
 }
 
 export function updateBars(allData, years, containerSelector = "#chart-sankey") {
@@ -569,6 +598,7 @@ export function updateBars(allData, years, containerSelector = "#chart-sankey") 
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
   const chart = svg.select("g").size() ? svg.select("g") : svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+  const radius = 18;
 
   const barX = d3.scaleBand()
     .domain(years)
@@ -595,7 +625,7 @@ export function updateBars(allData, years, containerSelector = "#chart-sankey") 
     componentOrder.forEach(component => {
       const d = allData.find(e => e.year === year && e.component === component);
       if (d) {
-        const heightVal = barY(yOffset) - barY(yOffset + d.value);
+        const heightVal = barY(yOffset) - barY(yOffset + d.value) - 8;
         barGroups[year][component] = {
           x: barX(year),
           y: barY(yOffset + d.value),
@@ -611,11 +641,13 @@ export function updateBars(allData, years, containerSelector = "#chart-sankey") 
   // Update the first year's bars (assumed to have class "node component")
   d3.selectAll("rect.node.component")
     .transition()
-    .duration(1000)
+    .duration(800)
     .attr("x", d => barGroups[firstYear][d.name]?.x || d.x0)
     .attr("y", d => barGroups[firstYear][d.name]?.y || d.y0)
+    .attr("rx", radius)
+    .attr("ry", radius)
     .attr("width", d => barGroups[firstYear][d.name]?.width || (d.x1 - d.x0))
-    .attr("height", d => barGroups[firstYear][d.name]?.height || (d.y1 - d.y0))
+    .attr("height", d => barGroups[firstYear][d.name]?.height || (d.y1 - d.y0 - 8))
     .on("start", function(event, d) {
       const val = barGroups[firstYear][d.name]?.value;
       if (val !== undefined) {
@@ -672,9 +704,11 @@ export function updateBars(allData, years, containerSelector = "#chart-sankey") 
         d3.select(".tooltip").transition().duration(500).style("opacity", 0);
       })
       .transition()
-      .duration(1000)
+      .duration(600)
       .attr("x", d => barGroups[year][d].x)
       .attr("y", d => barGroups[year][d].y)
+      .attr("rx", radius)
+      .attr("ry", radius)
       .attr("width", d => barGroups[year][d].width)
       .attr("height", d => barGroups[year][d].height)
       .attr("fill", d => getColor({ name: d }));
@@ -683,7 +717,7 @@ export function updateBars(allData, years, containerSelector = "#chart-sankey") 
     chart.selectAll("text.year-label")
       .filter(function() { return d3.select(this).text() === year; })
       .transition()
-      .duration(1000)
+      .duration(600)
       .attr("x", barX(year) + barX.bandwidth() / 2)
       .text(year);
   });
