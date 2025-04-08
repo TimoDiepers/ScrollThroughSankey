@@ -1,5 +1,6 @@
 import { getColor } from "./colors.js";
-import { renderSankey, updateSankey, transformIntoBars, updateBars, hideAllButComponents} from "./chart-sankey.js";
+import { renderSankey, updateSankey} from "./chart-sankey.js";
+import { transformIntoBars, updateBars, hideAllButComponents} from "./chart-bar.js";
 
 // DOM & constants
 const container = document.querySelector(".container");
